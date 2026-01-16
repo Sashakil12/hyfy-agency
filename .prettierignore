@@ -1,0 +1,8 @@
+node_modules/
+dist/
+build/
+.astro/
+.turbo/
+.strapi/
+*.db
+pnpm-lock.yaml
