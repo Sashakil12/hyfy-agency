@@ -7,7 +7,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "type-check": "astro check",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --no-error-on-unmatched-pattern"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --no-error-on-unmatched-pattern",
+    "turbo-ignore": "turbo-ignore"
   },
   "dependencies": {
     "@astrojs/check": "^0.4.1",
