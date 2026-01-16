@@ -11,6 +11,7 @@ dist/
 build/
 .astro/
 .strapi/
+*.tsbuildinfo
 
 # Environment variables
 .env
