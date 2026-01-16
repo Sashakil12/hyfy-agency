@@ -1,0 +1,21 @@
+{
+  "extends": "@repo/typescript-config/node.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./",
+    "strict": false,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "lib": ["ES2020"],
+    "target": "ES2019"
+  },
+  "include": ["./", "./**/*.json"],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    ".cache",
+    ".tmp",
+    "src/admin/**/*.example.*"
+  ]
+}
