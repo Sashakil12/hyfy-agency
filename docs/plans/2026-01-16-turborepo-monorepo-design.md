@@ -42,6 +42,7 @@ hyfy-agency/
 ```
 
 **Rationale:**
+
 - `apps/` for deployable applications
 - `packages/` for reusable shared code
 - Tooling packages ensure consistency across all packages
@@ -51,25 +52,30 @@ hyfy-agency/
 ## 2. Astro Frontend App (`apps/web`)
 
 **Framework setup:**
+
 - Astro with React integration enabled for shared UI components
 - TypeScript for type safety
 - Content collections for local content management (if needed)
 
 **Key features:**
+
 - Landing page and static pages using Astro components
 - `/blog` route that fetches posts from Strapi API
 - React islands for interactive UI components from `@repo/ui`
 - API routes in `src/pages/api/` if server-side logic needed
 
 **Dependencies:**
+
 - Internal: `@repo/ui`, `@repo/utils`, `@repo/typescript-config`
 - External: `astro`, `@astrojs/react`, `react`, `react-dom`
 
 **Build output:**
+
 - Static site generation (SSG) by default
 - Option to use hybrid rendering if certain pages need server-side rendering (SSR)
 
 **API integration:**
+
 - Imports types and utilities from `@repo/utils` to interact with Strapi's API
 - Centralized API client logic for consistency
 
@@ -78,12 +84,14 @@ hyfy-agency/
 ## 3. Strapi CMS App (`apps/strapi`)
 
 **Setup:**
+
 - Strapi v4 (latest stable version)
 - SQLite database for local development
 - Environment-based database config (SQLite dev, Postgres/MySQL production)
 - TypeScript enabled
 
 **Content structure:**
+
 - Blog post content type with fields:
   - title, slug, content (rich text)
   - excerpt, publishedAt, author
@@ -92,15 +100,18 @@ hyfy-agency/
 - Configurable permissions for public read access to published posts
 
 **Key customizations:**
+
 - Custom API routes in `src/api/` if needed
 - Strapi admin panel accessible at `http://localhost:1337/admin`
 - Media library for uploading images
 
 **Dependencies:**
+
 - Internal: `@repo/typescript-config`
 - External: `@strapi/strapi`, `@strapi/plugin-users-permissions`, SQLite/better-sqlite3
 
 **Environment variables:**
+
 - Database credentials, API tokens, admin JWT secrets
 - Configured via `.env` files (not committed to git)
 
@@ -109,6 +120,7 @@ hyfy-agency/
 ## 4. Shared Packages - UI Components (`packages/ui`)
 
 **Structure:**
+
 ```
 packages/ui/
 ├── src/
@@ -124,18 +136,21 @@ packages/ui/
 ```
 
 **Build setup:**
+
 - Built with Vite for fast bundling
 - Exports both ESM and CommonJS formats
 - TypeScript declarations generated automatically
 - CSS modules or Tailwind for styling
 
 **Package configuration:**
+
 - Named `@repo/ui` internally
 - Exports components individually: `import { Button } from '@repo/ui'`
 - Development mode with hot module reload for rapid iteration
 - Peer dependencies: React, React-DOM (not bundled, provided by consumer)
 
 **Testing:**
+
 - Vitest + React Testing Library for component tests
 - Uses shared `@repo/vitest-config`
 
@@ -144,6 +159,7 @@ packages/ui/
 ## 5. Shared Packages - Utils (`packages/utils`)
 
 **Structure:**
+
 ```
 packages/utils/
 ├── src/
@@ -168,16 +184,19 @@ packages/utils/
 ```
 
 **Key features:**
+
 - Tree-shakeable exports: `import { formatDate } from '@repo/utils/formatting'`
 - Type-safe Strapi API client with proper TypeScript types
 - Validation schemas usable in both frontend and backend
 - No React dependencies - pure TypeScript/JavaScript
 
 **Internal organization:**
+
 - Subdirectories (validation/, formatting/, api/, types/) make it easy to extract into separate packages later if needed
 - Each subdirectory has its own index.ts for clean exports
 
 **Dependencies:**
+
 - Date libraries (date-fns or dayjs), validation (zod), etc.
 - Internal: `@repo/typescript-config`
 
@@ -188,24 +207,29 @@ packages/utils/
 These packages provide shared configuration for consistency across the monorepo.
 
 **`packages/typescript-config/`:**
+
 ```
 ├── base.json           # Common TS settings (strict mode, module resolution)
 ├── react.json          # Extends base, adds JSX support
 ├── node.json           # Extends base, Node.js-specific settings
 └── package.json
 ```
+
 Apps extend these: `"extends": "@repo/typescript-config/react.json"`
 
 **`packages/eslint-config/`:**
+
 ```
 ├── base.js             # Core ESLint rules
 ├── react.js            # React-specific rules (hooks, a11y)
 ├── node.js             # Node.js rules
 └── package.json
 ```
+
 Includes: TypeScript ESLint, Prettier integration, import sorting.
 
 **`packages/vitest-config/`:**
+
 ```
 ├── base.ts             # Shared Vitest settings
 ├── react.ts            # React Testing Library setup
@@ -213,6 +237,7 @@ Includes: TypeScript ESLint, Prettier integration, import sorting.
 ```
 
 **Benefits:**
+
 - One place to update rules across all packages
 - New packages automatically get good defaults
 - Version-lock tooling dependencies centrally
@@ -248,6 +273,7 @@ The `turbo.json` defines how tasks run across the monorepo:
 ```
 
 **Key features:**
+
 - `^build` means "build dependencies first" - so `@repo/ui` builds before apps that use it
 - Parallel execution where possible (lint, test can run concurrently)
 - Smart caching - skips unchanged packages
@@ -255,6 +281,7 @@ The `turbo.json` defines how tasks run across the monorepo:
 - `turbo run dev --filter=web` runs only the Astro app + its dependencies
 
 **Common commands:**
+
 - `pnpm dev` - Start all apps in dev mode
 - `pnpm build` - Production build of everything
 - `pnpm lint` - Lint all packages
@@ -278,6 +305,7 @@ Root `.gitignore` excludes all `.env*` files except `.env.example` templates.
 **Development workflow:**
 
 1. **First time setup:**
+
    ```bash
    pnpm install                    # Install all dependencies
    pnpm build                      # Build shared packages
@@ -286,6 +314,7 @@ Root `.gitignore` excludes all `.env*` files except `.env.example` templates.
    ```
 
 2. **Daily development:**
+
    ```bash
    pnpm dev                        # Starts both apps concurrently
    ```
@@ -297,6 +326,7 @@ Root `.gitignore` excludes all `.env*` files except `.env.example` templates.
    ```
 
 **Hot reload:**
+
 - Changes to `@repo/ui` or `@repo/utils` automatically rebuild and reload in consuming apps
 - Turborepo watch mode handles dependency tracking
 
@@ -305,18 +335,23 @@ Root `.gitignore` excludes all `.env*` files except `.env.example` templates.
 ## Design Decisions & Trade-offs
 
 ### Package Manager: pnpm
+
 **Why:** Faster, more efficient disk usage, strict workspace resolution prevents dependency hell.
 
 ### TypeScript Config Presets
+
 **Why:** Different apps have different needs (React vs Node.js). Presets provide consistency while allowing customization.
 
 ### SQLite for Development
+
 **Why:** Zero setup complexity - no Docker or local database server needed. Perfect for getting started quickly. Switch to Postgres/MySQL in production.
 
 ### Subdirectories in `@repo/utils`
+
 **Why:** Keeps the package organized and makes future extraction into separate packages easy (YAGNI but prepared).
 
 ### React for Shared UI
+
 **Why:** Astro supports React islands, largest ecosystem, and potential Strapi admin panel customization.
 
 ---
@@ -324,6 +359,7 @@ Root `.gitignore` excludes all `.env*` files except `.env.example` templates.
 ## Next Steps
 
 After implementation:
+
 1. Initialize git repository and make initial commit
 2. Set up CI/CD pipeline for building and testing
 3. Configure deployment for Astro (Vercel, Netlify, etc.)

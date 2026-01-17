@@ -13,6 +13,7 @@
 ## Task 1: Root Monorepo Foundation
 
 **Files:**
+
 - Create: `package.json`
 - Create: `pnpm-workspace.yaml`
 - Create: `.gitignore`
@@ -174,6 +175,7 @@ git commit -m "chore: initialize root monorepo structure
 ## Task 2: TypeScript Config Package
 
 **Files:**
+
 - Create: `packages/typescript-config/package.json`
 - Create: `packages/typescript-config/base.json`
 - Create: `packages/typescript-config/react.json`
@@ -196,11 +198,7 @@ Create: `packages/typescript-config/package.json`
   "version": "0.0.0",
   "private": true,
   "main": "index.js",
-  "files": [
-    "base.json",
-    "react.json",
-    "node.json"
-  ]
+  "files": ["base.json", "react.json", "node.json"]
 }
 ```
 
@@ -266,7 +264,7 @@ Create: `packages/typescript-config/node.json`
 
 Create: `packages/typescript-config/README.md`
 
-```markdown
+````markdown
 # @repo/typescript-config
 
 Shared TypeScript configurations for the monorepo.
@@ -280,13 +278,15 @@ In your `tsconfig.json`:
   "extends": "@repo/typescript-config/react.json"
 }
 ```
+````
 
 ## Available Configs
 
 - `base.json` - Common settings for all projects
 - `react.json` - For React applications (Astro, UI package)
 - `node.json` - For Node.js applications (Strapi)
-```
+
+````
 
 **Step 7: Commit**
 
@@ -296,13 +296,14 @@ git commit -m "feat: add TypeScript config package
 
 - Add base, react, and node configs
 - Enable strict mode and modern module resolution"
-```
+````
 
 ---
 
 ## Task 3: ESLint Config Package
 
 **Files:**
+
 - Create: `packages/eslint-config/package.json`
 - Create: `packages/eslint-config/base.js`
 - Create: `packages/eslint-config/react.js`
@@ -325,11 +326,7 @@ Create: `packages/eslint-config/package.json`
   "version": "0.0.0",
   "private": true,
   "main": "base.js",
-  "files": [
-    "base.js",
-    "react.js",
-    "node.js"
-  ],
+  "files": ["base.js", "react.js", "node.js"],
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",
@@ -424,7 +421,7 @@ module.exports = {
 
 Create: `packages/eslint-config/README.md`
 
-```markdown
+````markdown
 # @repo/eslint-config
 
 Shared ESLint configurations for the monorepo.
@@ -438,13 +435,15 @@ module.exports = {
   extends: ['@repo/eslint-config/react'],
 }
 ```
+````
 
 ## Available Configs
 
 - `base.js` - Core ESLint rules for TypeScript
 - `react.js` - React-specific rules (hooks, a11y)
 - `node.js` - Node.js-specific rules
-```
+
+````
 
 **Step 7: Commit**
 
@@ -454,13 +453,14 @@ git commit -m "feat: add ESLint config package
 
 - Add base, react, and node configs
 - Configure import sorting and TypeScript rules"
-```
+````
 
 ---
 
 ## Task 4: Vitest Config Package
 
 **Files:**
+
 - Create: `packages/vitest-config/package.json`
 - Create: `packages/vitest-config/base.ts`
 - Create: `packages/vitest-config/react.ts`
@@ -482,10 +482,7 @@ Create: `packages/vitest-config/package.json`
   "version": "0.0.0",
   "private": true,
   "main": "base.ts",
-  "files": [
-    "base.ts",
-    "react.ts"
-  ],
+  "files": ["base.ts", "react.ts"],
   "dependencies": {
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
@@ -544,7 +541,7 @@ export default mergeConfig(
 
 Create: `packages/vitest-config/README.md`
 
-```markdown
+````markdown
 # @repo/vitest-config
 
 Shared Vitest configurations for the monorepo.
@@ -559,12 +556,14 @@ import reactConfig from '@repo/vitest-config/react'
 
 export default reactConfig
 ```
+````
 
 ## Available Configs
 
 - `base.ts` - Core Vitest settings
 - `react.ts` - React Testing Library setup with jsdom
-```
+
+````
 
 **Step 6: Commit**
 
@@ -574,13 +573,14 @@ git commit -m "feat: add Vitest config package
 
 - Add base and react configs
 - Configure testing library and jsdom"
-```
+````
 
 ---
 
 ## Task 5: Utils Package Structure
 
 **Files:**
+
 - Create: `packages/utils/package.json`
 - Create: `packages/utils/tsconfig.json`
 - Create: `packages/utils/src/index.ts`
@@ -732,6 +732,7 @@ git commit -m "feat: add utils package structure
 ## Task 6: UI Package Structure
 
 **Files:**
+
 - Create: `packages/ui/package.json`
 - Create: `packages/ui/tsconfig.json`
 - Create: `packages/ui/vite.config.ts`
@@ -866,6 +867,7 @@ git commit -m "feat: add UI package structure
 ## Task 7: Astro App Setup
 
 **Files:**
+
 - Create: `apps/web/` (via Astro CLI)
 - Modify: `apps/web/package.json`
 - Modify: `apps/web/tsconfig.json`
@@ -996,6 +998,7 @@ git commit -m "feat: add Astro frontend app
 ## Task 8: Strapi App Setup
 
 **Files:**
+
 - Create: `apps/strapi/` (via Strapi CLI)
 - Modify: `apps/strapi/package.json`
 - Create: `apps/strapi/tsconfig.json`
@@ -1145,6 +1148,7 @@ git commit -m "feat: add Strapi CMS app
 ## Task 9: Turborepo Configuration
 
 **Files:**
+
 - Create: `turbo.json`
 - Modify: `package.json` (root)
 
@@ -1225,6 +1229,7 @@ git commit -m "feat: configure Turborepo pipeline
 ## Task 10: Environment Variables and Documentation
 
 **Files:**
+
 - Create: `README.md`
 - Create: `.env.example`
 - Create: `.vscode/extensions.json`
@@ -1234,7 +1239,7 @@ git commit -m "feat: configure Turborepo pipeline
 
 Create: `README.md`
 
-```markdown
+````markdown
 # hyfy-agency
 
 A Turborepo monorepo containing an Astro frontend and Strapi CMS with shared TypeScript packages.
@@ -1266,6 +1271,7 @@ A Turborepo monorepo containing an Astro frontend and Strapi CMS with shared Typ
 ```bash
 pnpm install
 ```
+````
 
 ### Development
 
@@ -1357,7 +1363,8 @@ hyfy-agency/
 ## Documentation
 
 See `docs/plans/` for detailed design documents and implementation plans.
-```
+
+````
 
 **Step 2: Create root .env.example**
 
@@ -1366,7 +1373,7 @@ Create: `.env.example`
 ```env
 # No root-level environment variables needed
 # See apps/web/.env.example and apps/strapi/.env.example
-```
+````
 
 **Step 3: Create VSCode extensions**
 
@@ -1394,9 +1401,7 @@ Create: `.vscode/settings.json`
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "eslint.workingDirectories": [
-    { "mode": "auto" }
-  ],
+  "eslint.workingDirectories": [{ "mode": "auto" }],
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true
 }
@@ -1418,6 +1423,7 @@ git commit -m "docs: add project documentation
 ## Task 11: Verification and Testing
 
 **Files:**
+
 - None (testing existing setup)
 
 **Step 1: Clean install test**
@@ -1431,6 +1437,7 @@ Expected: All packages install successfully
 Run: `pnpm build`
 
 Expected: All packages build successfully in correct order:
+
 1. Config packages (typescript-config, eslint-config, vitest-config)
 2. Shared packages (utils, ui)
 3. Apps (web, strapi)
