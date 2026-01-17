@@ -1,4 +1,4 @@
-import { Github, Twitter, Linkedin } from 'lucide-react'
+import { Github, Twitter, Linkedin as LinkedinIcon } from 'lucide-react'
 
 const navigation = {
   services: [
@@ -17,7 +17,7 @@ const navigation = {
   social: [
     { name: 'GitHub', icon: Github, href: '#' },
     { name: 'Twitter', icon: Twitter, href: '#' },
-    { name: 'LinkedIn', icon: Linkedin, href: '#' },
+    { name: 'LinkedIn', icon: LinkedinIcon, href: '#' },
   ],
 }
 
