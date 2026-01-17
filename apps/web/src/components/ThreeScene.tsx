@@ -1,7 +1,7 @@
 'use client'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, MeshTransmissionMaterial } from '@react-three/drei'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import type { Mesh } from 'three'
 
 function RotatingBrain() {
@@ -15,9 +15,9 @@ function RotatingBrain() {
     meshRef.current.rotation.y += 0.001
 
     // Mouse parallax effect
-    const { mouse } = state
-    meshRef.current.rotation.x = mouse.y * 0.1
-    meshRef.current.rotation.z = mouse.x * 0.1
+    const { pointer } = state
+    meshRef.current.rotation.x = pointer.y * 0.1
+    meshRef.current.rotation.z = pointer.x * 0.1
   })
 
   return (
@@ -52,6 +52,17 @@ interface ThreeSceneProps {
 }
 
 export function ThreeScene({ className }: ThreeSceneProps) {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Render nothing on server-side
+  if (!mounted) {
+    return <div className={className} />
+  }
+
   return (
     <div className={className}>
       <Canvas camera={{ position: [0, 0, 6], fov: 50 }}>
