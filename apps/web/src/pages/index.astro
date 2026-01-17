@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css'
+import { Button } from '@/components/ui/button'
 ---
 
 <html lang="en">
@@ -7,10 +8,11 @@ import '../styles/global.css'
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
 		<title>Hyfy Agency - From Idea to MVP in 65% Less Time</title>
 	</head>
 	<body>
-		<h1>Hyfy Agency</h1>
+		<div class="p-8">
+			<Button client:load>Test Button</Button>
+		</div>
 	</body>
 </html>
