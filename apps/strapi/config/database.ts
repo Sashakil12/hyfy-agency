@@ -6,7 +6,8 @@ export default ({ env }) => {
   const connections = {
     sqlite: {
       connection: {
-        filename: path.join(__dirname, '..', env('DATABASE_FILENAME', '.tmp/data.db')),
+        // Store database in project root's .tmp folder, not in dist
+        filename: path.join(__dirname, '../..', env('DATABASE_FILENAME', '.tmp/data.db')),
       },
       useNullAsDefault: true,
     },
