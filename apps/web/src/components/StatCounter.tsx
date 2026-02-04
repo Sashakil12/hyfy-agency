@@ -1,6 +1,6 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
 import { useInView } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 
 interface StatCounterProps {
   end: number

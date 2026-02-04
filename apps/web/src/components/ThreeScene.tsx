@@ -1,10 +1,15 @@
+/* eslint-disable react/no-unknown-property */
 'use client'
-import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, MeshTransmissionMaterial } from '@react-three/drei'
+import { Canvas, useFrame } from '@react-three/fiber'
 import { useRef, useState, useEffect } from 'react'
 import type { Mesh } from 'three'
 
-function RotatingBrain() {
+interface RotatingBrainProps {
+  responsiveScale: number
+}
+
+function RotatingBrain({ responsiveScale }: RotatingBrainProps) {
   const meshRef = useRef<Mesh>(null)
   const [hovered, setHovered] = useState(false)
 
@@ -20,12 +25,14 @@ function RotatingBrain() {
     meshRef.current.rotation.z = pointer.x * 0.1
   })
 
+  const baseScale = responsiveScale * (hovered ? 1.1 : 1)
+
   return (
     <mesh
       ref={meshRef}
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
-      scale={hovered ? 1.1 : 1}
+      scale={baseScale}
     >
       {/* Placeholder: IcosahedronGeometry - replace with GLTF model later */}
       <icosahedronGeometry args={[2, 4]} />
@@ -53,9 +60,26 @@ interface ThreeSceneProps {
 
 export function ThreeScene({ className }: ThreeSceneProps) {
   const [mounted, setMounted] = useState(false)
+  const [scale, setScale] = useState(1)
 
   useEffect(() => {
     setMounted(true)
+
+    // Set responsive scale based on screen size
+    const updateScale = () => {
+      const width = window.innerWidth
+      if (width < 768) {
+        setScale(0.4) // Mobile: 40%
+      } else if (width < 1440) {
+        setScale(0.6) // Tablet: 60%
+      } else {
+        setScale(1) // Desktop: 100%
+      }
+    }
+
+    updateScale()
+    window.addEventListener('resize', updateScale)
+    return () => window.removeEventListener('resize', updateScale)
   }, [])
 
   // Render nothing on server-side
@@ -70,7 +94,7 @@ export function ThreeScene({ className }: ThreeSceneProps) {
         <pointLight position={[10, 10, 10]} intensity={1} />
         <pointLight position={[-10, -10, -10]} color="#88FF66" intensity={0.5} />
 
-        <RotatingBrain />
+        <RotatingBrain responsiveScale={scale} />
 
         <OrbitControls
           enableZoom={false}

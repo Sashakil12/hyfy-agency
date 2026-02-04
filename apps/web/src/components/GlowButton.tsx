@@ -1,6 +1,7 @@
+import type { ButtonHTMLAttributes } from 'react'
+
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import type { ButtonHTMLAttributes } from 'react'
 
 interface GlowButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary'

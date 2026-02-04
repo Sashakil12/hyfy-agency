@@ -9,7 +9,14 @@ export default {
   			charcoal: '#0F1210',
   			lime: '#88FF66',
   			amber: '#F2994A',
-  			slate: '#828282',
+  			// Luminous Transparency System - Self-illuminated text hierarchy
+  			'luminous': {
+  				DEFAULT: 'rgba(255, 255, 255, 0.65)', // Primary secondary text
+  				tertiary: 'rgba(255, 255, 255, 0.45)', // Metadata/labels
+  				muted: 'rgba(255, 255, 255, 0.25)', // Disabled/deemphasized
+  				data: 'rgba(136, 255, 102, 0.5)', // Technical data with lime tint
+  			},
+  			slate: 'rgba(255, 255, 255, 0.65)', // Updated to luminous default for compatibility
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -53,11 +60,11 @@ export default {
   		},
   		fontFamily: {
   			display: [
-  				'Inter',
+  				'Orbitron',
   				'sans-serif'
   			],
   			body: [
-  				'Inter',
+  				'Rajdhani',
   				'sans-serif'
   			]
   		},
