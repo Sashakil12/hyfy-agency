@@ -1,10 +1,12 @@
+import { LucideIcon, Factory, Bot, Zap, ShoppingCart, Rocket, Package } from 'lucide-react'
+
 export interface ExpertiseItem {
   id: string
   title: string
   shortTitle: string
   description: string
   details: string[]
-  icon: string
+  icon: LucideIcon
 }
 
 export const expertiseItems: ExpertiseItem[] = [
@@ -18,7 +20,7 @@ export const expertiseItems: ExpertiseItem[] = [
       'Highly customizable to fit your unique workflows',
       'Mobile-first interfaces for field workers',
     ],
-    icon: '🏭',
+    icon: Factory,
   },
   {
     id: 'ai-tools',
@@ -30,7 +32,7 @@ export const expertiseItems: ExpertiseItem[] = [
       'Predictive analytics and automation',
       'Custom AI models trained on your data',
     ],
-    icon: '🤖',
+    icon: Bot,
   },
   {
     id: 'n8n',
@@ -42,7 +44,7 @@ export const expertiseItems: ExpertiseItem[] = [
       'Custom workflow nodes and templates',
       'Monitoring and error handling',
     ],
-    icon: '⚡',
+    icon: Zap,
   },
   {
     id: 'ecommerce',
@@ -54,7 +56,7 @@ export const expertiseItems: ExpertiseItem[] = [
       'Custom checkout flows and payment integrations',
       'Performance-optimized product catalogs',
     ],
-    icon: '🛒',
+    icon: ShoppingCart,
   },
   {
     id: 'saas',
@@ -66,7 +68,7 @@ export const expertiseItems: ExpertiseItem[] = [
       'Subscription and billing systems',
       'AI-driven core value propositions',
     ],
-    icon: '🚀',
+    icon: Rocket,
   },
   {
     id: 'cms',
@@ -78,6 +80,6 @@ export const expertiseItems: ExpertiseItem[] = [
       'API-first architecture',
       'Admin panel customization',
     ],
-    icon: '📦',
+    icon: Package,
   },
 ]
