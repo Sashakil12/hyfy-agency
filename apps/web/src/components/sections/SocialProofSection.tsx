@@ -57,7 +57,10 @@ export function SocialProofSection() {
   const isInView = useInView(ref, { once: true, amount: 0.3 })
 
   return (
-    <section ref={ref} className="relative min-h-screen bg-charcoal py-32 px-4 overflow-hidden">
+    <section
+      ref={ref}
+      className="relative min-h-screen bg-charcoal py-16 md:py-24 lg:py-32 px-4 overflow-hidden"
+    >
       <div className="absolute inset-0 opacity-5">
         <div
           className="w-full h-full"

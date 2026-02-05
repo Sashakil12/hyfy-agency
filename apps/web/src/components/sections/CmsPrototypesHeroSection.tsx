@@ -92,7 +92,7 @@ export function CmsPrototypesHeroSection() {
             </motion.div>
 
             <motion.div
-              className="grid grid-cols-3 gap-6 pt-6 border-t border-white/10"
+              className="grid grid-cols-3 gap-4 md:gap-6 pt-6 border-t border-white/10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2 }}

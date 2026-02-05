@@ -20,7 +20,7 @@ export function HeroSection() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <h1 className="text-watermark text-[12rem] md:text-[16rem] lg:text-[20rem] font-display font-extrabold uppercase tracking-[0.05em] leading-none whitespace-nowrap">
+        <h1 className="text-watermark text-[6rem] sm:text-[8rem] md:text-[12rem] lg:text-[16rem] xl:text-[20rem] font-display font-extrabold uppercase tracking-[0.05em] leading-none whitespace-nowrap">
           Build Fast
         </h1>
       </motion.div>

@@ -39,7 +39,10 @@ export function ProcessSection() {
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
-    <section ref={ref} className="relative min-h-screen bg-charcoal py-32 px-4 overflow-hidden">
+    <section
+      ref={ref}
+      className="relative min-h-screen bg-charcoal py-16 md:py-24 lg:py-32 px-4 overflow-hidden"
+    >
       {/* Pipeline visualization */}
       <div className="absolute inset-0 opacity-5">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -133,7 +136,7 @@ export function ProcessSection() {
           </div>
 
           {/* Cards Grid */}
-          <div className="grid md:grid-cols-4 gap-6 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 relative z-10">
             {processPhases.map((phase, index) => (
               <motion.div
                 key={phase.title}

@@ -67,7 +67,7 @@ export function ExpertiseSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen py-32 px-4 overflow-hidden"
+      className="relative min-h-screen py-16 md:py-24 lg:py-32 px-4 overflow-hidden"
       style={{
         background:
           'radial-gradient(ellipse at 50% 0%, rgba(136, 255, 102, 0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 50%, rgba(136, 255, 102, 0.05) 0%, transparent 40%), radial-gradient(ellipse at 20% 80%, rgba(136, 255, 102, 0.05) 0%, transparent 40%), #050505',
@@ -154,7 +154,7 @@ export function ExpertiseSection() {
         </motion.div>
 
         {/* 3D Carousel */}
-        <div className="relative h-[650px] md:h-[600px] flex items-center justify-center">
+        <div className="relative h-[550px] md:h-[600px] flex items-center justify-center">
           <div
             className="relative w-full h-full flex items-center justify-center"
             onTouchStart={handleTouchStart}
@@ -168,7 +168,7 @@ export function ExpertiseSection() {
                 const scale = isActive ? 1 : offset === -1 || offset === 1 ? 0.85 : 0.7
                 const opacity = isActive ? 1 : Math.abs(offset) === 1 ? 0.6 : 0.3
                 const zIndex = 10 - Math.abs(offset)
-                const xOffset = offset * 380
+                const xOffset = isMobile ? offset * 95 : offset * 380
                 const rotateY = offset * 15
 
                 return (
@@ -192,10 +192,10 @@ export function ExpertiseSection() {
                     }}
                     style={{ zIndex, transformStyle: 'preserve-3d' }}
                   >
-                    <div className="relative w-[90vw] md:w-[700px] lg:w-[800px]">
+                    <div className="relative w-[85vw] md:w-[700px] lg:w-[800px]">
                       <div
                         className={cn(
-                          'relative h-[500px] p-8 rounded-xl overflow-hidden cursor-pointer group backdrop-blur-xl',
+                          'relative h-[400px] md:h-[500px] p-6 md:p-8 rounded-xl overflow-hidden cursor-pointer group backdrop-blur-xl',
                           'border transition-all duration-500',
                           isActive
                             ? 'border-lime/40 shadow-[0_0_60px_rgba(136,255,102,0.15)] bg-gradient-to-br from-white/[0.08] to-white/[0.02]'

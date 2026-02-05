@@ -17,7 +17,7 @@ export function ErpHeroSection() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <h1 className="text-watermark text-[8rem] md:text-[12rem] lg:text-[16rem] font-display font-extrabold uppercase tracking-[0.05em] leading-none whitespace-nowrap">
+        <h1 className="text-watermark text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[12rem] xl:text-[16rem] font-display font-extrabold uppercase tracking-[0.05em] leading-none whitespace-nowrap">
           ERP
         </h1>
       </motion.div>
@@ -92,7 +92,7 @@ export function ErpHeroSection() {
             </motion.div>
 
             <motion.div
-              className="grid grid-cols-3 gap-6 pt-6 border-t border-white/10"
+              className="grid grid-cols-3 gap-4 md:gap-6 pt-6 border-t border-white/10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2 }}

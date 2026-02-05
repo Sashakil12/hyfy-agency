@@ -25,7 +25,7 @@ export function CTASection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen py-32 px-4 overflow-hidden"
+      className="relative min-h-screen py-16 md:py-24 lg:py-32 px-4 overflow-hidden"
       style={{
         background:
           'radial-gradient(ellipse at 50% 100%, rgba(136, 255, 102, 0.1) 0%, transparent 50%), radial-gradient(ellipse at 20% 50%, rgba(136, 255, 102, 0.05) 0%, transparent 40%), #050505',
@@ -62,7 +62,7 @@ export function CTASection() {
           className="space-y-8"
         >
           {/* Main Card */}
-          <div className="relative p-12 rounded-2xl border border-lime/20 glass-panel overflow-hidden">
+          <div className="relative p-6 md:p-8 lg:p-12 rounded-2xl border border-lime/20 glass-panel overflow-hidden">
             {/* Corner brackets */}
             <div className="absolute inset-0 pointer-events-none">
               {[
@@ -96,7 +96,7 @@ export function CTASection() {
             </motion.div>
 
             {/* Headline */}
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-display font-extrabold uppercase tracking-tight leading-tight mb-6">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-extrabold uppercase tracking-tight leading-tight mb-6">
               Let&apos;s Build Your
               <br />
               <span className="text-lime">Product Together</span>

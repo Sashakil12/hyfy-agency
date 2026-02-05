@@ -57,9 +57,9 @@ export function Footer() {
       />
 
       <div className="relative max-w-7xl mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           {/* Logo & Description */}
-          <div className="md:col-span-2">
+          <div className="sm:col-span-2 md:col-span-2">
             <div className="relative inline-block mb-4">
               {/* Logo with HUD frame */}
               <div className="relative">
