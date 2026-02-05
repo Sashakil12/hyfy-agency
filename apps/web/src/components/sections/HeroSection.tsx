@@ -2,10 +2,10 @@
 import { motion } from 'framer-motion'
 import { ChevronDown, Terminal, Rocket } from 'lucide-react'
 
-import { GlowButton } from '@/components/GlowButton'
 import { GridBackground } from '@/components/effects/GridBackground'
 import { HolographicOrb } from '@/components/effects/HolographicOrb'
 import { HolographicText } from '@/components/effects/HolographicText'
+import { GlowButton } from '@/components/GlowButton'
 
 export function HeroSection() {
   return (

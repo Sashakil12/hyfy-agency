@@ -1,6 +1,6 @@
 'use client'
-import { Github, Twitter, Linkedin as LinkedinIcon, Terminal } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { Github, Twitter, Linkedin as LinkedinIcon, Terminal } from 'lucide-react'
 
 const navigation = {
   services: [

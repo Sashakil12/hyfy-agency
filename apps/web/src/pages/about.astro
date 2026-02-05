@@ -1,0 +1,40 @@
+---
+import '../styles/global.css'
+import { AboutHeroSection } from '@/components/sections/AboutHeroSection'
+import { MissionSection } from '@/components/sections/MissionSection'
+import { StatsSection } from '@/components/sections/StatsSection'
+import { TeamSection } from '@/components/sections/TeamSection'
+import { ProcessSection } from '@/components/sections/ProcessSection'
+import { AboutCTASection } from '@/components/sections/AboutCTASection'
+import { Footer } from '@/components/Footer'
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="generator" content={Astro.generator} />
+
+		<title>About Us - Hyfy Agency - AI-Powered Full-Stack Development</title>
+		<meta name="title" content="About Us - Hyfy Agency - AI-Powered Full-Stack Development" />
+		<meta name="description" content="Meet the team behind Hyfy Agency. We're AI-powered developers building custom software 65% faster. Learn our mission, values, and how we work." />
+		<meta name="keywords" content="about hyfy, agency team, ai development, mission, values, company" />
+		<meta name="author" content="Hyfy Agency" />
+		<meta name="robots" content="index, follow" />
+		<meta name="language" content="English" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+	</head>
+	<body>
+		<AboutHeroSection client:load />
+		<MissionSection client:load />
+		<StatsSection client:load />
+		<TeamSection client:load />
+		<ProcessSection client:load />
+		<AboutCTASection client:load />
+		<Footer client:load />
+	</body>
+</html>

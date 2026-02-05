@@ -2,9 +2,9 @@
 import { motion } from 'framer-motion'
 import { Package, Database, ArrowRight, LayoutGrid } from 'lucide-react'
 
-import { GlowButton } from '@/components/GlowButton'
 import { GridBackground } from '@/components/effects/GridBackground'
 import { HolographicText } from '@/components/effects/HolographicText'
+import { GlowButton } from '@/components/GlowButton'
 
 export function CmsPrototypesHeroSection() {
   return (

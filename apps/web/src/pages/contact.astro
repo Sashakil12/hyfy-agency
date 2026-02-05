@@ -1,0 +1,34 @@
+---
+import '../styles/global.css'
+import { ContactHeroSection } from '@/components/sections/ContactHeroSection'
+import { ContactFormSection } from '@/components/sections/ContactFormSection'
+import { ContactInfoSection } from '@/components/sections/ContactInfoSection'
+import { Footer } from '@/components/Footer'
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="generator" content={Astro.generator} />
+
+		<title>Contact Us - Hyfy Agency - Start Your Project</title>
+		<meta name="title" content="Contact Us - Hyfy Agency - Start Your Project" />
+		<meta name="description" content="Get in touch with Hyfy Agency. Book a free strategy call to discuss your project. We respond within 48 hours." />
+		<meta name="keywords" content="contact hyfy, start project, strategy call, consultation" />
+		<meta name="author" content="Hyfy Agency" />
+		<meta name="robots" content="index, follow" />
+		<meta name="language" content="English" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+	</head>
+	<body>
+		<ContactHeroSection client:load />
+		<ContactFormSection client:load />
+		<ContactInfoSection client:load />
+		<Footer client:load />
+	</body>
+</html>
