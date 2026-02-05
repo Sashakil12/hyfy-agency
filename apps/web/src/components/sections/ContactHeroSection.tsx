@@ -8,7 +8,7 @@ import { HolographicText } from '@/components/effects/HolographicText'
 
 export function ContactHeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-obsidian scan-lines noise overflow-hidden">
+    <section className="relative min-h-screen flex justify-center bg-obsidian scan-lines noise overflow-hidden">
       <GridBackground />
 
       <motion.div
@@ -32,7 +32,7 @@ export function ContactHeroSection() {
       </motion.div>
 
       <motion.div
-        className="relative z-10 max-w-5xl mx-auto px-4 text-center"
+        className="relative z-10 max-w-5xl mx-auto px-4 pt-24 md:pt-32 text-center"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.6 }}

@@ -8,7 +8,7 @@ import { GlowButton } from '@/components/GlowButton'
 
 export function EcommerceHeroSection() {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-obsidian scan-lines noise flex items-center">
+    <section className="relative min-h-screen w-full overflow-hidden bg-obsidian scan-lines noise flex">
       <GridBackground />
 
       <motion.div
@@ -23,7 +23,7 @@ export function EcommerceHeroSection() {
       </motion.div>
 
       <motion.div
-        className="relative z-10 max-w-7xl mx-auto px-4 py-20 w-full"
+        className="relative z-10 max-w-7xl mx-auto px-4 pt-24 md:pt-32 pb-20 w-full"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.3 }}
