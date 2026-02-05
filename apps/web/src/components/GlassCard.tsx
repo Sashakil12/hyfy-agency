@@ -20,10 +20,12 @@ export function GlassCard({
   index = 0,
 }: GlassCardProps) {
   // Determine corner positions based on index (alternating pattern)
-  const showTopLeft = corners === 'default' || (corners === 'alternate' && index % 2 === 0)
-  const showTopRight = corners === 'default' || (corners === 'alternate' && index % 2 === 1)
-  const showBottomLeft = corners === 'default' || (corners === 'alternate' && index % 2 === 1)
-  const showBottomRight = corners === 'default' || (corners === 'alternate' && index % 2 === 0)
+  // Even cards: top-right + bottom-left
+  // Odd cards: top-left + bottom-right
+  const showTopLeft = corners === 'default' || (corners === 'alternate' && index % 2 === 1)
+  const showTopRight = corners === 'default' || (corners === 'alternate' && index % 2 === 0)
+  const showBottomLeft = corners === 'default' || (corners === 'alternate' && index % 2 === 0)
+  const showBottomRight = corners === 'default' || (corners === 'alternate' && index % 2 === 1)
 
   return (
     <div
@@ -36,20 +38,20 @@ export function GlassCard({
     >
       {children}
 
-      {/* Corner brackets - alternating pattern */}
+      {/* Corner brackets - positioned outside the card with negative offset */}
       {corners !== 'none' && (
         <>
           {showTopLeft && (
-            <div className="absolute top-0 left-0 w-8 h-8 border-t border-l border-lime/20" />
+            <div className="absolute -left-2 -top-2 w-8 h-8 border-t-2 border-l-2 border-lime/40" />
           )}
           {showTopRight && (
-            <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-lime/20" />
+            <div className="absolute -right-2 -top-2 w-8 h-8 border-t-2 border-r-2 border-lime/40" />
           )}
           {showBottomLeft && (
-            <div className="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-lime/20" />
+            <div className="absolute -left-2 -bottom-2 w-8 h-8 border-b-2 border-l-2 border-lime/40" />
           )}
           {showBottomRight && (
-            <div className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-lime/20" />
+            <div className="absolute -right-2 -bottom-2 w-8 h-8 border-b-2 border-r-2 border-lime/40" />
           )}
         </>
       )}
