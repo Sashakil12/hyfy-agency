@@ -1,0 +1,61 @@
+---
+import '../styles/global.css'
+import { ErpHeroSection } from '@/components/sections/ErpHeroSection'
+import { ErpFeaturesSection } from '@/components/sections/ErpFeaturesSection'
+import { ErpIndustriesSection } from '@/components/sections/ErpIndustriesSection'
+import { ErpCTASection } from '@/components/sections/ErpCTASection'
+import { Footer } from '@/components/Footer'
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="generator" content={Astro.generator} />
+
+		{/* Primary Meta Tags */}
+		<title>Custom ERP Solutions | Hyfy Agency - Intuitive Systems for Blue-Collar Teams</title>
+		<meta name="title" content="Custom ERP Solutions | Hyfy Agency - Intuitive Systems for Blue-Collar Teams" />
+		<meta name="description" content="Custom ERP systems designed for blue-collar workforces. Mobile-first interfaces, intuitive workflows, 90% user adoption rate. Manufacturing, construction, logistics expertise." />
+		<meta name="keywords" content="ERP development, custom ERP, blue-collar ERP, manufacturing software, construction management, logistics ERP, workforce management, field service software" />
+		<meta name="author" content="Hyfy Agency" />
+		<meta name="robots" content="index, follow" />
+		<meta name="language" content="English" />
+
+		{/* Open Graph / Facebook */}
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://hyfy.agency/erp" />
+		<meta property="og:title" content="Custom ERP Solutions | Hyfy Agency - Intuitive Systems for Blue-Collar Teams" />
+		<meta property="og:description" content="Custom ERP systems designed for blue-collar workforces. Mobile-first interfaces, intuitive workflows, 90% user adoption rate." />
+		<meta property="og:image" content="https://hyfy.agency/og-image.jpg" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:site_name" content="Hyfy Agency" />
+		<meta property="og:locale" content="en_US" />
+
+		{/* Twitter */}
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content="https://hyfy.agency/erp" />
+		<meta name="twitter:title" content="Custom ERP Solutions | Hyfy Agency - Intuitive Systems for Blue-Collar Teams" />
+		<meta name="twitter:description" content="Custom ERP systems designed for blue-collar workforces. Mobile-first interfaces, intuitive workflows, 90% user adoption rate." />
+		<meta name="twitter:image" content="https://hyfy.agency/og-image.jpg" />
+
+		{/* Additional Meta Tags */}
+		<meta name="theme-color" content="#050505" />
+		<meta name="msapplication-TileColor" content="#050505" />
+		<link rel="canonical" href="https://hyfy.agency/erp" />
+
+		{/* Futuristic Fonts - Orbitron + Rajdhani */}
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+	</head>
+	<body>
+		<ErpHeroSection client:load />
+		<ErpFeaturesSection client:load />
+		<ErpIndustriesSection client:load />
+		<ErpCTASection client:load />
+		<Footer client:load />
+	</body>
+</html>

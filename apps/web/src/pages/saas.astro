@@ -1,0 +1,61 @@
+---
+import '../styles/global.css'
+import { SaasHeroSection } from '@/components/sections/SaasHeroSection'
+import { SaasFeaturesSection } from '@/components/sections/SaasFeaturesSection'
+import { SaasArchitectureSection } from '@/components/sections/SaasArchitectureSection'
+import { SaasCTASection } from '@/components/sections/SaasCTASection'
+import { Footer } from '@/components/Footer'
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="generator" content={Astro.generator} />
+
+		{/* Primary Meta Tags */}
+		<title>SaaS Development | Hyfy Agency - Idea to Launch in Record Time</title>
+		<meta name="title" content="SaaS Development | Hyfy Agency - Idea to Launch in Record Time" />
+		<meta name="description" content="AI-powered SaaS development with multi-tenant architecture, subscription billing, and enterprise security. Launch 65% faster with our proven starter kit. Result as a Service applications." />
+		<meta name="keywords" content="SaaS development, custom SaaS, multi-tenant architecture, SaaS starter kit, subscription billing, B2B SaaS, cloud application, RaaS" />
+		<meta name="author" content="Hyfy Agency" />
+		<meta name="robots" content="index, follow" />
+		<meta name="language" content="English" />
+
+		{/* Open Graph / Facebook */}
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://hyfy.agency/saas" />
+		<meta property="og:title" content="SaaS Development | Hyfy Agency - Idea to Launch in Record Time" />
+		<meta property="og:description" content="AI-powered SaaS development with multi-tenant architecture, subscription billing, and enterprise security. Launch 65% faster with our proven starter kit." />
+		<meta property="og:image" content="https://hyfy.agency/og-image.jpg" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:site_name" content="Hyfy Agency" />
+		<meta property="og:locale" content="en_US" />
+
+		{/* Twitter */}
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content="https://hyfy.agency/saas" />
+		<meta name="twitter:title" content="SaaS Development | Hyfy Agency - Idea to Launch in Record Time" />
+		<meta name="twitter:description" content="AI-powered SaaS development with multi-tenant architecture, subscription billing, and enterprise security. Launch 65% faster with our proven starter kit." />
+		<meta name="twitter:image" content="https://hyfy.agency/og-image.jpg" />
+
+		{/* Additional Meta Tags */}
+		<meta name="theme-color" content="#050505" />
+		<meta name="msapplication-TileColor" content="#050505" />
+		<link rel="canonical" href="https://hyfy.agency/saas" />
+
+		{/* Futuristic Fonts - Orbitron + Rajdhani */}
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+	</head>
+	<body>
+		<SaasHeroSection client:load />
+		<SaasFeaturesSection client:load />
+		<SaasArchitectureSection client:load />
+		<SaasCTASection client:load />
+		<Footer client:load />
+	</body>
+</html>

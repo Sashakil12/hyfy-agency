@@ -1,36 +1,36 @@
 'use client'
 import { motion, useInView } from 'framer-motion'
-import { Lightbulb, Rocket, RefreshCw, TrendingUp, Cpu } from 'lucide-react'
+import { Lightbulb, Rocket, RefreshCw, TrendingUp, Shield, Clock, Sparkles } from 'lucide-react'
 import { useRef } from 'react'
 
 const processPhases = [
   {
     icon: Lightbulb,
-    title: 'Discovery & Ideation',
-    description: 'We map your vision using AI-assisted requirement gathering',
-    tools: 'Collaborative workshops, AI spec generation',
-    color: 'from-amber-400 to-lime',
+    title: 'Discovery',
+    description: 'We map your vision fast with AI-assisted workshops that cut planning time by 60%',
+    tools: 'Collaborative sessions, AI spec generation, rapid prototyping',
+    outcome: 'Clear scope in 1 week',
   },
   {
     icon: Rocket,
-    title: 'Rapid Prototyping',
-    description: 'CMS-driven prototypes in days, not months',
-    tools: 'Strapi, Directus, Payload + AI code generation',
-    color: 'from-amber-400 to-lime',
+    title: 'Rapid Build',
+    description: 'CMS-driven development gets you clickable prototypes in days, not months',
+    tools: 'Strapi/Directus/Payload + AI code acceleration',
+    outcome: 'Working prototype in 2 weeks',
   },
   {
     icon: RefreshCw,
-    title: 'Iterative Development',
-    description: 'Weekly sprints with AI pair programming for velocity',
-    tools: 'Modern frameworks, N8n automation, AI assistants',
-    color: 'from-amber-400 to-lime',
+    title: 'Iterate & Refine',
+    description: 'Weekly sprints with real user feedback. No surprises, no scope creep',
+    tools: 'Modern frameworks, automated testing, CI/CD pipelines',
+    outcome: 'Production-ready features weekly',
   },
   {
     icon: TrendingUp,
     title: 'Launch & Scale',
-    description: 'Production-ready MVP with built-in scalability',
-    tools: 'Cloud deployment, monitoring, ongoing optimization',
-    color: 'from-amber-400 to-lime',
+    description: 'Go live with confidence. We handle deployment, monitoring, and optimization',
+    tools: 'Cloud deployment, monitoring, performance tuning',
+    outcome: 'Live product that converts',
   },
 ]
 
@@ -39,20 +39,25 @@ export function ProcessSection() {
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
-    <section ref={ref} className="relative min-h-screen bg-charcoal py-32 px-4 overflow-hidden scan-lines">
-      {/* Pipeline visualization background */}
+    <section ref={ref} className="relative min-h-screen bg-charcoal py-32 px-4 overflow-hidden">
+      {/* Pipeline visualization */}
       <div className="absolute inset-0 opacity-5">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <pattern id="pipeline" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-              {/* Horizontal pipelines */}
+            <pattern
+              id="pipeline"
+              x="0"
+              y="0"
+              width="200"
+              height="200"
+              patternUnits="userSpaceOnUse"
+            >
               <path
                 d="M 0 50 L 200 50 M 0 100 L 200 100 M 0 150 L 200 150"
                 stroke="#88FF66"
                 strokeWidth="2"
                 fill="none"
               />
-              {/* Vertical connections */}
               <path
                 d="M 50 0 L 50 200 M 100 0 L 100 200 M 150 0 L 150 200"
                 stroke="#88FF66"
@@ -60,12 +65,9 @@ export function ProcessSection() {
                 fill="none"
                 opacity="0.5"
               />
-              {/* Connection nodes */}
               <circle cx="50" cy="50" r="3" fill="#88FF66" />
               <circle cx="100" cy="100" r="3" fill="#88FF66" />
               <circle cx="150" cy="150" r="3" fill="#88FF66" />
-              <circle cx="50" cy="150" r="2" fill="#88FF66" opacity="0.6" />
-              <circle cx="150" cy="50" r="2" fill="#88FF66" opacity="0.6" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#pipeline)" />
@@ -73,7 +75,7 @@ export function ProcessSection() {
       </div>
 
       <div className="max-w-7xl mx-auto relative">
-        {/* Header with HUD style */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -86,40 +88,29 @@ export function ProcessSection() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
             >
-              <Cpu className="w-4 h-4 text-lime" />
+              <Sparkles className="w-4 h-4 text-lime" />
               <span className="terminal-text text-lime text-xs uppercase tracking-wider">
-                Process_Pipeline
+                Our Process
               </span>
-              <motion.div
-                className="w-2 h-2 rounded-full bg-lime"
-                animate={{ opacity: [1, 0.3, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
             </motion.div>
-
-            {/* Corner brackets */}
-            <div className="absolute -inset-1 pointer-events-none">
-              <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-lime/40" />
-              <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-lime/40" />
-            </div>
           </div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold uppercase tracking-tight leading-tight">
-            AI-Augmented Development
+            How We Ship
             <br />
-            <span className="text-lime">at Light Speed</span>
+            <span className="text-lime">Products Fast</span>
           </h2>
 
           <p className="text-slate text-lg max-w-3xl mx-auto">
-            Human creativity meets machine precision. Here&apos;s how we compress timelines without compromising quality.
+            No endless meetings. No scope creep. Just a proven 4-phase process that gets your
+            product from idea to live users in weeks.
           </p>
         </motion.div>
 
-        {/* Process Pipeline with Data Streams */}
+        {/* Process Cards */}
         <div className="relative">
-          {/* Horizontal connecting line with flowing particles */}
+          {/* Connecting line */}
           <div className="hidden md:block absolute top-24 left-0 right-0 h-1 overflow-hidden">
-            {/* Base line */}
             <motion.div
               className="h-full bg-gradient-to-r from-lime/20 via-lime/40 to-lime/20"
               initial={{ scaleX: 0 }}
@@ -128,38 +119,17 @@ export function ProcessSection() {
               style={{ transformOrigin: 'left' }}
             />
 
-            {/* Flowing particles */}
             {[0, 1, 2, 3, 4].map((i) => (
               <motion.div
                 key={i}
                 className="absolute top-0 w-4 h-4 -mt-1.5"
                 initial={{ left: '-5%', opacity: 0 }}
-                animate={{
-                  left: ['0%', '105%'],
-                  opacity: [0, 1, 1, 0],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  delay: i * 0.8,
-                  ease: 'linear',
-                }}
+                animate={{ left: ['0%', '105%'], opacity: [0, 1, 1, 0] }}
+                transition={{ duration: 4, repeat: Infinity, delay: i * 0.8, ease: 'linear' }}
               >
                 <div className="w-full h-full rounded-full bg-lime shadow-[0_0_15px_rgba(136,255,102,0.8)]" />
               </motion.div>
             ))}
-
-            {/* Pulse effect */}
-            <motion.div
-              className="absolute inset-0 bg-lime/30"
-              animate={{
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-              }}
-            />
           </div>
 
           {/* Cards Grid */}
@@ -172,12 +142,9 @@ export function ProcessSection() {
                 transition={{ duration: 0.6, delay: 0.6 + index * 0.15 }}
                 className="relative group"
               >
-                {/* Glass card with enhanced effects */}
-                <div className="relative h-full p-6 rounded-lg glass-panel border border-white/10 hover:border-lime/30 transition-colors overflow-hidden hud-corners">
-                  {/* Noise texture */}
+                <div className="relative h-full p-6 rounded-lg glass-panel border border-white/10 hover:border-lime/30 transition-colors overflow-hidden">
                   <div className="absolute inset-0 noise opacity-30" />
 
-                  {/* Scan line */}
                   <motion.div
                     className="absolute inset-0 h-px bg-gradient-to-r from-transparent via-lime/40 to-transparent"
                     animate={{ y: ['0%', '100%'] }}
@@ -189,18 +156,13 @@ export function ProcessSection() {
                     }}
                   />
 
-                  {/* Holographic shimmer on hover */}
-                  <div className="absolute inset-0 holographic-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  {/* Content */}
                   <div className="relative z-10 flex flex-col h-full">
-                    {/* Icon with hexagonal frame */}
                     <div className="mb-6 relative inline-block w-fit">
                       <motion.div
-                        className={`w-16 h-16 rounded-lg bg-gradient-to-br ${phase.color} bg-opacity-20 border border-lime/30 flex items-center justify-center relative overflow-hidden`}
+                        className="w-16 h-16 rounded-lg border border-lime/30 flex items-center justify-center relative overflow-hidden"
                         whileHover={{ scale: 1.05 }}
                       >
-                        {/* Hexagon SVG overlay */}
+                        {/* Hexagonal frame */}
                         <svg className="absolute inset-0" viewBox="0 0 100 100">
                           <polygon
                             points="50,10 85,30 85,70 50,90 15,70 15,30"
@@ -210,83 +172,48 @@ export function ProcessSection() {
                           />
                         </svg>
 
-                        <phase.icon className="w-8 h-8 text-lime relative z-10" />
-
-                        {/* Animated corner brackets */}
-                        <div className="absolute inset-0">
-                          {[
-                            { top: 0, left: 0, rotate: 0 },
-                            { top: 0, right: 0, rotate: 90 },
-                            { bottom: 0, right: 0, rotate: 180 },
-                            { bottom: 0, left: 0, rotate: 270 },
-                          ].map((pos, i) => (
-                            <motion.div
-                              key={i}
-                              className="absolute w-3 h-3 border-t border-l border-lime"
-                              style={{
-                                ...pos,
-                                transform: `rotate(${pos.rotate}deg)`,
-                              }}
-                              animate={{
-                                opacity: [0.3, 0.8, 0.3],
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                delay: i * 0.2,
-                              }}
-                            />
-                          ))}
-                        </div>
+                        <phase.icon className="w-8 h-8 text-lime relative z-10" strokeWidth={1.5} />
                       </motion.div>
 
-                      {/* Glow pulse */}
+                      {/* Breathing glow effect */}
                       <motion.div
                         className="absolute inset-0 rounded-lg bg-lime/20 -z-10"
-                        animate={{
-                          scale: [1, 1.2, 1],
-                          opacity: [0.5, 0, 0.5],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          delay: index * 0.3,
-                        }}
+                        animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
                       />
                     </div>
 
-                    {/* Phase number with terminal style */}
                     <div className="terminal-text text-lime/60 text-xs uppercase tracking-wider mb-2">
                       PHASE_{String(index + 1).padStart(2, '0')}
                     </div>
 
-                    {/* Title */}
                     <h3 className="text-xl font-display font-bold uppercase tracking-wide mb-3">
                       {phase.title}
                     </h3>
 
-                    {/* Description */}
                     <p className="text-slate mb-4 flex-grow text-sm leading-relaxed">
                       {phase.description}
                     </p>
 
-                    {/* Tools with enhanced styling */}
+                    <div className="bg-lime/5 border border-lime/20 rounded-lg p-3 mb-4">
+                      <div className="flex items-center gap-2 text-lime text-sm font-medium">
+                        <Clock className="w-4 h-4" />
+                        {phase.outcome}
+                      </div>
+                    </div>
+
                     <div className="text-sm border-t border-white/10 pt-4">
-                      <div className="terminal-text text-lime/70 text-xs mb-2 uppercase tracking-wider">
-                        Tools_Stack:
+                      <div className="terminal-text text-slate/60 text-xs mb-2 uppercase tracking-wider">
+                        Tools Used:
                       </div>
-                      <div className="text-slate/80 text-xs leading-relaxed">
-                        {phase.tools}
-                      </div>
+                      <div className="text-slate/80 text-xs leading-relaxed">{phase.tools}</div>
                     </div>
                   </div>
 
-                  {/* Corner accents */}
                   <div className="absolute top-0 right-0 w-12 h-12 border-t border-r border-lime/10" />
                   <div className="absolute bottom-0 left-0 w-12 h-12 border-b border-l border-lime/10" />
                 </div>
 
-                {/* Phase connector node (on connecting line) */}
                 {index < processPhases.length - 1 && (
                   <motion.div
                     className="hidden md:block absolute top-24 -right-3 w-6 h-6 rounded-full border-2 border-lime bg-charcoal z-20"
@@ -296,15 +223,8 @@ export function ProcessSection() {
                   >
                     <motion.div
                       className="absolute inset-0 rounded-full bg-lime"
-                      animate={{
-                        scale: [0.3, 0.6, 0.3],
-                        opacity: [0.8, 0.3, 0.8],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: index * 0.3,
-                      }}
+                      animate={{ scale: [0.3, 0.6, 0.3], opacity: [0.8, 0.3, 0.8] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
                     />
                   </motion.div>
                 )}
@@ -313,18 +233,20 @@ export function ProcessSection() {
           </div>
         </div>
 
-        {/* System info */}
+        {/* Bottom CTA */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 2 }}
-          className="flex flex-wrap justify-center items-center gap-4 mt-12 text-xs terminal-text text-slate/60"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 1.5 }}
+          className="mt-16 text-center"
         >
-          <span>PIPELINE: 4_PHASES</span>
-          <span>•</span>
-          <span>METHODOLOGY: AGILE_AI_AUGMENTED</span>
-          <span>•</span>
-          <span>VELOCITY: 65%_FASTER</span>
+          <div className="inline-flex items-center gap-4 glass-panel px-6 py-4 rounded-lg border border-lime/30">
+            <Shield className="w-6 h-6 text-lime" />
+            <div className="text-left">
+              <div className="text-white font-bold">No-risk proposal</div>
+              <div className="text-slate text-sm">Free 30-min call to scope your project</div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

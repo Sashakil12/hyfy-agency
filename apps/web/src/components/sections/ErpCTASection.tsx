@@ -1,10 +1,10 @@
 'use client'
 import { motion } from 'framer-motion'
-import { Package, ArrowRight, Calendar, Mail, Phone } from 'lucide-react'
+import { Factory, ArrowRight, Calendar, Mail, Phone } from 'lucide-react'
 
 import { GlowButton } from '@/components/GlowButton'
 
-export function CmsPrototypesCTASection() {
+export function ErpCTASection() {
   return (
     <section className="relative py-32 px-4 bg-obsidian overflow-hidden">
       <div className="absolute inset-0">
@@ -36,9 +36,9 @@ export function CmsPrototypesCTASection() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <Package className="w-4 h-4 text-lime" />
+            <Factory className="w-4 h-4 text-lime" />
             <span className="terminal-text text-lime text-xs uppercase tracking-wider">
-              Ready_To_Build // CMS
+              Ready_To_Transform // ERP
             </span>
           </motion.div>
 
@@ -49,7 +49,7 @@ export function CmsPrototypesCTASection() {
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            Build Your <span className="text-lime">CMS Solution</span>
+            Let's Build Your <span className="text-lime">ERP System</span>
           </motion.h2>
 
           <motion.p
@@ -59,8 +59,8 @@ export function CmsPrototypesCTASection() {
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
           >
-            From content strategy to deployment—we architect CMS solutions that scale with your
-            business. Strapi, Directus, or Payload—we've got you covered.
+            Schedule a free consultation to discuss your ERP needs. We'll show you how our
+            blue-collar-focused systems can transform your operations.
           </motion.p>
 
           <motion.div
@@ -76,7 +76,7 @@ export function CmsPrototypesCTASection() {
             >
               <span className="flex items-center gap-2 justify-center">
                 <Calendar className="w-5 h-5" />
-                Schedule Consultation
+                Schedule Demo
               </span>
             </GlowButton>
             <motion.button

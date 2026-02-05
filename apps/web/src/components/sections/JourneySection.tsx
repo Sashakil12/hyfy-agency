@@ -8,20 +8,20 @@ import { DataFlowLine } from '@/components/effects/DataFlowLine'
 const timelineNodes = [
   {
     icon: Lightbulb,
-    label: 'Ideation',
-    description: 'Concept & planning',
+    label: 'Discovery',
+    description: 'AI-powered requirement mapping',
     color: 'from-amber/20 to-lime/20',
   },
   {
     icon: Code2,
     label: 'Development',
-    description: 'AI-assisted build',
+    description: 'Human expertise + AI acceleration',
     color: 'from-lime/20 to-cyan/20',
   },
   {
     icon: Rocket,
     label: 'Launch',
-    description: 'Production ready',
+    description: 'Production-ready in weeks',
     color: 'from-cyan/20 to-lime/20',
   },
 ]
@@ -30,17 +30,20 @@ const comparisons = [
   {
     traditional: '6-12 months',
     hyfy: '6-8 weeks',
-    label: 'Time to MVP',
+    label: 'Time to Market',
+    savings: 'Save 6+ months',
   },
   {
-    traditional: 'Waterfall process',
-    hyfy: 'Iterative AI-assisted sprints',
-    label: 'Development approach',
+    traditional: '$200K+ budget',
+    hyfy: 'Fixed scope pricing',
+    label: 'Investment',
+    savings: 'Predictable costs',
   },
   {
-    traditional: 'Fixed scope, rigid timelines',
-    hyfy: 'Adaptive, rapid prototyping',
+    traditional: 'Change requests stall progress',
+    hyfy: 'Weekly iterations with feedback',
     label: 'Flexibility',
+    savings: 'Ship what you need',
   },
 ]
 
@@ -50,11 +53,18 @@ export function JourneySection() {
 
   return (
     <section ref={ref} className="relative min-h-screen bg-charcoal py-32 px-4 overflow-hidden">
-      {/* Circuit board pattern background */}
+      {/* Circuit board pattern */}
       <div className="absolute inset-0 opacity-5">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <pattern id="circuit" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+            <pattern
+              id="circuit"
+              x="0"
+              y="0"
+              width="100"
+              height="100"
+              patternUnits="userSpaceOnUse"
+            >
               <path
                 d="M 10 10 L 90 10 M 50 10 L 50 50 M 30 50 L 70 50 M 50 50 L 50 90 M 10 90 L 90 90"
                 stroke="#88FF66"
@@ -74,7 +84,7 @@ export function JourneySection() {
 
       <div className="max-w-7xl mx-auto relative">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Enhanced Timeline */}
+          {/* Left: Timeline */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -90,22 +100,18 @@ export function JourneySection() {
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                   className="relative"
                 >
-                  {/* Connection line */}
                   {index < timelineNodes.length - 1 && (
                     <div className="absolute left-8 top-16 w-1 h-20">
                       <DataFlowLine delay={index * 0.5} />
                     </div>
                   )}
 
-                  {/* Node card */}
                   <div className="relative flex items-start gap-6 group">
-                    {/* Icon with hexagonal frame */}
                     <div className="relative flex-shrink-0">
                       <motion.div
                         className={`w-16 h-16 rounded-lg bg-gradient-to-br ${node.color} border border-lime/30 flex items-center justify-center relative overflow-hidden`}
                         whileHover={{ scale: 1.05 }}
                       >
-                        {/* Hexagon SVG overlay */}
                         <svg className="absolute inset-0" viewBox="0 0 100 100">
                           <polygon
                             points="50,10 85,30 85,70 50,90 15,70 15,30"
@@ -114,53 +120,16 @@ export function JourneySection() {
                             strokeWidth="1"
                           />
                         </svg>
-
                         <node.icon className="w-7 h-7 text-lime relative z-10" />
-
-                        {/* Animated corner brackets */}
-                        <div className="absolute inset-0">
-                          {[
-                            { top: 0, left: 0, rotate: 0 },
-                            { top: 0, right: 0, rotate: 90 },
-                            { bottom: 0, right: 0, rotate: 180 },
-                            { bottom: 0, left: 0, rotate: 270 },
-                          ].map((pos, i) => (
-                            <motion.div
-                              key={i}
-                              className="absolute w-3 h-3 border-t border-l border-lime"
-                              style={{
-                                ...pos,
-                                transform: `rotate(${pos.rotate}deg)`,
-                              }}
-                              animate={{
-                                opacity: [0.3, 0.8, 0.3],
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                delay: i * 0.2,
-                              }}
-                            />
-                          ))}
-                        </div>
                       </motion.div>
 
-                      {/* Glow pulse */}
                       <motion.div
                         className="absolute inset-0 rounded-lg bg-lime/20 -z-10"
-                        animate={{
-                          scale: [1, 1.2, 1],
-                          opacity: [0.5, 0, 0.5],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          delay: index * 0.3,
-                        }}
+                        animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
                       />
                     </div>
 
-                    {/* Content */}
                     <div className="flex-1 pt-2">
                       <div className="flex items-center gap-3 mb-2">
                         <h3 className="text-2xl font-display font-bold text-white uppercase tracking-wide">
@@ -184,14 +153,13 @@ export function JourneySection() {
             </div>
           </motion.div>
 
-          {/* Right: Speed Comparison */}
+          {/* Right: Comparison */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="space-y-8"
           >
-            {/* Header with HUD style */}
             <div className="relative inline-block">
               <motion.div
                 className="inline-flex items-center gap-2 px-4 py-2 glass-panel border border-lime/30"
@@ -200,24 +168,22 @@ export function JourneySection() {
               >
                 <Zap className="w-4 h-4 text-lime" />
                 <span className="terminal-text text-lime text-xs uppercase tracking-wider">
-                  The_Hyfy_Difference
+                  Why Teams Choose Hyfy
                 </span>
               </motion.div>
-
-              {/* Corner accents */}
-              <div className="absolute -inset-1 pointer-events-none">
-                <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-lime/40" />
-                <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-lime/40" />
-              </div>
             </div>
 
             <h2 className="text-4xl md:text-5xl font-display font-extrabold uppercase leading-tight">
-              Traditional Development
+              Traditional Agencies
               <br />
               <span className="text-lime">vs. AI-Native Speed</span>
             </h2>
 
-            {/* Comparison cards */}
+            <p className="text-slate text-lg">
+              Stop waiting months for prototypes. Our AI-assisted development process delivers
+              working software in weeks—without cutting corners on quality.
+            </p>
+
             <div className="space-y-4">
               {comparisons.map((item, index) => (
                 <motion.div
@@ -225,35 +191,36 @@ export function JourneySection() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.4 + index * 0.15 }}
-                  className="glass-panel p-6 rounded-lg border border-white/10 hover:border-lime/30 transition-colors hud-corners relative overflow-hidden group"
+                  className="glass-panel p-6 rounded-lg border border-white/10 hover:border-lime/30 transition-colors relative overflow-hidden group"
                 >
-                  {/* Holographic shimmer on hover */}
-                  <div className="absolute inset-0 holographic-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
                   <div className="relative z-10">
-                    <div className="terminal-text text-slate/60 text-xs uppercase tracking-wider mb-3">
-                      {item.label}
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="terminal-text text-slate/60 text-xs uppercase tracking-wider">
+                        {item.label}
+                      </span>
+                      <span className="text-lime text-xs font-bold bg-lime/10 px-2 py-1 rounded">
+                        {item.savings}
+                      </span>
                     </div>
 
                     <div className="flex items-center gap-4">
-                      <div className="flex-1 text-slate/70 text-sm">
-                        {item.traditional}
+                      <div className="flex-1">
+                        <div className="text-slate/50 text-xs mb-1">Traditional</div>
+                        <div className="text-slate/70 text-sm line-through">{item.traditional}</div>
                       </div>
 
                       <ArrowRight className="w-5 h-5 text-lime flex-shrink-0" />
 
-                      <div className="flex-1 text-lime font-bold text-lg">
-                        {item.hyfy}
+                      <div className="flex-1">
+                        <div className="text-lime text-xs mb-1">With Hyfy</div>
+                        <div className="text-lime font-bold text-lg">{item.hyfy}</div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Scan line effect */}
                   <motion.div
                     className="absolute inset-0 h-px bg-gradient-to-r from-transparent via-lime/30 to-transparent"
-                    animate={{
-                      y: ['-100%', '200%'],
-                    }}
+                    animate={{ y: ['-100%', '200%'] }}
                     transition={{
                       duration: 3,
                       repeat: Infinity,
@@ -265,7 +232,7 @@ export function JourneySection() {
               ))}
             </div>
 
-            {/* Stats bar */}
+            {/* Stats */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -275,21 +242,17 @@ export function JourneySection() {
               <div className="flex items-center justify-between">
                 <div>
                   <div className="terminal-text text-slate/60 text-xs uppercase tracking-wider mb-1">
-                    Performance_Boost
+                    Average Time Savings
                   </div>
                   <div className="text-5xl font-bold text-lime font-mono">65%</div>
+                  <div className="text-slate/70 text-sm mt-1">Faster to market</div>
                 </div>
                 <div className="text-right">
                   <div className="terminal-text text-slate/60 text-xs uppercase tracking-wider mb-1">
-                    Faster_To_MVP
+                    Projects Delivered
                   </div>
-                  <motion.div
-                    className="w-16 h-16 rounded-full border-4 border-lime/30 border-t-lime flex items-center justify-center"
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-                  >
-                    <Zap className="w-8 h-8 text-lime" />
-                  </motion.div>
+                  <div className="text-4xl font-bold text-white font-mono">50+</div>
+                  <div className="text-slate/70 text-sm mt-1">And counting</div>
                 </div>
               </div>
             </motion.div>

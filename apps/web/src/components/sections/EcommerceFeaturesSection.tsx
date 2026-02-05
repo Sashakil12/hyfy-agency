@@ -1,12 +1,12 @@
 'use client'
 import { motion } from 'framer-motion'
 import {
+  ShoppingCart,
   Zap,
-  Puzzle,
-  Code2,
-  Shield,
-  GitBranch,
-  Database,
+  CreditCard,
+  BarChart3,
+  Globe,
+  Smartphone,
   ArrowRight,
   CheckCircle2,
 } from 'lucide-react'
@@ -16,49 +16,49 @@ import { GlassCard } from '@/components/GlassCard'
 const features = [
   {
     icon: Zap,
-    title: 'Custom Workflow Development',
+    title: 'Headless Architecture',
     description:
-      'We build tailored n8n workflows that solve your specific business problems. From simple automations to complex orchestrations.',
-    items: ['Process optimization', 'Custom business logic', 'End-to-end automation'],
+      'Decouple frontend and backend for ultimate flexibility. Use any frontend framework while maintaining robust commerce capabilities.',
+    items: ['API-first design', 'Any frontend stack', 'Microservices ready'],
   },
   {
-    icon: Puzzle,
-    title: 'Integration Architecture',
+    icon: CreditCard,
+    title: 'Custom Checkout Flows',
     description:
-      'Connect your entire tech stack with robust, scalable integrations. We handle API connections, legacy systems, and custom connectors.',
-    items: ['SaaS platform integrations', 'Custom API connectors', 'Legacy system bridges'],
+      'Design checkout experiences that convert. From one-click purchases to complex B2B workflows, we build what you need.',
+    items: ['One-click checkout', 'B2B quoting', 'Subscription billing'],
   },
   {
-    icon: Code2,
-    title: 'n8n Setup & Configuration',
+    icon: Globe,
+    title: 'Multi-Everything',
     description:
-      'Get started fast with professional n8n installation. We handle self-hosted setup, cloud configuration, and production deployment.',
-    items: ['Self-hosted deployment', 'Cloud configuration', 'Environment setup'],
+      'Sell globally with multi-currency, multi-language, and multi-vendor capabilities built into the core.',
+    items: ['Multi-currency', 'Multi-language', 'Multi-vendor marketplace'],
   },
   {
-    icon: Shield,
-    title: 'Custom Node Development',
+    icon: BarChart3,
+    title: 'Performance Optimized',
     description:
-      'Need functionality beyond standard nodes? We build custom n8n nodes for your unique requirements and open-source them back to the community.',
-    items: ['Custom functionality', 'API wrapper nodes', 'Open-source contributions'],
+      'Lightning-fast load times with optimized product catalogs, image delivery, and caching strategies.',
+    items: ['Sub-second load times', 'CDN optimization', 'Smart caching'],
   },
   {
-    icon: GitBranch,
-    title: 'Team Training & Workshops',
+    icon: Smartphone,
+    title: 'Mobile Commerce',
     description:
-      'Empower your team to use n8n effectively. Hands-on workshops tailored to your use cases and skill level.',
-    items: ['Hands-on workshops', 'Best practices training', 'Ongoing support'],
+      'Mobile-first design with native-app-like experiences. PWA capabilities for offline browsing and push notifications.',
+    items: ['Progressive Web App', 'Mobile-optimized', 'Touch-friendly UI'],
   },
   {
-    icon: Database,
-    title: 'Workflow Optimization',
+    icon: ShoppingCart,
+    title: 'Third-Party Integrations',
     description:
-      'Existing workflows slowing you down? We audit, refactor, and optimize your automations for better performance and reliability.',
-    items: ['Performance audit', 'Error handling', 'Scalability review'],
+      'Connect with your entire tech stack. ERP, CRM, email marketing, and shipping integrations built to spec.',
+    items: ['ERP integration', 'CRM sync', 'Shipping & fulfillment'],
   },
 ]
 
-export function N8nFeaturesSection() {
+export function EcommerceFeaturesSection() {
   return (
     <section className="relative py-32 px-4 bg-obsidian overflow-hidden">
       <div className="absolute inset-0 opacity-5">
@@ -74,17 +74,17 @@ export function N8nFeaturesSection() {
           transition={{ duration: 0.8 }}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-lime/30 mb-6">
-            <Zap className="w-4 h-4 text-lime" />
+            <ShoppingCart className="w-4 h-4 text-lime" />
             <span className="terminal-text text-lime text-xs uppercase tracking-wider">
-              Our_Services // EXPERT
+              Ecommerce_Capabilities // FEATURES
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold uppercase tracking-tight mb-6">
-            <span className="text-lime">n8n</span> Services We Deliver
+            Commerce <span className="text-lime">Without Limits</span>
           </h2>
           <p className="text-slate text-lg md:text-xl max-w-3xl mx-auto font-body leading-relaxed">
-            From setup to custom development, we handle everything n8n so you can focus on your
-            business.
+            Build the exact shopping experience your customers want. No compromises, no
+            workarounds—just pure commerce flexibility.
           </p>
         </motion.div>
 
@@ -155,7 +155,7 @@ export function N8nFeaturesSection() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <span>Discuss Your Project</span>
+            <span>Explore Ecommerce Solutions</span>
             <ArrowRight className="w-5 h-5" />
           </motion.button>
         </motion.div>

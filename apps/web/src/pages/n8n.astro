@@ -51,9 +51,9 @@ import { Footer } from '@/components/Footer'
 		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 	</head>
 	<body>
-		<N8nHeroSection client:only="react" />
-		<N8nFeaturesSection client:only="react" />
-		<N8nCTASection client:only="react" />
-		<Footer />
+		<N8nHeroSection client:load />
+		<N8nFeaturesSection client:load />
+		<N8nCTASection client:load />
+		<Footer client:load />
 	</body>
 </html>

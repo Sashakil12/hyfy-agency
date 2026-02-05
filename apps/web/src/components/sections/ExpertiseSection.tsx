@@ -1,6 +1,6 @@
 'use client'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight, ArrowRight, Cpu } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ArrowRight, Sparkles } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 
 import { expertiseItems } from '@/data/expertise'
@@ -15,24 +15,18 @@ export function ExpertiseSection() {
   const touchStartX = useRef(0)
   const touchEndX = useRef(0)
 
-  // Detect mobile screen size
   useEffect(() => {
-    const updateIsMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
+    const updateIsMobile = () => setIsMobile(window.innerWidth < 768)
     updateIsMobile()
     window.addEventListener('resize', updateIsMobile)
     return () => window.removeEventListener('resize', updateIsMobile)
   }, [])
 
-  // Auto-rotation
   useEffect(() => {
     if (!isAutoPlaying) return
-
     const interval = setInterval(() => {
       setActiveIndex((current) => (current + 1) % expertiseItems.length)
     }, 5000)
-
     return () => clearInterval(interval)
   }, [isAutoPlaying])
 
@@ -45,7 +39,6 @@ export function ExpertiseSection() {
     }
   }
 
-  // Touch swipe handlers
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX
   }
@@ -56,14 +49,8 @@ export function ExpertiseSection() {
 
   const handleTouchEnd = () => {
     const diff = touchStartX.current - touchEndX.current
-    const threshold = 50
-
-    if (Math.abs(diff) > threshold) {
-      if (diff > 0) {
-        navigate('next')
-      } else {
-        navigate('prev')
-      }
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? navigate('next') : navigate('prev')
     }
   }
 
@@ -80,39 +67,80 @@ export function ExpertiseSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen bg-obsidian py-32 px-4 overflow-hidden scan-lines"
+      className="relative min-h-screen py-32 px-4 overflow-hidden"
+      style={{
+        background:
+          'radial-gradient(ellipse at 50% 0%, rgba(136, 255, 102, 0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 50%, rgba(136, 255, 102, 0.05) 0%, transparent 40%), radial-gradient(ellipse at 20% 80%, rgba(136, 255, 102, 0.05) 0%, transparent 40%), #050505',
+      }}
     >
-      <div className="max-w-7xl mx-auto relative">
-        {/* Header with HUD style */}
+      {/* Animated mesh gradient background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute w-[800px] h-[800px] rounded-full opacity-20"
+          style={{
+            background: 'radial-gradient(circle, rgba(136,255,102,0.3) 0%, transparent 70%)',
+            filter: 'blur(80px)',
+            top: '10%',
+            left: '-10%',
+          }}
+          animate={{
+            x: [0, 50, 0],
+            y: [0, 30, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+        <motion.div
+          className="absolute w-[600px] h-[600px] rounded-full opacity-15"
+          style={{
+            background: 'radial-gradient(circle, rgba(136,255,102,0.25) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+            bottom: '10%',
+            right: '-5%',
+          }}
+          animate={{
+            x: [0, -40, 0],
+            y: [0, -20, 0],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: 2,
+          }}
+        />
+      </div>
+
+      {/* Subtle grid pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(136,255,102,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(136,255,102,0.5) 1px, transparent 1px)`,
+          backgroundSize: '100px 100px',
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
           className="text-center mb-20 space-y-6"
         >
-          <div className="relative inline-block">
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 glass-panel border border-lime/30"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            >
-              <Cpu className="w-4 h-4 text-lime" />
-              <span className="terminal-text text-lime text-xs uppercase tracking-wider">
-                Core_Expertise
-              </span>
-              <motion.div
-                className="w-2 h-2 rounded-full bg-lime"
-                animate={{ opacity: [1, 0.3, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
-            </motion.div>
-
-            {/* Corner brackets */}
-            <div className="absolute -inset-1 pointer-events-none">
-              <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-lime/40" />
-              <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-lime/40" />
-            </div>
-          </div>
+          <motion.div
+            className="inline-flex items-center gap-2 px-4 py-2 glass-panel border border-lime/30"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          >
+            <Sparkles className="w-4 h-4 text-lime" />
+            <span className="terminal-text text-lime text-xs uppercase tracking-wider">
+              Core_Expertise
+            </span>
+          </motion.div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold uppercase tracking-tight leading-tight">
             Full-Stack Mastery
@@ -125,11 +153,10 @@ export function ExpertiseSection() {
           </p>
         </motion.div>
 
-        {/* Enhanced Carousel */}
+        {/* 3D Carousel */}
         <div className="relative h-[650px] md:h-[600px] flex items-center justify-center">
-          {/* Cards with 3D perspective */}
           <div
-            className="relative w-full h-full flex items-center justify-center perspective-1000"
+            className="relative w-full h-full flex items-center justify-center"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -163,73 +190,44 @@ export function ExpertiseSection() {
                       duration: 0.6,
                       ease: [0.22, 1, 0.36, 1],
                     }}
-                    style={{
-                      zIndex,
-                      transformStyle: 'preserve-3d',
-                    }}
+                    style={{ zIndex, transformStyle: 'preserve-3d' }}
                   >
                     <div className="relative w-[90vw] md:w-[700px] lg:w-[800px]">
                       <div
                         className={cn(
-                          'relative h-[500px] p-8 rounded-lg overflow-hidden cursor-pointer group',
-                          'glass-panel border transition-all duration-300 hud-corners',
+                          'relative h-[500px] p-8 rounded-xl overflow-hidden cursor-pointer group backdrop-blur-xl',
+                          'border transition-all duration-500',
                           isActive
-                            ? 'border-lime/50 shadow-glow-lime bg-white/[0.05]'
-                            : 'border-white/10 bg-white/[0.02] hover:border-lime/30'
+                            ? 'border-lime/40 shadow-[0_0_60px_rgba(136,255,102,0.15)] bg-gradient-to-br from-white/[0.08] to-white/[0.02]'
+                            : 'border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent hover:border-lime/20'
                         )}
                       >
-                        <div className="absolute inset-0 noise opacity-50" />
+                        {/* Animated gradient border glow */}
                         {isActive && (
-                          <motion.div
-                            className="absolute inset-0 h-px bg-gradient-to-r from-transparent via-lime/50 to-transparent"
-                            animate={{ y: ['0%', '100%'] }}
-                            transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-                          />
+                          <div className="absolute inset-0 rounded-xl opacity-50">
+                            <div className="absolute inset-[-1px] rounded-xl bg-gradient-to-r from-lime/20 via-transparent to-lime/20 blur-sm" />
+                          </div>
                         )}
-                        <div className="absolute inset-0 holographic-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
+                        {/* Content */}
                         <div className="relative z-10 flex flex-col h-full">
                           <div className="mb-6 relative inline-block w-fit">
                             <motion.div
-                              className="w-20 h-20 rounded-lg bg-gradient-to-br from-amber-400 to-lime bg-opacity-20 border border-lime/30 flex items-center justify-center relative overflow-hidden"
+                              className="w-20 h-20 rounded-xl bg-gradient-to-br from-lime/20 to-lime/5 border border-lime/30 flex items-center justify-center relative overflow-hidden backdrop-blur-sm"
                               whileHover={{ scale: 1.05 }}
                             >
                               <item.icon className="w-10 h-10 text-lime relative z-10" />
-                              <div className="absolute inset-0">
-                                {[
-                                  { top: 0, left: 0, rotate: 0 },
-                                  { top: 0, right: 0, rotate: 90 },
-                                  { bottom: 0, right: 0, rotate: 180 },
-                                  { bottom: 0, left: 0, rotate: 270 },
-                                ].map((pos, i) => (
-                                  <motion.div
-                                    key={i}
-                                    className="absolute w-3 h-3 border-t border-l border-lime"
-                                    style={{
-                                      ...pos,
-                                      transform: `rotate(${pos.rotate}deg)`,
-                                    }}
-                                    animate={{
-                                      opacity: [0.3, 0.8, 0.3],
-                                    }}
-                                    transition={{
-                                      duration: 2,
-                                      repeat: Infinity,
-                                      delay: i * 0.2,
-                                    }}
-                                  />
-                                ))}
-                              </div>
+                              <div className="absolute inset-0 bg-gradient-to-br from-lime/10 to-transparent" />
                             </motion.div>
 
                             <motion.div
-                              className="absolute inset-0 rounded-lg bg-lime/20 -z-10"
+                              className="absolute inset-0 rounded-xl bg-lime/20 -z-10 blur-xl"
                               animate={{
                                 scale: [1, 1.2, 1],
-                                opacity: [0.5, 0, 0.5],
+                                opacity: [0.3, 0.1, 0.3],
                               }}
                               transition={{
-                                duration: 2,
+                                duration: 3,
                                 repeat: Infinity,
                               }}
                             />
@@ -256,7 +254,7 @@ export function ExpertiseSection() {
                                   transition={{ delay: 0.4 + i * 0.1 }}
                                   className="flex items-start gap-3"
                                 >
-                                  <div className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-lime" />
+                                  <div className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-lime shadow-[0_0_8px_rgba(136,255,102,0.8)]" />
                                   <span className="text-slate/90 text-sm leading-relaxed">
                                     {detail}
                                   </span>
@@ -277,18 +275,25 @@ export function ExpertiseSection() {
                                     ? '/ai-native-apps'
                                     : item.id === 'cms'
                                       ? '/cms-prototypes'
-                                      : `/services/${item.id}`
+                                      : item.id === 'erp'
+                                        ? '/erp'
+                                        : item.id === 'ecommerce'
+                                          ? '/ecommerce'
+                                          : item.id === 'saas'
+                                            ? '/saas'
+                                            : `/services/${item.id}`
                               }
                               className="inline-flex items-center gap-2 text-lime hover:text-lime/80 transition-colors group mt-6 terminal-text uppercase tracking-wider text-sm"
                             >
-                              <span>Access_Module</span>
+                              <span>Explore Service</span>
                               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </motion.a>
                           )}
                         </div>
 
-                        <div className="absolute top-0 right-0 w-12 h-12 border-t border-r border-lime/10" />
-                        <div className="absolute bottom-0 left-0 w-12 h-12 border-b border-l border-lime/10" />
+                        {/* Corner accents */}
+                        <div className="absolute top-0 right-0 w-16 h-16 border-t border-r border-lime/20 rounded-tr-xl" />
+                        <div className="absolute bottom-0 left-0 w-16 h-16 border-b border-l border-lime/20 rounded-bl-xl" />
                       </div>
                     </div>
                   </motion.div>
@@ -297,31 +302,29 @@ export function ExpertiseSection() {
             </AnimatePresence>
           </div>
 
-          {/* Navigation Arrows with HUD styling */}
+          {/* Navigation Arrows */}
           <motion.button
             onClick={() => navigate('prev')}
-            className="absolute left-4 z-20 p-4 glass-panel border border-lime/30 hover:border-lime/60 hover:shadow-glow-lime transition-all rounded-lg group"
+            className="absolute left-4 z-20 p-4 glass-panel border border-lime/30 hover:border-lime/60 hover:shadow-[0_0_20px_rgba(136,255,102,0.3)] transition-all rounded-xl group"
             aria-label="Previous"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <ChevronLeft className="w-6 h-6 text-lime" />
-            <div className="absolute inset-0 hud-corners opacity-0 group-hover:opacity-100 transition-opacity" />
           </motion.button>
 
           <motion.button
             onClick={() => navigate('next')}
-            className="absolute right-4 z-20 p-4 glass-panel border border-lime/30 hover:border-lime/60 hover:shadow-glow-lime transition-all rounded-lg group"
+            className="absolute right-4 z-20 p-4 glass-panel border border-lime/30 hover:border-lime/60 hover:shadow-[0_0_20px_rgba(136,255,102,0.3)] transition-all rounded-xl group"
             aria-label="Next"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <ChevronRight className="w-6 h-6 text-lime" />
-            <div className="absolute inset-0 hud-corners opacity-0 group-hover:opacity-100 transition-opacity" />
           </motion.button>
         </div>
 
-        {/* Dot Indicators with progress bars */}
+        {/* Dot Indicators */}
         <div className="flex justify-center gap-3 mt-12">
           {expertiseItems.map((_, index) => (
             <button
@@ -333,21 +336,11 @@ export function ExpertiseSection() {
               className={cn(
                 'relative h-2 rounded-full transition-all duration-300 cursor-pointer',
                 index === activeIndex
-                  ? 'w-12 bg-lime shadow-glow-lime'
+                  ? 'w-12 bg-lime shadow-[0_0_10px_rgba(136,255,102,0.5)]'
                   : 'w-2 bg-slate/30 hover:bg-slate/50'
               )}
               aria-label={`Go to slide ${index + 1}`}
-            >
-              {index === activeIndex && (
-                <motion.div
-                  className="absolute inset-0 bg-lime/50 rounded-full"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 5, ease: 'linear' }}
-                  style={{ transformOrigin: 'left' }}
-                />
-              )}
-            </button>
+            />
           ))}
         </div>
 
@@ -362,9 +355,7 @@ export function ExpertiseSection() {
             MODULE: {activeIndex + 1}/{expertiseItems.length}
           </span>
           <span>•</span>
-          <span>AUTO_ROTATE: {isAutoPlaying ? 'ENABLED' : 'DISABLED'}</span>
-          <span>•</span>
-          <span>INTERVAL: 5000MS</span>
+          <span>AUTO_ROTATE: {isAutoPlaying ? 'ENABLED' : 'PAUSED'}</span>
         </motion.div>
       </div>
     </section>

@@ -1,12 +1,12 @@
 'use client'
 import { motion } from 'framer-motion'
 import {
-  Zap,
-  Puzzle,
-  Code2,
+  Factory,
+  Smartphone,
+  Workflow,
+  BarChart3,
   Shield,
-  GitBranch,
-  Database,
+  Clock,
   ArrowRight,
   CheckCircle2,
 } from 'lucide-react'
@@ -15,50 +15,50 @@ import { GlassCard } from '@/components/GlassCard'
 
 const features = [
   {
-    icon: Zap,
-    title: 'Custom Workflow Development',
+    icon: Smartphone,
+    title: 'Mobile-First Design',
     description:
-      'We build tailored n8n workflows that solve your specific business problems. From simple automations to complex orchestrations.',
-    items: ['Process optimization', 'Custom business logic', 'End-to-end automation'],
+      'Interfaces designed for field workers. Large buttons, simple navigation, and offline capabilities that work on any device.',
+    items: ['Touch-optimized UI', 'Offline sync', 'Photo/video capture'],
   },
   {
-    icon: Puzzle,
-    title: 'Integration Architecture',
+    icon: Workflow,
+    title: 'Custom Workflows',
     description:
-      'Connect your entire tech stack with robust, scalable integrations. We handle API connections, legacy systems, and custom connectors.',
-    items: ['SaaS platform integrations', 'Custom API connectors', 'Legacy system bridges'],
+      'Your ERP matches your actual processes. We map your workflows and build systems that work the way your team does.',
+    items: ['Drag-drop workflow builder', 'Role-based views', 'Automated approvals'],
   },
   {
-    icon: Code2,
-    title: 'n8n Setup & Configuration',
+    icon: BarChart3,
+    title: 'Real-Time Analytics',
     description:
-      'Get started fast with professional n8n installation. We handle self-hosted setup, cloud configuration, and production deployment.',
-    items: ['Self-hosted deployment', 'Cloud configuration', 'Environment setup'],
+      'Get visibility into operations with dashboards that make sense. Track KPIs, productivity, and resource allocation.',
+    items: ['Live production metrics', 'Resource utilization', 'Custom reports'],
   },
   {
     icon: Shield,
-    title: 'Custom Node Development',
+    title: 'Enterprise Security',
     description:
-      'Need functionality beyond standard nodes? We build custom n8n nodes for your unique requirements and open-source them back to the community.',
-    items: ['Custom functionality', 'API wrapper nodes', 'Open-source contributions'],
+      'Bank-level security with role-based access. Protect sensitive data while keeping information accessible to those who need it.',
+    items: ['Role-based permissions', 'Audit trails', 'Data encryption'],
   },
   {
-    icon: GitBranch,
-    title: 'Team Training & Workshops',
+    icon: Clock,
+    title: 'Rapid Deployment',
     description:
-      'Empower your team to use n8n effectively. Hands-on workshops tailored to your use cases and skill level.',
-    items: ['Hands-on workshops', 'Best practices training', 'Ongoing support'],
+      'Get up and running in weeks, not months. Our modular approach means you start with what you need and expand over time.',
+    items: ['Phased rollout', 'Minimal disruption', 'Training included'],
   },
   {
-    icon: Database,
-    title: 'Workflow Optimization',
+    icon: Factory,
+    title: 'Industry Expertise',
     description:
-      'Existing workflows slowing you down? We audit, refactor, and optimize your automations for better performance and reliability.',
-    items: ['Performance audit', 'Error handling', 'Scalability review'],
+      'Built for manufacturing, construction, logistics, and field services. We understand blue-collar operations.',
+    items: ['Manufacturing', 'Construction', 'Field Services', 'Logistics'],
   },
 ]
 
-export function N8nFeaturesSection() {
+export function ErpFeaturesSection() {
   return (
     <section className="relative py-32 px-4 bg-obsidian overflow-hidden">
       <div className="absolute inset-0 opacity-5">
@@ -74,17 +74,17 @@ export function N8nFeaturesSection() {
           transition={{ duration: 0.8 }}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-lime/30 mb-6">
-            <Zap className="w-4 h-4 text-lime" />
+            <Factory className="w-4 h-4 text-lime" />
             <span className="terminal-text text-lime text-xs uppercase tracking-wider">
-              Our_Services // EXPERT
+              ERP_Capabilities // FEATURES
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold uppercase tracking-tight mb-6">
-            <span className="text-lime">n8n</span> Services We Deliver
+            Built For <span className="text-lime">Real Work</span>
           </h2>
           <p className="text-slate text-lg md:text-xl max-w-3xl mx-auto font-body leading-relaxed">
-            From setup to custom development, we handle everything n8n so you can focus on your
-            business.
+            Every feature designed with your workforce in mind. No complicated training required—
+            just intuitive systems that work.
           </p>
         </motion.div>
 
@@ -155,7 +155,7 @@ export function N8nFeaturesSection() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <span>Discuss Your Project</span>
+            <span>See All ERP Features</span>
             <ArrowRight className="w-5 h-5" />
           </motion.button>
         </motion.div>

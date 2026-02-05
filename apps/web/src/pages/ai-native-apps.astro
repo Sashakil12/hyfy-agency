@@ -52,10 +52,10 @@ import { Footer } from '@/components/Footer'
 		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 	</head>
 	<body>
-		<AiNativeHeroSection client:only="react" />
-		<AiNativeFeaturesSection client:only="react" />
-		<AiNativeUseCasesSection client:only="react" />
-		<AiNativeCTASection client:only="react" />
-		<Footer />
+		<AiNativeHeroSection client:load />
+		<AiNativeFeaturesSection client:load />
+		<AiNativeUseCasesSection client:load />
+		<AiNativeCTASection client:load />
+		<Footer client:load />
 	</body>
 </html>

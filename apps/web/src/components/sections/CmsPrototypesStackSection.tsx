@@ -1,32 +1,39 @@
 'use client'
 import { motion } from 'framer-motion'
-import { Database, GitBranch, Shield, Zap, CheckCircle2, ArrowRight } from 'lucide-react'
+import {
+  Database,
+  GitBranch,
+  Shield,
+  Zap,
+  CheckCircle2,
+  ArrowRight,
+  Rocket,
+  Bolt,
+  Target,
+} from 'lucide-react'
 
 import { GlassCard } from '@/components/GlassCard'
 
 const cmsPlatforms = [
   {
     name: 'Strapi',
-    icon: '🚀',
+    icon: Rocket,
     description:
       'Most popular headless CMS. Customizable, scalable, and built for modern frontend frameworks.',
     strengths: ['Largest community', 'Plugin ecosystem', 'Enterprise features'],
-    color: 'from-blue-500 to-blue-600',
   },
   {
     name: 'Directus',
-    icon: '⚡',
+    icon: Bolt,
     description: 'Database-first CMS. Turn any SQL database into a headless CMS in minutes.',
     strengths: ['Database agnostic', 'Type-safe SDK', 'Real-time updates'],
-    color: 'from-amber-500 to-amber-600',
   },
   {
     name: 'Payload',
-    icon: '🎯',
+    icon: Target,
     description:
       'TypeScript-native CMS. Built for developers who want full control without complexity.',
     strengths: ['Full TypeScript', 'Code-based config', 'GraphQL native'],
-    color: 'from-purple-500 to-purple-600',
   },
 ]
 
@@ -56,16 +63,18 @@ const features = [
 
 export function CmsPrototypesStackSection() {
   return (
-    <section className="relative py-32 px-4 bg-charcoal-tint overflow-hidden scan-lines">
+    <section className="relative py-32 px-4 bg-charcoal overflow-hidden">
       <div className="absolute inset-0 opacity-5">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="grid-cms" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
-              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#88FF66" strokeWidth="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid-cms)" />
-        </svg>
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(136,255,102,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(136,255,102,0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px',
+          }}
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -81,11 +90,6 @@ export function CmsPrototypesStackSection() {
             <span className="terminal-text text-lime text-xs uppercase tracking-wider">
               CMS_Stack // EXPERT
             </span>
-            <motion.div
-              className="w-2 h-2 rounded-full bg-lime"
-              animate={{ opacity: [1, 0.3, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold uppercase tracking-tight mb-6">
             Our CMS <span className="text-lime">Expertise</span>
@@ -97,48 +101,52 @@ export function CmsPrototypesStackSection() {
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8 mb-20">
-          {cmsPlatforms.map((platform, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.15 }}
-              whileHover={{ y: -5 }}
-            >
-              <GlassCard className="p-8 group hover:border-lime/40 transition-all duration-300 cursor-pointer h-full">
-                <motion.div
-                  className={`absolute -inset-4 rounded-2xl bg-gradient-to-br ${platform.color} blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
-                />
-                <div className="relative">
-                  <motion.div className="text-5xl mb-4" whileHover={{ scale: 1.1, rotate: 5 }}>
-                    {platform.icon}
-                  </motion.div>
-                  <h3 className="text-2xl font-display font-bold uppercase tracking-wide text-white mb-4">
-                    {platform.name}
-                  </h3>
-                  <p className="text-slate/70 text-sm leading-relaxed mb-6 font-body">
-                    {platform.description}
-                  </p>
-                  <div className="space-y-3">
-                    {platform.strengths.map((strength, i) => (
-                      <motion.div
-                        key={i}
-                        className="flex items-start gap-3"
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.15 + i * 0.05 }}
-                      >
-                        <CheckCircle2 className="w-4 h-4 text-lime flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-slate font-body">{strength}</span>
-                      </motion.div>
-                    ))}
+          {cmsPlatforms.map((platform, index) => {
+            const Icon = platform.icon
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15 }}
+                whileHover={{ y: -5 }}
+              >
+                <GlassCard className="p-8 group hover:border-lime/40 transition-all duration-300 cursor-pointer h-full">
+                  <motion.div className="absolute -inset-4 rounded-2xl bg-lime/5 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="relative">
+                    <motion.div
+                      className="w-12 h-12 rounded-lg glass-panel flex items-center justify-center border-lime/20 mb-4"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                    >
+                      <Icon className="w-6 h-6 text-lime" />
+                    </motion.div>
+                    <h3 className="text-2xl font-display font-bold uppercase tracking-wide text-white mb-4">
+                      {platform.name}
+                    </h3>
+                    <p className="text-slate/70 text-sm leading-relaxed mb-6 font-body">
+                      {platform.description}
+                    </p>
+                    <div className="space-y-3">
+                      {platform.strengths.map((strength, i) => (
+                        <motion.div
+                          key={i}
+                          className="flex items-start gap-3"
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: index * 0.15 + i * 0.05 }}
+                        >
+                          <CheckCircle2 className="w-5 h-5 text-lime flex-shrink-0 mt-0.5" />
+                          <span className="text-sm text-slate font-body">{strength}</span>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </GlassCard>
-            </motion.div>
-          ))}
+                </GlassCard>
+              </motion.div>
+            )
+          })}
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -154,18 +162,21 @@ export function CmsPrototypesStackSection() {
                 whileHover={{ y: -3 }}
               >
                 <GlassCard className="p-6 group hover:border-lime/40 transition-all duration-300 cursor-pointer h-full">
-                  <motion.div
-                    className="w-12 h-12 rounded-lg glass-panel flex items-center justify-center border-lime/20 mb-4"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                  >
-                    <Icon className="w-6 h-6 text-lime" />
-                  </motion.div>
-                  <h4 className="text-lg font-display font-bold uppercase tracking-wide text-white mb-3">
-                    {feature.title}
-                  </h4>
-                  <p className="text-slate/70 text-sm leading-relaxed font-body">
-                    {feature.description}
-                  </p>
+                  <motion.div className="absolute -inset-4 rounded-2xl bg-lime/5 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="relative">
+                    <motion.div
+                      className="w-12 h-12 rounded-lg glass-panel flex items-center justify-center border-lime/20 mb-4"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                    >
+                      <Icon className="w-6 h-6 text-lime" />
+                    </motion.div>
+                    <h4 className="text-lg font-display font-bold uppercase tracking-wide text-white mb-3">
+                      {feature.title}
+                    </h4>
+                    <p className="text-slate/70 text-sm leading-relaxed font-body">
+                      {feature.description}
+                    </p>
+                  </div>
                 </GlassCard>
               </motion.div>
             )

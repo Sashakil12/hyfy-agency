@@ -1,12 +1,12 @@
 'use client'
 import { motion } from 'framer-motion'
-import { Package, Database, ArrowRight, LayoutGrid } from 'lucide-react'
+import { Factory, Shield, ArrowRight, Users } from 'lucide-react'
 
 import { GlowButton } from '@/components/GlowButton'
 import { GridBackground } from '@/components/effects/GridBackground'
 import { HolographicText } from '@/components/effects/HolographicText'
 
-export function CmsPrototypesHeroSection() {
+export function ErpHeroSection() {
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-obsidian scan-lines noise flex items-center">
       <GridBackground />
@@ -18,7 +18,7 @@ export function CmsPrototypesHeroSection() {
         transition={{ duration: 1 }}
       >
         <h1 className="text-watermark text-[8rem] md:text-[12rem] lg:text-[16rem] font-display font-extrabold uppercase tracking-[0.05em] leading-none whitespace-nowrap">
-          CMS
+          ERP
         </h1>
       </motion.div>
 
@@ -36,9 +36,9 @@ export function CmsPrototypesHeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
             >
-              <Package className="w-4 h-4 text-lime" />
+              <Factory className="w-4 h-4 text-lime" />
               <span className="terminal-text text-lime text-xs uppercase tracking-wider">
-                CMS // STRAPI_DIRECTUS_PAYLOAD
+                ERP_SOLUTIONS // BLUE_COLLAR
               </span>
               <div className="flex items-center gap-1 typing-indicator">
                 <span />
@@ -48,9 +48,9 @@ export function CmsPrototypesHeroSection() {
             </motion.div>
 
             <HolographicText className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold uppercase tracking-tight leading-none">
-              <div>Content-Driven</div>
+              <div>Intuitive Systems</div>
               <div className="mt-2">
-                <span className="text-lime">At Speed</span>
+                <span className="text-lime">For Your Workforce</span>
               </div>
             </HolographicText>
 
@@ -60,8 +60,8 @@ export function CmsPrototypesHeroSection() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
             >
-              Strapi, Directus, and Payload expertise. Build custom content types, API-first
-              architecture, and admin panels—faster than ever.
+              Custom ERP systems designed for businesses with blue-collar workforces. Easy adoption,
+              mobile-first interfaces, and workflows that match how your team actually works.
             </motion.p>
 
             <motion.div
@@ -75,8 +75,8 @@ export function CmsPrototypesHeroSection() {
                 className="px-8 py-4 text-base font-bold uppercase tracking-wider"
               >
                 <span className="flex items-center gap-2">
-                  <Database className="w-5 h-5" />
-                  Schedule Consultation
+                  <Shield className="w-5 h-5" />
+                  Schedule Demo
                 </span>
               </GlowButton>
               <motion.button
@@ -85,7 +85,7 @@ export function CmsPrototypesHeroSection() {
                 whileTap={{ scale: 0.98 }}
               >
                 <span className="flex items-center gap-2">
-                  See CMS Stack
+                  View Case Studies
                   <ArrowRight className="w-5 h-5" />
                 </span>
               </motion.button>
@@ -98,9 +98,9 @@ export function CmsPrototypesHeroSection() {
               transition={{ delay: 1.2 }}
             >
               {[
-                { value: '3', label: 'CMS Platforms' },
-                { value: '50+', label: 'Custom Types' },
-                { value: '100%', label: 'API-First' },
+                { value: '90%', label: 'User Adoption' },
+                { value: '50%', label: 'Time Saved' },
+                { value: '24/7', label: 'Mobile Access' },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
                   <div className="text-2xl md:text-3xl font-display font-bold text-lime">
@@ -121,21 +121,12 @@ export function CmsPrototypesHeroSection() {
             transition={{ delay: 0.8 }}
           >
             <div className="relative">
-              <motion.div
-                className="absolute -inset-4 rounded-2xl bg-lime/10 blur-3xl"
-                animate={{
-                  opacity: [0.3, 0.6, 0.3],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                }}
-              />
+              <motion.div className="absolute -inset-4 rounded-2xl bg-lime/10 blur-3xl ai-pulse" />
               <div className="relative glass-panel rounded-2xl p-6 space-y-4 border-lime/20">
                 <div className="flex items-center gap-2 border-b border-white/10 pb-4">
-                  <LayoutGrid className="w-5 h-5 text-lime" />
+                  <Users className="w-5 h-5 text-lime" />
                   <span className="terminal-text text-sm text-lime uppercase tracking-wider">
-                    Content_Type_Schema
+                    Workforce_Dashboard
                   </span>
                 </div>
 
@@ -145,54 +136,56 @@ export function CmsPrototypesHeroSection() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.2 }}
                 >
+                  <div className="glass-panel rounded-lg p-4 border border-lime/20">
+                    <div className="terminal-text text-xs text-slate uppercase tracking-wider mb-2">
+                      Shift_Schedule
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-white/90">
+                      <div className="w-2 h-2 rounded-full bg-lime" />
+                      Morning Shift: 47 workers assigned
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-white/90 mt-1">
+                      <div className="w-2 h-2 rounded-full bg-amber" />
+                      Evening Shift: 3 openings
+                    </div>
+                  </div>
+
                   <motion.div
-                    className="glass-panel rounded-lg p-4 border border-lime/20 content-pulse"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    className="glass-panel rounded-lg p-4 border border-lime/30 bg-lime/5"
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 1.4 }}
                   >
-                    <div className="terminal-text text-xs text-slate uppercase tracking-wider mb-2">
-                      Collection
+                    <div className="terminal-text text-xs text-lime uppercase tracking-wider mb-2">
+                      Equipment_Status
                     </div>
-                    <div className="text-sm text-white/90">Articles</div>
-                    <div className="text-xs text-slate/70 mt-1 flex items-center gap-2">
-                      <span>12 fields</span>
-                      <span>•</span>
-                      <span>API enabled</span>
+                    <div className="text-sm text-white/90 mb-2">All systems operational</div>
+                    <div className="w-full bg-white/10 rounded-full h-2">
+                      <div className="bg-lime h-2 rounded-full" style={{ width: '94%' }} />
                     </div>
+                    <div className="text-xs text-slate/70 mt-1">94% uptime this month</div>
                   </motion.div>
 
                   <motion.div
-                    className="glass-panel rounded-lg p-4 border border-lime/20"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    className="glass-panel rounded-lg p-4 border border-white/10 hover:border-lime/40 transition-all duration-300 cursor-pointer"
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 1.6 }}
                   >
-                    <div className="terminal-text text-xs text-slate uppercase tracking-wider mb-2">
-                      Collection
-                    </div>
-                    <div className="text-sm text-white/90">Products</div>
-                    <div className="text-xs text-slate/70 mt-1 flex items-center gap-2">
-                      <span>8 fields</span>
-                      <span>•</span>
-                      <span>Dynamic zones</span>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    className="glass-panel rounded-lg p-4 border border-lime/20"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.8 }}
-                  >
-                    <div className="terminal-text text-xs text-slate uppercase tracking-wider mb-2">
-                      Collection
-                    </div>
-                    <div className="text-sm text-white/90">Authors</div>
-                    <div className="text-xs text-slate/70 mt-1 flex items-center gap-2">
-                      <span>5 fields</span>
-                      <span>•</span>
-                      <span>One-to-many</span>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="terminal-text text-xs text-slate uppercase tracking-wider">
+                          Daily_Report
+                        </div>
+                        <div className="text-sm text-lime/80 mt-1">
+                          12 tasks completed, 2 pending
+                        </div>
+                      </div>
+                      <motion.div
+                        className="w-2 h-2 rounded-full bg-lime"
+                        animate={{ opacity: [1, 0.3, 1] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      />
                     </div>
                   </motion.div>
                 </motion.div>
@@ -201,13 +194,13 @@ export function CmsPrototypesHeroSection() {
                   className="absolute -right-2 -top-2 w-8 h-8 border-t-2 border-r-2 border-lime/40"
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 2 }}
+                  transition={{ delay: 1.8 }}
                 />
                 <motion.div
                   className="absolute -left-2 -bottom-2 w-8 h-8 border-b-2 border-l-2 border-lime/40"
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 2 }}
+                  transition={{ delay: 1.8 }}
                 />
               </div>
             </div>

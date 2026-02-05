@@ -1,10 +1,10 @@
 'use client'
 import { motion } from 'framer-motion'
-import { Package, ArrowRight, Calendar, Mail, Phone } from 'lucide-react'
+import { Rocket, Calendar, Mail, Phone } from 'lucide-react'
 
 import { GlowButton } from '@/components/GlowButton'
 
-export function CmsPrototypesCTASection() {
+export function SaasCTASection() {
   return (
     <section className="relative py-32 px-4 bg-obsidian overflow-hidden">
       <div className="absolute inset-0">
@@ -36,9 +36,9 @@ export function CmsPrototypesCTASection() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <Package className="w-4 h-4 text-lime" />
+            <Rocket className="w-4 h-4 text-lime" />
             <span className="terminal-text text-lime text-xs uppercase tracking-wider">
-              Ready_To_Build // CMS
+              Ready_To_Launch // SAAS
             </span>
           </motion.div>
 
@@ -49,7 +49,7 @@ export function CmsPrototypesCTASection() {
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            Build Your <span className="text-lime">CMS Solution</span>
+            Launch Your <span className="text-lime">SaaS Product</span>
           </motion.h2>
 
           <motion.p
@@ -59,8 +59,8 @@ export function CmsPrototypesCTASection() {
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
           >
-            From content strategy to deployment—we architect CMS solutions that scale with your
-            business. Strapi, Directus, or Payload—we've got you covered.
+            Have a SaaS idea? Let's turn it into reality. From architecture to launch, we'll build
+            your multi-tenant platform with all the features you need.
           </motion.p>
 
           <motion.div
@@ -76,7 +76,7 @@ export function CmsPrototypesCTASection() {
             >
               <span className="flex items-center gap-2 justify-center">
                 <Calendar className="w-5 h-5" />
-                Schedule Consultation
+                Book Strategy Call
               </span>
             </GlowButton>
             <motion.button

@@ -1,12 +1,12 @@
 'use client'
 import { motion } from 'framer-motion'
-import { Package, Database, ArrowRight, LayoutGrid } from 'lucide-react'
+import { ShoppingCart, Sparkles, ArrowRight, CreditCard, Globe } from 'lucide-react'
 
 import { GlowButton } from '@/components/GlowButton'
 import { GridBackground } from '@/components/effects/GridBackground'
 import { HolographicText } from '@/components/effects/HolographicText'
 
-export function CmsPrototypesHeroSection() {
+export function EcommerceHeroSection() {
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-obsidian scan-lines noise flex items-center">
       <GridBackground />
@@ -17,8 +17,8 @@ export function CmsPrototypesHeroSection() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <h1 className="text-watermark text-[8rem] md:text-[12rem] lg:text-[16rem] font-display font-extrabold uppercase tracking-[0.05em] leading-none whitespace-nowrap">
-          CMS
+        <h1 className="text-watermark text-[6rem] md:text-[10rem] lg:text-[14rem] font-display font-extrabold uppercase tracking-[0.05em] leading-none whitespace-nowrap">
+          STOREFRONT
         </h1>
       </motion.div>
 
@@ -36,9 +36,9 @@ export function CmsPrototypesHeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
             >
-              <Package className="w-4 h-4 text-lime" />
+              <ShoppingCart className="w-4 h-4 text-lime" />
               <span className="terminal-text text-lime text-xs uppercase tracking-wider">
-                CMS // STRAPI_DIRECTUS_PAYLOAD
+                ECOMMERCE // HEADLESS
               </span>
               <div className="flex items-center gap-1 typing-indicator">
                 <span />
@@ -48,9 +48,9 @@ export function CmsPrototypesHeroSection() {
             </motion.div>
 
             <HolographicText className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold uppercase tracking-tight leading-none">
-              <div>Content-Driven</div>
+              <div>Beyond Template</div>
               <div className="mt-2">
-                <span className="text-lime">At Speed</span>
+                <span className="text-lime">Limitations</span>
               </div>
             </HolographicText>
 
@@ -60,8 +60,8 @@ export function CmsPrototypesHeroSection() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
             >
-              Strapi, Directus, and Payload expertise. Build custom content types, API-first
-              architecture, and admin panels—faster than ever.
+              Custom ecommerce experiences that convert. Headless architectures, unique checkout
+              flows, and performance-optimized catalogs tailored to your brand and customers.
             </motion.p>
 
             <motion.div
@@ -75,8 +75,8 @@ export function CmsPrototypesHeroSection() {
                 className="px-8 py-4 text-base font-bold uppercase tracking-wider"
               >
                 <span className="flex items-center gap-2">
-                  <Database className="w-5 h-5" />
-                  Schedule Consultation
+                  <Sparkles className="w-5 h-5" />
+                  Start Your Store
                 </span>
               </GlowButton>
               <motion.button
@@ -85,7 +85,7 @@ export function CmsPrototypesHeroSection() {
                 whileTap={{ scale: 0.98 }}
               >
                 <span className="flex items-center gap-2">
-                  See CMS Stack
+                  View Examples
                   <ArrowRight className="w-5 h-5" />
                 </span>
               </motion.button>
@@ -98,9 +98,9 @@ export function CmsPrototypesHeroSection() {
               transition={{ delay: 1.2 }}
             >
               {[
-                { value: '3', label: 'CMS Platforms' },
-                { value: '50+', label: 'Custom Types' },
-                { value: '100%', label: 'API-First' },
+                { value: '3x', label: 'Faster Load Times' },
+                { value: '40%', label: 'Higher Conversion' },
+                { value: '99.9%', label: 'Uptime' },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
                   <div className="text-2xl md:text-3xl font-display font-bold text-lime">
@@ -121,21 +121,12 @@ export function CmsPrototypesHeroSection() {
             transition={{ delay: 0.8 }}
           >
             <div className="relative">
-              <motion.div
-                className="absolute -inset-4 rounded-2xl bg-lime/10 blur-3xl"
-                animate={{
-                  opacity: [0.3, 0.6, 0.3],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                }}
-              />
+              <motion.div className="absolute -inset-4 rounded-2xl bg-lime/10 blur-3xl ai-pulse" />
               <div className="relative glass-panel rounded-2xl p-6 space-y-4 border-lime/20">
                 <div className="flex items-center gap-2 border-b border-white/10 pb-4">
-                  <LayoutGrid className="w-5 h-5 text-lime" />
+                  <Globe className="w-5 h-5 text-lime" />
                   <span className="terminal-text text-sm text-lime uppercase tracking-wider">
-                    Content_Type_Schema
+                    Live_Store_Preview
                   </span>
                 </div>
 
@@ -145,54 +136,67 @@ export function CmsPrototypesHeroSection() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.2 }}
                 >
+                  <div className="glass-panel rounded-lg overflow-hidden border border-white/10">
+                    <div className="bg-charcoal p-3 flex items-center justify-between">
+                      <span className="text-sm text-white font-bold">Premium Headphones</span>
+                      <span className="text-lime font-bold">$299</span>
+                    </div>
+                    <div className="p-3">
+                      <div className="h-24 bg-white/5 rounded mb-3 flex items-center justify-center">
+                        <span className="text-slate/50 text-xs">Product Image</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <div className="w-8 h-8 rounded-full bg-white/10" />
+                        <div className="w-8 h-8 rounded-full bg-lime/20" />
+                        <div className="w-8 h-8 rounded-full bg-amber/20" />
+                      </div>
+                    </div>
+                  </div>
+
                   <motion.div
-                    className="glass-panel rounded-lg p-4 border border-lime/20 content-pulse"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    className="glass-panel rounded-lg p-4 border border-lime/30 bg-lime/5"
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 1.4 }}
                   >
-                    <div className="terminal-text text-xs text-slate uppercase tracking-wider mb-2">
-                      Collection
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="terminal-text text-xs text-lime uppercase tracking-wider">
+                        Checkout_Flow
+                      </div>
+                      <CreditCard className="w-4 h-4 text-lime" />
                     </div>
-                    <div className="text-sm text-white/90">Articles</div>
-                    <div className="text-xs text-slate/70 mt-1 flex items-center gap-2">
-                      <span>12 fields</span>
-                      <span>•</span>
-                      <span>API enabled</span>
+                    <div className="space-y-2">
+                      <div className="h-2 bg-white/10 rounded w-full" />
+                      <div className="h-2 bg-white/10 rounded w-3/4" />
+                      <div className="flex gap-2 mt-3">
+                        <div className="flex-1 h-8 bg-lime/20 rounded flex items-center justify-center">
+                          <span className="text-xs text-lime">Apple Pay</span>
+                        </div>
+                        <div className="flex-1 h-8 bg-white/10 rounded flex items-center justify-center">
+                          <span className="text-xs text-slate">Stripe</span>
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
 
                   <motion.div
-                    className="glass-panel rounded-lg p-4 border border-lime/20"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    className="glass-panel rounded-lg p-4 border border-white/10 hover:border-lime/40 transition-all duration-300 cursor-pointer"
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 1.6 }}
                   >
-                    <div className="terminal-text text-xs text-slate uppercase tracking-wider mb-2">
-                      Collection
-                    </div>
-                    <div className="text-sm text-white/90">Products</div>
-                    <div className="text-xs text-slate/70 mt-1 flex items-center gap-2">
-                      <span>8 fields</span>
-                      <span>•</span>
-                      <span>Dynamic zones</span>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    className="glass-panel rounded-lg p-4 border border-lime/20"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.8 }}
-                  >
-                    <div className="terminal-text text-xs text-slate uppercase tracking-wider mb-2">
-                      Collection
-                    </div>
-                    <div className="text-sm text-white/90">Authors</div>
-                    <div className="text-xs text-slate/70 mt-1 flex items-center gap-2">
-                      <span>5 fields</span>
-                      <span>•</span>
-                      <span>One-to-many</span>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="terminal-text text-xs text-slate uppercase tracking-wider">
+                          Real-Time_Inventory
+                        </div>
+                        <div className="text-sm text-lime/80 mt-1">12 units available</div>
+                      </div>
+                      <motion.div
+                        className="w-2 h-2 rounded-full bg-lime"
+                        animate={{ opacity: [1, 0.3, 1] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      />
                     </div>
                   </motion.div>
                 </motion.div>
@@ -201,13 +205,13 @@ export function CmsPrototypesHeroSection() {
                   className="absolute -right-2 -top-2 w-8 h-8 border-t-2 border-r-2 border-lime/40"
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 2 }}
+                  transition={{ delay: 1.8 }}
                 />
                 <motion.div
                   className="absolute -left-2 -bottom-2 w-8 h-8 border-b-2 border-l-2 border-lime/40"
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 2 }}
+                  transition={{ delay: 1.8 }}
                 />
               </div>
             </div>

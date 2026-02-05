@@ -1,6 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
-import { ChevronDown, Workflow, Zap, ArrowRight } from 'lucide-react'
+import { Workflow, Zap, ArrowRight } from 'lucide-react'
 
 import { GlowButton } from '@/components/GlowButton'
 import { GridBackground } from '@/components/effects/GridBackground'
@@ -40,16 +40,11 @@ export function N8nHeroSection() {
               <span className="terminal-text text-lime text-xs uppercase tracking-wider">
                 n8n_Services // EXPERT
               </span>
-              <motion.div
-                className="w-2 h-2 rounded-full bg-lime"
-                animate={{
-                  opacity: [1, 0.3, 1],
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                }}
-              />
+              <div className="flex items-center gap-1 typing-indicator">
+                <span />
+                <span />
+                <span />
+              </div>
             </motion.div>
 
             <HolographicText className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold uppercase tracking-tight leading-none">
@@ -224,7 +219,7 @@ export function N8nHeroSection() {
         <div className="flex flex-col items-center gap-3">
           <div className="flex flex-col items-center gap-1">
             <div className="w-px h-8 bg-gradient-to-b from-transparent via-lime to-transparent" />
-            <ChevronDown className="w-6 h-6 text-lime" />
+            <ArrowRight className="w-6 h-6 text-lime rotate-90" />
           </div>
           <span className="terminal-text text-lime/80 text-xs uppercase tracking-wider">
             Scroll_to_Explore

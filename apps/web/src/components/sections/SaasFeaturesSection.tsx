@@ -1,12 +1,12 @@
 'use client'
 import { motion } from 'framer-motion'
 import {
-  Zap,
-  Puzzle,
-  Code2,
+  Rocket,
+  Users,
+  CreditCard,
   Shield,
-  GitBranch,
-  Database,
+  Zap,
+  BarChart3,
   ArrowRight,
   CheckCircle2,
 } from 'lucide-react'
@@ -15,50 +15,50 @@ import { GlassCard } from '@/components/GlassCard'
 
 const features = [
   {
-    icon: Zap,
-    title: 'Custom Workflow Development',
+    icon: Users,
+    title: 'Multi-Tenant Architecture',
     description:
-      'We build tailored n8n workflows that solve your specific business problems. From simple automations to complex orchestrations.',
-    items: ['Process optimization', 'Custom business logic', 'End-to-end automation'],
+      'True data isolation with shared infrastructure. Each tenant gets their own secure space while you maintain operational efficiency.',
+    items: ['Data isolation', 'Custom branding', 'Tenant-specific features'],
   },
   {
-    icon: Puzzle,
-    title: 'Integration Architecture',
+    icon: CreditCard,
+    title: 'Subscription Billing',
     description:
-      'Connect your entire tech stack with robust, scalable integrations. We handle API connections, legacy systems, and custom connectors.',
-    items: ['SaaS platform integrations', 'Custom API connectors', 'Legacy system bridges'],
-  },
-  {
-    icon: Code2,
-    title: 'n8n Setup & Configuration',
-    description:
-      'Get started fast with professional n8n installation. We handle self-hosted setup, cloud configuration, and production deployment.',
-    items: ['Self-hosted deployment', 'Cloud configuration', 'Environment setup'],
+      'Complete billing infrastructure with Stripe integration. Support for multiple pricing tiers, usage-based billing, and invoicing.',
+    items: ['Multiple tiers', 'Usage billing', 'Invoice management'],
   },
   {
     icon: Shield,
-    title: 'Custom Node Development',
+    title: 'Enterprise Security',
     description:
-      'Need functionality beyond standard nodes? We build custom n8n nodes for your unique requirements and open-source them back to the community.',
-    items: ['Custom functionality', 'API wrapper nodes', 'Open-source contributions'],
+      'SOC 2 compliant architecture with SSO, audit logs, and role-based access. Built for enterprise customers from day one.',
+    items: ['SSO/SAML', 'Audit trails', 'RBAC permissions'],
   },
   {
-    icon: GitBranch,
-    title: 'Team Training & Workshops',
+    icon: Zap,
+    title: 'AI-Native Features',
     description:
-      'Empower your team to use n8n effectively. Hands-on workshops tailored to your use cases and skill level.',
-    items: ['Hands-on workshops', 'Best practices training', 'Ongoing support'],
+      'Differentiate with AI. Build intelligent features that learn from data and deliver unique value to each customer.',
+    items: ['Custom AI models', 'Predictive analytics', 'Automation workflows'],
   },
   {
-    icon: Database,
-    title: 'Workflow Optimization',
+    icon: BarChart3,
+    title: 'Usage Analytics',
     description:
-      'Existing workflows slowing you down? We audit, refactor, and optimize your automations for better performance and reliability.',
-    items: ['Performance audit', 'Error handling', 'Scalability review'],
+      'Track everything that matters. Tenant analytics, feature adoption, and churn prediction built into the core.',
+    items: ['Tenant analytics', 'Churn prediction', 'Feature adoption'],
+  },
+  {
+    icon: Rocket,
+    title: 'Rapid Deployment',
+    description:
+      'Launch in weeks, not years. Our SaaS starter kit gives you authentication, billing, and tenant management out of the box.',
+    items: ['Starter templates', 'Pre-built auth', 'CI/CD pipelines'],
   },
 ]
 
-export function N8nFeaturesSection() {
+export function SaasFeaturesSection() {
   return (
     <section className="relative py-32 px-4 bg-obsidian overflow-hidden">
       <div className="absolute inset-0 opacity-5">
@@ -74,17 +74,17 @@ export function N8nFeaturesSection() {
           transition={{ duration: 0.8 }}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-lime/30 mb-6">
-            <Zap className="w-4 h-4 text-lime" />
+            <Rocket className="w-4 h-4 text-lime" />
             <span className="terminal-text text-lime text-xs uppercase tracking-wider">
-              Our_Services // EXPERT
+              SaaS_Capabilities // FEATURES
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold uppercase tracking-tight mb-6">
-            <span className="text-lime">n8n</span> Services We Deliver
+            Everything You Need <span className="text-lime">To Launch</span>
           </h2>
           <p className="text-slate text-lg md:text-xl max-w-3xl mx-auto font-body leading-relaxed">
-            From setup to custom development, we handle everything n8n so you can focus on your
-            business.
+            Multi-tenant architecture, subscription billing, and AI-powered features— all integrated
+            and ready to scale.
           </p>
         </motion.div>
 
@@ -155,7 +155,7 @@ export function N8nFeaturesSection() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <span>Discuss Your Project</span>
+            <span>Explore SaaS Architecture</span>
             <ArrowRight className="w-5 h-5" />
           </motion.button>
         </motion.div>

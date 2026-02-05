@@ -65,28 +65,18 @@ const useCases = [
 
 export function AiNativeUseCasesSection() {
   return (
-    <section className="relative py-32 px-4 bg-charcoal-tint overflow-hidden scan-lines">
+    <section className="relative py-32 px-4 bg-charcoal overflow-hidden">
       <div className="absolute inset-0 opacity-5">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern
-              id="hexagons-ai"
-              x="0"
-              y="0"
-              width="100"
-              height="87"
-              patternUnits="userSpaceOnUse"
-            >
-              <polygon
-                points="50,0 100,25 100,75 50,100 0,75 0,25"
-                fill="none"
-                stroke="#88FF66"
-                strokeWidth="0.5"
-              />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#hexagons-ai)" />
-        </svg>
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(136,255,102,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(136,255,102,0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px',
+          }}
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -102,11 +92,6 @@ export function AiNativeUseCasesSection() {
             <span className="terminal-text text-lime text-xs uppercase tracking-wider">
               Use_Cases // REAL_RESULTS
             </span>
-            <motion.div
-              className="w-2 h-2 rounded-full bg-lime"
-              animate={{ opacity: [1, 0.3, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold uppercase tracking-tight mb-6">
             AI Applications <span className="text-lime">Driving Results</span>
@@ -160,10 +145,7 @@ export function AiNativeUseCasesSection() {
                         </span>
                       </motion.div>
                       <div className="space-y-3">
-                        {(Array.isArray(useCase.features)
-                          ? useCase.features
-                          : [useCase.features]
-                        ).map((feature, i) => (
+                        {useCase.features.map((feature, i) => (
                           <motion.div
                             key={i}
                             className="flex items-start gap-3"
@@ -172,7 +154,7 @@ export function AiNativeUseCasesSection() {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 + i * 0.05 }}
                           >
-                            <CheckCircle2 className="w-4 h-4 text-lime flex-shrink-0 mt-0.5" />
+                            <CheckCircle2 className="w-5 h-5 text-lime flex-shrink-0 mt-0.5" />
                             <span className="text-sm text-slate font-body">{feature}</span>
                           </motion.div>
                         ))}

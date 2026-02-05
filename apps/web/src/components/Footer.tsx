@@ -4,12 +4,12 @@ import { motion } from 'framer-motion'
 
 const navigation = {
   services: [
-    { name: 'Custom ERPs', href: '/services/erp' },
-    { name: 'AI-Native Apps', href: '/services/ai-tools' },
-    { name: 'N8n Workflows', href: '/services/n8n' },
-    { name: 'Ecommerce', href: '/services/ecommerce' },
-    { name: 'SaaS / RaaS', href: '/services/saas' },
-    { name: 'CMS Prototypes', href: '/services/cms' },
+    { name: 'Custom ERPs', href: '/erp' },
+    { name: 'AI-Native Apps', href: '/ai-native-apps' },
+    { name: 'N8n Workflows', href: '/n8n' },
+    { name: 'Ecommerce', href: '/ecommerce' },
+    { name: 'SaaS / RaaS', href: '/saas' },
+    { name: 'CMS Prototypes', href: '/cms-prototypes' },
   ],
   company: [
     { name: 'About', href: '/about' },
@@ -63,9 +63,7 @@ export function Footer() {
             <div className="relative inline-block mb-4">
               {/* Logo with HUD frame */}
               <div className="relative">
-                <h3 className="text-2xl font-display font-bold text-lime">
-                  Hyfy Agency
-                </h3>
+                <h3 className="text-2xl font-display font-bold text-lime">Hyfy Agency</h3>
 
                 {/* Corner brackets */}
                 <div className="absolute -inset-2 pointer-events-none">
@@ -75,16 +73,14 @@ export function Footer() {
               </div>
             </div>
 
-            <p className="text-slate max-w-md mb-6 leading-relaxed">
+            <p className="text-white/70 max-w-md mb-6 leading-relaxed">
               From idea to MVP in 65% less time. Full-stack development with AI-native workflows.
             </p>
 
             {/* System info */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded glass-panel border border-lime/20">
               <Terminal className="w-3 h-3 text-lime" />
-              <span className="terminal-text text-lime/70 text-xs">
-                BUILD_v2.0.1
-              </span>
+              <span className="terminal-text text-lime/70 text-xs">BUILD_v2.0.1</span>
               <motion.div
                 className="w-1.5 h-1.5 rounded-full bg-lime"
                 animate={{ opacity: [1, 0.3, 1] }}
@@ -95,10 +91,10 @@ export function Footer() {
 
           {/* Services Links */}
           <div>
-            <h4 className="terminal-text text-lime/70 text-xs uppercase tracking-wider mb-4">
-              Services_Module
+            <h4 className="terminal-text text-lime text-xs uppercase tracking-wider mb-4">
+              Services
             </h4>
-            <ul className="space-y-2">
+            <ul className="space-y-2 footer-links">
               {navigation.services.map((item, index) => (
                 <motion.li
                   key={item.name}
@@ -109,16 +105,16 @@ export function Footer() {
                 >
                   <a
                     href={item.href}
-                    className="group relative inline-flex items-center gap-2 text-slate hover:text-lime transition-colors text-sm"
+                    className="group relative inline-flex items-center gap-2 text-white hover:text-lime transition-colors text-sm"
                   >
                     <motion.span
-                      className="w-1.5 h-1.5 rounded-full bg-lime/30 group-hover:bg-lime"
+                      className="w-1.5 h-1.5 rounded-full bg-lime/50 group-hover:bg-lime"
                       whileHover={{ scale: 1.5 }}
                     />
                     <span className="relative">
                       {item.name}
-                      {/* Underline on hover */}
-                      <span className="absolute bottom-0 left-0 w-0 h-px bg-lime group-hover:w-full transition-all duration-300" />
+                      {/* Underline visible by default, full on hover */}
+                      <span className="absolute bottom-0 left-0 w-full h-px bg-white/20 group-hover:bg-lime transition-all duration-300" />
                     </span>
                   </a>
                 </motion.li>
@@ -128,10 +124,10 @@ export function Footer() {
 
           {/* Company Links */}
           <div>
-            <h4 className="terminal-text text-lime/70 text-xs uppercase tracking-wider mb-4">
-              Company_Info
+            <h4 className="terminal-text text-lime text-xs uppercase tracking-wider mb-4">
+              Company
             </h4>
-            <ul className="space-y-2">
+            <ul className="space-y-2 footer-links">
               {navigation.company.map((item, index) => (
                 <motion.li
                   key={item.name}
@@ -142,16 +138,16 @@ export function Footer() {
                 >
                   <a
                     href={item.href}
-                    className="group relative inline-flex items-center gap-2 text-slate hover:text-lime transition-colors text-sm"
+                    className="group relative inline-flex items-center gap-2 text-white hover:text-lime transition-colors text-sm"
                   >
                     <motion.span
-                      className="w-1.5 h-1.5 rounded-full bg-lime/30 group-hover:bg-lime"
+                      className="w-1.5 h-1.5 rounded-full bg-lime/50 group-hover:bg-lime"
                       whileHover={{ scale: 1.5 }}
                     />
                     <span className="relative">
                       {item.name}
-                      {/* Underline on hover */}
-                      <span className="absolute bottom-0 left-0 w-0 h-px bg-lime group-hover:w-full transition-all duration-300" />
+                      {/* Underline visible by default, full on hover */}
+                      <span className="absolute bottom-0 left-0 w-full h-px bg-white/20 group-hover:bg-lime transition-all duration-300" />
                     </span>
                   </a>
                 </motion.li>
@@ -169,15 +165,11 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Copyright with terminal styling */}
             <div className="flex flex-col md:flex-row items-center gap-4 text-slate/60 text-xs">
-              <span className="terminal-text">
-                © {currentYear} HYFY_AGENCY
-              </span>
+              <span className="terminal-text">© {currentYear} HYFY_AGENCY</span>
               <span className="hidden md:block">•</span>
               <span className="terminal-text">ALL_RIGHTS_RESERVED</span>
               <span className="hidden md:block">•</span>
-              <span className="terminal-text text-lime/50">
-                POWERED_BY_AI
-              </span>
+              <span className="terminal-text text-lime/50">POWERED_BY_AI</span>
             </div>
 
             {/* Social Links with enhanced styling */}
@@ -196,10 +188,7 @@ export function Footer() {
                 >
                   {/* Hexagonal frame */}
                   <div className="relative w-10 h-10 flex items-center justify-center">
-                    <svg
-                      className="absolute inset-0 w-full h-full"
-                      viewBox="0 0 100 100"
-                    >
+                    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
                       <polygon
                         points="50,10 85,30 85,70 50,90 15,70 15,30"
                         fill="rgba(136,255,102,0.05)"
@@ -209,7 +198,7 @@ export function Footer() {
                       />
                     </svg>
 
-                    <item.icon className="w-4 h-4 text-slate group-hover:text-lime transition-colors relative z-10" />
+                    <item.icon className="w-4 h-4 text-white/70 group-hover:text-lime transition-colors relative z-10" />
 
                     {/* Glow on hover */}
                     <motion.div
