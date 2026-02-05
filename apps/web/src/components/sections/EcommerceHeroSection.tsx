@@ -17,7 +17,7 @@ export function EcommerceHeroSection() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <h1 className="text-watermark text-[6rem] md:text-[10rem] lg:text-[14rem] font-display font-extrabold uppercase tracking-[0.05em] leading-none whitespace-nowrap">
+        <h1 className="text-watermark text-[4rem] sm:text-[6rem] md:text-[10rem] lg:text-[14rem] font-display font-extrabold uppercase tracking-[0.05em] leading-none whitespace-nowrap">
           STOREFRONT
         </h1>
       </motion.div>
@@ -92,7 +92,7 @@ export function EcommerceHeroSection() {
             </motion.div>
 
             <motion.div
-              className="grid grid-cols-3 gap-6 pt-6 border-t border-white/10"
+              className="grid grid-cols-3 gap-4 md:gap-6 pt-6 border-t border-white/10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2 }}
@@ -136,19 +136,49 @@ export function EcommerceHeroSection() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.2 }}
                 >
-                  <div className="glass-panel rounded-lg overflow-hidden border border-white/10">
-                    <div className="bg-charcoal p-3 flex items-center justify-between">
-                      <span className="text-sm text-white font-bold">Premium Headphones</span>
-                      <span className="text-lime font-bold">$299</span>
+                  <div className="glass-panel rounded-lg overflow-hidden border border-white/10 group hover:border-lime/30 transition-all duration-300">
+                    {/* Product Image */}
+                    <div className="relative h-40 overflow-hidden bg-white/5">
+                      <img
+                        src="/product-photo-612x612.jpg"
+                        alt="Premium Headphones"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/20 to-transparent" />
                     </div>
-                    <div className="p-3">
-                      <div className="h-24 bg-white/5 rounded mb-3 flex items-center justify-center">
-                        <span className="text-slate/50 text-xs">Product Image</span>
+
+                    {/* Product Info */}
+                    <div className="p-4 space-y-3">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <h3 className="text-sm font-display font-bold text-white uppercase tracking-wide">
+                            Premium Headphones
+                          </h3>
+                          <p className="text-xs text-slate/70 mt-1">Studio Quality Sound</p>
+                        </div>
+                        <div className="text-lg font-display font-bold text-lime">$299</div>
                       </div>
-                      <div className="flex gap-2">
-                        <div className="w-8 h-8 rounded-full bg-white/10" />
-                        <div className="w-8 h-8 rounded-full bg-lime/20" />
-                        <div className="w-8 h-8 rounded-full bg-amber/20" />
+
+                      {/* Color Options */}
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-slate/60 uppercase tracking-wider">Colors:</span>
+                        <div className="flex gap-2">
+                          <motion.div
+                            className="w-6 h-6 rounded-full bg-white/10 border border-lime/40 cursor-pointer"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                          />
+                          <motion.div
+                            className="w-6 h-6 rounded-full bg-lime/20 border border-white/10 cursor-pointer"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                          />
+                          <motion.div
+                            className="w-6 h-6 rounded-full bg-amber/20 border border-white/10 cursor-pointer"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
