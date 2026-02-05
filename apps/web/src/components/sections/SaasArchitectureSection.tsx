@@ -105,7 +105,11 @@ export function SaasArchitectureSection() {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <GlassCard className="group hover:border-lime/40 transition-all duration-300">
+                    <GlassCard
+                      className="group hover:border-lime/40 transition-all duration-300"
+                      corners="alternate"
+                      index={index}
+                    >
                       <div className="flex items-start gap-4">
                         <div className="w-12 h-12 rounded-lg glass-panel flex items-center justify-center border-lime/20 flex-shrink-0">
                           <Icon className="w-6 h-6 text-lime" />
@@ -145,7 +149,7 @@ export function SaasArchitectureSection() {
             </h3>
             <div className="space-y-6">
               {techStack.map((stack, index) => (
-                <GlassCard key={index}>
+                <GlassCard key={index} corners="alternate" index={index}>
                   <h4 className="text-lime font-display font-bold uppercase tracking-wider text-sm mb-4">
                     {stack.category}
                   </h4>

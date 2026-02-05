@@ -1,6 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
-import { ShoppingCart, Layers, ArrowRight, Database, Cloud, Shield } from 'lucide-react'
+import { Layers, Database, Cloud, Shield } from 'lucide-react'
 
 import { GlassCard } from '@/components/GlassCard'
 
@@ -97,7 +97,7 @@ export function EcommerceStackSection() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <GlassCard className="h-full">
+              <GlassCard className="h-full" corners="alternate" index={index}>
                 <h3 className="text-lg font-display font-bold uppercase tracking-wide text-lime mb-6">
                   {tech.category}
                 </h3>
@@ -130,6 +130,8 @@ export function EcommerceStackSection() {
               <GlassCard
                 key={index}
                 className="text-center group hover:border-lime/40 transition-all duration-300"
+                corners="alternate"
+                index={index}
               >
                 <motion.div
                   className="w-16 h-16 rounded-full glass-panel flex items-center justify-center border-lime/20 mx-auto mb-4"

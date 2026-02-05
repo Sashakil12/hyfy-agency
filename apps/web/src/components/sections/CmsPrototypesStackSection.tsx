@@ -112,7 +112,11 @@ export function CmsPrototypesStackSection() {
                 transition={{ delay: index * 0.15 }}
                 whileHover={{ y: -5 }}
               >
-                <GlassCard className="p-8 group hover:border-lime/40 transition-all duration-300 cursor-pointer h-full">
+                <GlassCard
+                  className="p-8 group hover:border-lime/40 transition-all duration-300 cursor-pointer h-full"
+                  corners="alternate"
+                  index={index}
+                >
                   <motion.div className="absolute -inset-4 rounded-2xl bg-lime/5 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative">
                     <motion.div
@@ -161,7 +165,11 @@ export function CmsPrototypesStackSection() {
                 transition={{ delay: 0.5 + index * 0.1 }}
                 whileHover={{ y: -3 }}
               >
-                <GlassCard className="p-6 group hover:border-lime/40 transition-all duration-300 cursor-pointer h-full">
+                <GlassCard
+                  className="p-6 group hover:border-lime/40 transition-all duration-300 cursor-pointer h-full"
+                  corners="alternate"
+                  index={index}
+                >
                   <motion.div className="absolute -inset-4 rounded-2xl bg-lime/5 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative">
                     <motion.div

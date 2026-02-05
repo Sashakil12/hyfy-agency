@@ -92,7 +92,11 @@ export function ErpIndustriesSection() {
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <GlassCard className="p-8 h-full group hover:border-lime/40 transition-all duration-300 cursor-pointer">
+                <GlassCard
+                  className="p-8 h-full group hover:border-lime/40 transition-all duration-300 cursor-pointer"
+                  corners="alternate"
+                  index={index}
+                >
                   <div className="flex flex-col h-full">
                     <div className="flex items-center gap-3 mb-4">
                       <motion.div
