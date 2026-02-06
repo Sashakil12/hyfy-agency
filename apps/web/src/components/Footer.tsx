@@ -27,7 +27,10 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="relative bg-charcoal border-t border-lime/10 overflow-hidden">
+    <footer
+      className="relative bg-charcoal border-t border-lime/10 overflow-hidden"
+      style={{ fontFamily: "'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}
+    >
       {/* Grid pattern background */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -63,7 +66,12 @@ export function Footer() {
             <div className="relative inline-block mb-4">
               {/* Logo with HUD frame */}
               <div className="relative">
-                <h3 className="text-2xl font-display font-bold text-lime">Hyfy Agency</h3>
+                <h3
+                  className="text-2xl font-display font-bold text-lime"
+                  style={{ fontFamily: "'Orbitron', sans-serif" }}
+                >
+                  Hyfy Agency
+                </h3>
 
                 {/* Corner brackets */}
                 <div className="absolute -inset-2 pointer-events-none">
@@ -73,7 +81,7 @@ export function Footer() {
               </div>
             </div>
 
-            <p className="text-white/70 max-w-md mb-6 leading-relaxed">
+            <p className="text-white/70 max-w-md mb-6 leading-relaxed" style={{ fontSize: '110%' }}>
               From idea to MVP in 65% less time. Full-stack development with AI-native workflows.
             </p>
 
@@ -91,7 +99,10 @@ export function Footer() {
 
           {/* Services Links */}
           <div>
-            <h4 className="terminal-text text-lime text-xs uppercase tracking-wider mb-4">
+            <h4
+              className="terminal-text text-lime text-xs uppercase tracking-wider mb-4"
+              style={{ fontFamily: "'Orbitron', sans-serif" }}
+            >
               Services
             </h4>
             <ul className="space-y-2 footer-links">
@@ -106,6 +117,7 @@ export function Footer() {
                   <a
                     href={item.href}
                     className="group relative inline-flex items-center gap-2 text-white hover:text-lime transition-colors text-sm"
+                    style={{ fontSize: '105%' }}
                   >
                     <motion.span
                       className="w-1.5 h-1.5 rounded-full bg-lime/50 group-hover:bg-lime"
@@ -124,7 +136,10 @@ export function Footer() {
 
           {/* Company Links */}
           <div>
-            <h4 className="terminal-text text-lime text-xs uppercase tracking-wider mb-4">
+            <h4
+              className="terminal-text text-lime text-xs uppercase tracking-wider mb-4"
+              style={{ fontFamily: "'Orbitron', sans-serif" }}
+            >
               Company
             </h4>
             <ul className="space-y-2 footer-links">
@@ -139,6 +154,7 @@ export function Footer() {
                   <a
                     href={item.href}
                     className="group relative inline-flex items-center gap-2 text-white hover:text-lime transition-colors text-sm"
+                    style={{ fontSize: '105%' }}
                   >
                     <motion.span
                       className="w-1.5 h-1.5 rounded-full bg-lime/50 group-hover:bg-lime"
