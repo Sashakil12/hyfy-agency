@@ -4,6 +4,7 @@ import type { BlogPost, Category } from '../../../lib/strapi';
 import { getBlogPosts, getCategories } from '../../../lib/strapi';
 import BlogCard from '../../../components/blog/BlogCard.astro';
 import Pagination from '../../../components/blog/Pagination.astro';
+import GlobalHeader from '../../../components/GlobalHeader';
 
 export const prerender = false; // Enable SSR for dynamic pagination
 
@@ -64,7 +65,7 @@ const description = `Explore our latest articles about ${category.name}. Expert 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={Astro.url.pathname} />
@@ -83,6 +84,9 @@ const description = `Explore our latest articles about ${category.name}. Expert 
     })} />
   </head>
   <body class="bg-obsidian text-white font-exo overflow-x-hidden">
+    <!-- Global Header -->
+    <GlobalHeader client:load currentPath={Astro.url.pathname} />
+
     <!-- Animated Background Grid -->
     <div class="fixed inset-0 pointer-events-none opacity-20">
       <div class="absolute inset-0"
@@ -91,7 +95,7 @@ const description = `Explore our latest articles about ${category.name}. Expert 
     </div>
 
     <!-- Simplified Hero Section for Category -->
-    <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+    <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20">
       <!-- Animated Background Gradient Orbs -->
       <div class="absolute inset-0 pointer-events-none overflow-hidden">
         <!-- Primary Glow -->

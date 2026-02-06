@@ -1,6 +1,7 @@
 ---
 import '../../styles/global.css';
 import { getBlogPost, getBlogPosts, getImageUrl, formatDate, parseMarkdown } from '../../lib/strapi';
+import GlobalHeader from '../../components/GlobalHeader';
 
 // Enable SSG for individual blog posts
 export async function getStaticPaths() {
@@ -83,7 +84,7 @@ const modifiedISO = new Date(post.updatedAt).toISOString();
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalUrl} />
@@ -150,6 +151,9 @@ const modifiedISO = new Date(post.updatedAt).toISOString();
     })} />
   </head>
   <body class="bg-obsidian text-white font-exo overflow-x-hidden">
+    <!-- Global Header -->
+    <GlobalHeader client:load currentPath={Astro.url.pathname} />
+
     <!-- Animated Background Grid -->
     <div class="fixed inset-0 pointer-events-none opacity-20">
       <div class="absolute inset-0"
@@ -158,7 +162,7 @@ const modifiedISO = new Date(post.updatedAt).toISOString();
     </div>
 
     <!-- Back Button -->
-    <div class="fixed top-8 left-8 z-50">
+    <div class="fixed top-24 left-8 z-50">
       <a href="/blog"
          class="flex items-center gap-2 px-6 py-3 rounded-xl
                 bg-white/[0.05] backdrop-blur-md border border-white/10
@@ -173,7 +177,7 @@ const modifiedISO = new Date(post.updatedAt).toISOString();
     </div>
 
     <!-- Article Header -->
-    <article class="relative pt-32 pb-20">
+    <article class="relative pt-40 pb-20">
       <!-- Enhanced Hero Section -->
       <div class="relative mb-20">
         <!-- Hero Image with Advanced Parallax and Effects -->

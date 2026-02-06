@@ -304,6 +304,33 @@
   .content-pulse {
     animation: content-pulse 2s infinite ease-in-out;
   }
+
+  /* Mega Menu Animations */
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: slideDown 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
 }
 
 @layer base {
