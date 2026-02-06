@@ -4,6 +4,7 @@ import { ContactHeroSection } from '@/components/sections/ContactHeroSection'
 import { ContactFormSection } from '@/components/sections/ContactFormSection'
 import { ContactInfoSection } from '@/components/sections/ContactInfoSection'
 import { Footer } from '@/components/Footer'
+import GlobalHeader from '../components/GlobalHeader'
 ---
 
 <html lang="en">
@@ -23,12 +24,16 @@ import { Footer } from '@/components/Footer'
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 	</head>
 	<body>
-		<ContactHeroSection client:load />
-		<ContactFormSection client:load />
-		<ContactInfoSection client:load />
-		<Footer client:load />
+		<GlobalHeader client:load currentPath="/contact" />
+
+		<div class="pt-20">
+			<ContactHeroSection client:load />
+			<ContactFormSection client:load />
+			<ContactInfoSection client:load />
+			<Footer client:load />
+		</div>
 	</body>
 </html>

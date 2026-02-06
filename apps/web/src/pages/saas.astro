@@ -5,6 +5,7 @@ import { SaasFeaturesSection } from '@/components/sections/SaasFeaturesSection'
 import { SaasArchitectureSection } from '@/components/sections/SaasArchitectureSection'
 import { SaasCTASection } from '@/components/sections/SaasCTASection'
 import { Footer } from '@/components/Footer'
+import GlobalHeader from '../components/GlobalHeader'
 ---
 
 <html lang="en">
@@ -49,13 +50,16 @@ import { Footer } from '@/components/Footer'
 		{/* Futuristic Fonts - Orbitron + Rajdhani */}
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 	</head>
 	<body>
-		<SaasHeroSection client:load />
-		<SaasFeaturesSection client:load />
-		<SaasArchitectureSection client:load />
-		<SaasCTASection client:load />
-		<Footer client:load />
+		<GlobalHeader client:load currentPath="/saas" />
+		<div class="pt-20">
+			<SaasHeroSection client:load />
+			<SaasFeaturesSection client:load />
+			<SaasArchitectureSection client:load />
+			<SaasCTASection client:load />
+			<Footer client:load />
+		</div>
 	</body>
 </html>

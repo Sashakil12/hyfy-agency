@@ -5,6 +5,7 @@ import { CmsPrototypesFeaturesSection } from '@/components/sections/CmsPrototype
 import { CmsPrototypesStackSection } from '@/components/sections/CmsPrototypesStackSection'
 import { CmsPrototypesCTASection } from '@/components/sections/CmsPrototypesCTASection'
 import { Footer } from '@/components/Footer'
+import GlobalHeader from '../components/GlobalHeader'
 ---
 
 <html lang="en">
@@ -49,13 +50,16 @@ import { Footer } from '@/components/Footer'
 		{/* Futuristic Fonts - Orbitron + Rajdhani */}
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 	</head>
 	<body>
-		<CmsPrototypesHeroSection client:load />
-		<CmsPrototypesFeaturesSection client:load />
-		<CmsPrototypesStackSection client:load />
-		<CmsPrototypesCTASection client:load />
-		<Footer client:load />
+		<GlobalHeader client:load currentPath="/cms-prototypes" />
+		<div class="pt-20">
+			<CmsPrototypesHeroSection client:load />
+			<CmsPrototypesFeaturesSection client:load />
+			<CmsPrototypesStackSection client:load />
+			<CmsPrototypesCTASection client:load />
+			<Footer client:load />
+		</div>
 	</body>
 </html>

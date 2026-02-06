@@ -5,6 +5,7 @@ import { ErpFeaturesSection } from '@/components/sections/ErpFeaturesSection'
 import { ErpIndustriesSection } from '@/components/sections/ErpIndustriesSection'
 import { ErpCTASection } from '@/components/sections/ErpCTASection'
 import { Footer } from '@/components/Footer'
+import GlobalHeader from '../components/GlobalHeader'
 ---
 
 <html lang="en">
@@ -49,13 +50,17 @@ import { Footer } from '@/components/Footer'
 		{/* Futuristic Fonts - Orbitron + Rajdhani */}
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 	</head>
 	<body>
-		<ErpHeroSection client:load />
-		<ErpFeaturesSection client:load />
-		<ErpIndustriesSection client:load />
-		<ErpCTASection client:load />
-		<Footer client:load />
+		<GlobalHeader client:load currentPath="/erp" />
+
+		<div class="pt-20">
+			<ErpHeroSection client:load />
+			<ErpFeaturesSection client:load />
+			<ErpIndustriesSection client:load />
+			<ErpCTASection client:load />
+			<Footer client:load />
+		</div>
 	</body>
 </html>
