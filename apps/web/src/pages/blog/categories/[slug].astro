@@ -1,0 +1,401 @@
+---
+import '../../../styles/global.css';
+import type { BlogPost, Category } from '../../../lib/strapi';
+import { getBlogPosts, getCategories } from '../../../lib/strapi';
+import BlogCard from '../../../components/blog/BlogCard.astro';
+import Pagination from '../../../components/blog/Pagination.astro';
+
+export const prerender = false; // Enable SSR for dynamic pagination
+
+const { slug } = Astro.params;
+const currentPage = Number(Astro.url.searchParams.get('page') || 1);
+const pageSize = 9;
+
+let category: Category | undefined;
+let blogPosts: BlogPost[] = [];
+let pagination = {
+  page: 1,
+  pageSize: 9,
+  pageCount: 1,
+  total: 0,
+};
+
+try {
+  // Fetch all categories and find the matching one
+  const categories = await getCategories();
+  category = categories.find((cat) => cat.slug === slug);
+
+  if (!category) {
+    return Astro.redirect('/blog');
+  }
+
+  const response = await getBlogPosts(currentPage, pageSize, category.slug);
+  blogPosts = response.data;
+  pagination = response.meta.pagination;
+} catch (error) {
+  console.error('Error fetching blog posts:', error);
+  return Astro.redirect('/blog');
+}
+
+const title = `${category.name} Articles | HyFy Blog`;
+const description = `Explore our latest articles about ${category.name}. Expert insights and best practices.`;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url.href} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={Astro.url.pathname} />
+
+    <!-- Structured Data -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": title,
+      "description": description,
+      "url": Astro.url.href,
+      "publisher": {
+        "@type": "Organization",
+        "name": "HyFy"
+      }
+    })} />
+  </head>
+  <body class="bg-obsidian text-white font-exo overflow-x-hidden">
+    <!-- Animated Background Grid -->
+    <div class="fixed inset-0 pointer-events-none opacity-20">
+      <div class="absolute inset-0"
+           style="background-image: linear-gradient(#88FF66 1px, transparent 1px), linear-gradient(90deg, #88FF66 1px, transparent 1px); background-size: 50px 50px; opacity: 0.05;">
+      </div>
+    </div>
+
+    <!-- Simplified Hero Section for Category -->
+    <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+      <!-- Animated Background Gradient Orbs -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <!-- Primary Glow -->
+        <div class="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-lime/20 rounded-full blur-[100px]
+                    animate-float" style="animation-delay: 0s;">
+        </div>
+        <!-- Secondary Glow -->
+        <div class="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-amber/15 rounded-full blur-[80px]
+                    animate-float" style="animation-delay: 2s;">
+        </div>
+      </div>
+
+      <!-- Background Text (Watermark) -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <h1 class="font-orbitron font-bold text-[18vw] md:text-[12vw] lg:text-[10vw] uppercase tracking-[0.05em] select-none"
+            style="background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(136,255,102,0.03) 50%, rgba(255,255,255,0.01) 100%);
+                   -webkit-background-clip: text;
+                   -webkit-text-fill-color: transparent;
+                   background-clip: text;"
+            data-parallax="0.2">
+          {category.name}
+        </h1>
+      </div>
+
+      <!-- Hero Content -->
+      <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 pb-20">
+        <!-- Breadcrumb -->
+        <div class="inline-block mb-6 animate-fade-in-down">
+          <nav class="flex items-center gap-2 text-sm text-luminous-tertiary">
+            <a href="/" class="hover:text-lime transition-colors duration-200">Home</a>
+            <span>/</span>
+            <a href="/blog" class="hover:text-lime transition-colors duration-200">Blog</a>
+            <span>/</span>
+            <span class="text-lime">{category.name}</span>
+          </nav>
+        </div>
+
+        <!-- Category Badge -->
+        <div class="inline-block mb-6 animate-fade-in-down" style="animation-delay: 0.1s;">
+          <div class="relative px-6 py-2.5 rounded-full bg-lime/20 backdrop-blur-xl border-2 border-lime
+                      shadow-[0_0_30px_rgba(136,255,102,0.3)]">
+            <div class="flex items-center gap-2">
+              <!-- Subtle category color dot -->
+              <div class="w-1.5 h-1.5 rounded-full" style={`background: ${category.color || '#88FF66'};`}></div>
+              <span class="text-lime text-sm font-semibold uppercase tracking-widest">
+                Category
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Title -->
+        <div class="mb-6 animate-fade-in" style="animation-delay: 0.2s;">
+          <h2 class="font-orbitron font-bold text-5xl md:text-6xl lg:text-7xl mb-4 uppercase tracking-wide leading-none">
+            <span class="inline-block relative">
+              <span class="text-lime relative z-10"
+                    style="text-shadow: 0 0 30px rgba(136, 255, 102, 0.6), 0 0 60px rgba(136, 255, 102, 0.3);">
+                {category.name}
+              </span>
+              <!-- Underline Accent with subtle category color -->
+              <div class="absolute -bottom-2 left-0 right-0 h-1 opacity-50 blur-sm"
+                   style={`background: linear-gradient(90deg, transparent, ${category.color || '#88FF66'}40, transparent);`}>
+              </div>
+            </span>
+          </h2>
+        </div>
+
+        <!-- Description -->
+        {category.description && (
+          <div class="animate-fade-in" style="animation-delay: 0.3s;">
+            <div class="inline-block max-w-3xl mx-auto">
+              <div class="relative p-6 rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/10
+                          shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+                <p class="text-luminous text-lg md:text-xl leading-relaxed">
+                  {category.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <!-- Article Count -->
+        <div class="mt-8 animate-fade-in" style="animation-delay: 0.4s;">
+          <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/[0.05] backdrop-blur-xl border border-white/10">
+            <svg class="w-5 h-5 text-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+            </svg>
+            <span class="text-white font-semibold">
+              {pagination.total} {pagination.total === 1 ? 'Article' : 'Articles'}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Gradient Fade -->
+      <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-obsidian to-transparent pointer-events-none"></div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="relative py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {blogPosts.length === 0 ? (
+          <!-- Empty State -->
+          <div class="text-center py-20">
+            <div class="inline-block p-6 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10">
+              <svg class="w-16 h-16 mx-auto mb-4 text-lime/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+              </svg>
+              <h3 class="font-orbitron text-2xl font-semibold mb-2">No Articles Yet</h3>
+              <p class="text-luminous-tertiary mb-6">Check back soon for new content in this category</p>
+              <a href="/blog"
+                 class="inline-block px-6 py-3 rounded-xl bg-lime text-obsidian font-semibold uppercase tracking-wide
+                        hover:bg-lime/90 transition-all duration-200
+                        shadow-[0_0_20px_rgba(136,255,102,0.4)] hover:shadow-[0_0_30px_rgba(136,255,102,0.6)]">
+                Browse All Articles
+              </a>
+            </div>
+          </div>
+        ) : (
+          <>
+            <!-- Bento Grid Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+                 data-stagger-animation>
+              {blogPosts.map((post, index) => (
+                <BlogCard post={post} index={index} />
+              ))}
+            </div>
+
+            <!-- Pagination -->
+            {pagination.pageCount > 1 && (
+              <div class="mt-16">
+                <Pagination
+                  currentPage={pagination.page}
+                  totalPages={pagination.pageCount}
+                  basePath={`/blog/categories/${category.slug}`}
+                />
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="relative py-20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="relative p-12 rounded-3xl bg-white/[0.03] backdrop-blur-2xl border border-white/10
+                    shadow-[0_0_30px_rgba(136,255,102,0.1)] overflow-hidden">
+          <!-- Background Glow -->
+          <div class="absolute -top-20 -right-20 w-40 h-40 bg-lime/20 rounded-full blur-[80px]"></div>
+          <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-amber/20 rounded-full blur-[80px]"></div>
+
+          <div class="relative z-10">
+            <h3 class="font-orbitron font-bold text-3xl md:text-4xl mb-4 uppercase">
+              Explore <span class="text-lime">More Topics</span>
+            </h3>
+            <p class="text-luminous-tertiary text-lg mb-8 max-w-2xl mx-auto">
+              Discover articles across all our categories
+            </p>
+            <a href="/blog"
+               class="inline-block px-8 py-4 rounded-xl bg-lime text-obsidian font-semibold uppercase tracking-wide
+                      hover:bg-lime/90 transition-all duration-200
+                      shadow-[0_0_20px_rgba(136,255,102,0.4)] hover:shadow-[0_0_30px_rgba(136,255,102,0.6)]">
+              View All Articles
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      @font-face {
+        font-family: 'Exo 2';
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Orbitron';
+        font-display: swap;
+      }
+
+      .font-exo {
+        font-family: 'Exo 2', sans-serif;
+      }
+
+      .font-orbitron {
+        font-family: 'Orbitron', sans-serif;
+      }
+
+      /* Floating Animation */
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0px) translateX(0px);
+        }
+        25% {
+          transform: translateY(-20px) translateX(10px);
+        }
+        50% {
+          transform: translateY(-10px) translateX(-10px);
+        }
+        75% {
+          transform: translateY(-15px) translateX(5px);
+        }
+      }
+
+      .animate-float {
+        animation: float 8s ease-in-out infinite;
+      }
+
+      /* Fade In Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in {
+        animation: fadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        opacity: 0;
+      }
+
+      .animate-fade-in-down {
+        animation: fadeInDown 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        opacity: 0;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+
+    <script>
+      // Parallax effect for hero text
+      const parallaxElements = document.querySelectorAll<HTMLElement>('[data-parallax]');
+
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+
+        parallaxElements.forEach((el) => {
+          const speed = parseFloat(el.getAttribute('data-parallax') || '0.5');
+          const yPos = -(scrolled * speed);
+          el.style.transform = `translateY(${yPos}px)`;
+        });
+      });
+
+      // Stagger animation for blog cards
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cards = entry.target.children;
+            Array.from(cards).forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('animate-fade-in-up');
+              }, index * 100);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      const staggerContainer = document.querySelector('[data-stagger-animation]');
+      if (staggerContainer) {
+        observer.observe(staggerContainer);
+      }
+
+      // Add animation class
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+      `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>

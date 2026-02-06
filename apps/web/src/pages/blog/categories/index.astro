@@ -1,0 +1,628 @@
+---
+import '../../../styles/global.css';
+import type { Category } from '../../../lib/strapi';
+import { getCategories, getBlogPosts } from '../../../lib/strapi';
+import Pagination from '../../../components/blog/Pagination.astro';
+
+export const prerender = false; // Enable SSR for dynamic categories
+
+const currentPage = Number(Astro.url.searchParams.get('page') || 1);
+const sortOrder = Astro.url.searchParams.get('sort') || 'name:asc';
+const pageSize = 12;
+
+let allCategories: Category[] = [];
+let categories: Category[] = [];
+let categoryCounts: Record<string, number> = {};
+let pagination = {
+  page: currentPage,
+  pageSize: pageSize,
+  pageCount: 1,
+  total: 0,
+};
+
+try {
+  allCategories = await getCategories();
+
+  // Sort categories
+  const [sortField, sortDirection] = sortOrder.split(':');
+  if (sortField === 'name') {
+    allCategories.sort((a, b) => {
+      const comparison = a.name.localeCompare(b.name);
+      return sortDirection === 'desc' ? -comparison : comparison;
+    });
+  }
+
+  // Calculate pagination
+  pagination.total = allCategories.length;
+  pagination.pageCount = Math.ceil(allCategories.length / pageSize);
+
+  // Get categories for current page
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  categories = allCategories.slice(startIndex, endIndex);
+
+  // Get post count for each category on current page
+  for (const category of categories) {
+    const response = await getBlogPosts(1, 1, category.slug);
+    categoryCounts[category.slug] = response.meta.pagination.total;
+  }
+} catch (error) {
+  console.error('Error fetching categories:', error);
+}
+
+const title = 'Browse Categories | HyFy Blog';
+const description = 'Explore all blog categories and find articles on topics that interest you.';
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url.href} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={Astro.url.pathname} />
+
+    <!-- Structured Data -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": title,
+      "description": description,
+      "url": Astro.url.href,
+      "publisher": {
+        "@type": "Organization",
+        "name": "HyFy"
+      }
+    })} />
+  </head>
+  <body class="bg-obsidian text-white font-exo overflow-x-hidden">
+    <!-- Animated Background Grid -->
+    <div class="fixed inset-0 pointer-events-none opacity-20">
+      <div class="absolute inset-0"
+           style="background-image: linear-gradient(#88FF66 1px, transparent 1px), linear-gradient(90deg, #88FF66 1px, transparent 1px); background-size: 50px 50px; opacity: 0.05;">
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+      <!-- Animated Background Gradient Orbs -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <!-- Primary Glow -->
+        <div class="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-lime/20 rounded-full blur-[100px]
+                    animate-float" style="animation-delay: 0s;">
+        </div>
+        <!-- Secondary Glow -->
+        <div class="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-amber/15 rounded-full blur-[80px]
+                    animate-float" style="animation-delay: 2s;">
+        </div>
+      </div>
+
+      <!-- Background Text (Watermark) -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <h1 class="font-orbitron font-bold text-[18vw] md:text-[12vw] lg:text-[10vw] uppercase tracking-[0.05em] select-none"
+            style="background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(136,255,102,0.03) 50%, rgba(255,255,255,0.01) 100%);
+                   -webkit-background-clip: text;
+                   -webkit-text-fill-color: transparent;
+                   background-clip: text;"
+            data-parallax="0.2">
+          Topics
+        </h1>
+      </div>
+
+      <!-- Hero Content -->
+      <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 pb-20">
+        <!-- Badge -->
+        <div class="inline-block mb-6 animate-fade-in-down" style="animation-delay: 0.1s;">
+          <div class="relative px-6 py-2.5 rounded-full bg-lime/20 backdrop-blur-xl border-2 border-lime
+                      shadow-[0_0_30px_rgba(136,255,102,0.3)]">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+              </svg>
+              <span class="text-lime text-sm font-semibold uppercase tracking-widest">Explore Topics</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Title -->
+        <div class="mb-6 animate-fade-in" style="animation-delay: 0.2s;">
+          <h2 class="font-orbitron font-bold text-5xl md:text-6xl lg:text-7xl mb-4 uppercase tracking-wide leading-none">
+            <span class="inline-block relative">
+              <span class="text-lime relative z-10"
+                    style="text-shadow: 0 0 30px rgba(136, 255, 102, 0.6), 0 0 60px rgba(136, 255, 102, 0.3);">
+                Browse Categories
+              </span>
+              <!-- Underline Accent -->
+              <div class="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-lime to-transparent
+                          opacity-50 blur-sm">
+              </div>
+            </span>
+          </h2>
+        </div>
+
+        <!-- Description -->
+        <div class="animate-fade-in" style="animation-delay: 0.3s;">
+          <div class="inline-block max-w-3xl mx-auto">
+            <div class="relative p-6 rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/10
+                        shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+              <p class="text-luminous text-lg md:text-xl leading-relaxed">
+                Discover articles organized by topic. From AI and automation to custom development and beyond.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories Count -->
+        <div class="mt-8 animate-fade-in" style="animation-delay: 0.4s;">
+          <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/[0.05] backdrop-blur-xl border border-white/10">
+            <svg class="w-5 h-5 text-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+            </svg>
+            <span class="text-white font-semibold">
+              {categories.length} {categories.length === 1 ? 'Category' : 'Categories'}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Gradient Fade -->
+      <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-obsidian to-transparent pointer-events-none"></div>
+    </section>
+
+    <!-- Sort & Info Bar -->
+    <section id="categories-sort" class="relative py-8 border-b border-white/5 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <!-- Results Info -->
+          <div class="flex items-center gap-2 text-sm text-luminous-tertiary">
+            <span>Showing</span>
+            <span class="text-lime font-semibold">
+              {Math.min((currentPage - 1) * pageSize + 1, pagination.total)}-{Math.min(currentPage * pageSize, pagination.total)}
+            </span>
+            <span>of</span>
+            <span class="text-lime font-semibold">{pagination.total}</span>
+            <span>{pagination.total === 1 ? 'category' : 'categories'}</span>
+          </div>
+
+          <!-- Sort Controls -->
+          <div class="flex items-center gap-3">
+            <span class="text-sm font-semibold text-white uppercase tracking-wider">Sort:</span>
+            <div class="flex gap-2">
+              <a
+                href="/blog/categories?sort=name:asc"
+                class:list={[
+                  "px-4 py-2 rounded-lg text-sm font-semibold uppercase tracking-wider transition-all duration-300",
+                  "border backdrop-blur-xl",
+                  sortOrder === 'name:asc'
+                    ? "bg-lime/20 border-lime text-lime shadow-[0_0_15px_rgba(136,255,102,0.3)]"
+                    : "bg-white/[0.03] border-white/20 text-white hover:border-lime/50 hover:text-lime hover:bg-lime/5"
+                ]}
+              >
+                A → Z
+              </a>
+              <a
+                href="/blog/categories?sort=name:desc"
+                class:list={[
+                  "px-4 py-2 rounded-lg text-sm font-semibold uppercase tracking-wider transition-all duration-300",
+                  "border backdrop-blur-xl",
+                  sortOrder === 'name:desc'
+                    ? "bg-lime/20 border-lime text-lime shadow-[0_0_15px_rgba(136,255,102,0.3)]"
+                    : "bg-white/[0.03] border-white/20 text-white hover:border-lime/50 hover:text-lime hover:bg-lime/5"
+                ]}
+              >
+                Z → A
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Grid -->
+    <section class="relative py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {categories.length === 0 ? (
+          <!-- Empty State -->
+          <div class="text-center py-20">
+            <div class="inline-block p-6 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10">
+              <svg class="w-16 h-16 mx-auto mb-4 text-lime/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+              </svg>
+              <h3 class="font-orbitron text-2xl font-semibold mb-2">No Categories Yet</h3>
+              <p class="text-luminous-tertiary mb-6">Check back soon</p>
+              <a href="/blog"
+                 class="inline-block px-6 py-3 rounded-xl bg-lime text-obsidian font-semibold uppercase tracking-wide
+                        hover:bg-lime/90 transition-all duration-200
+                        shadow-[0_0_20px_rgba(136,255,102,0.4)] hover:shadow-[0_0_30px_rgba(136,255,102,0.6)]">
+                Browse All Articles
+              </a>
+            </div>
+          </div>
+        ) : (
+          <!-- Category Cards Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+               data-stagger-animation>
+            {categories.map((category, index) => {
+              const postCount = categoryCounts[category.slug] || 0;
+
+              return (
+                <a
+                  href={`/blog/categories/${category.slug}`}
+                  class="group relative block p-8 rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/10
+                         hover:bg-white/[0.05] hover:border-lime/30 hover:shadow-[0_0_30px_rgba(136,255,102,0.2)]
+                         transition-all duration-300"
+                  data-index={index}
+                >
+                  <!-- Hover Glow Effect -->
+                  <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                              bg-gradient-to-br from-lime/5 to-transparent pointer-events-none">
+                  </div>
+
+                  <!-- Content -->
+                  <div class="relative z-10">
+                    <!-- Category Icon & Name -->
+                    <div class="flex items-start justify-between mb-4">
+                      <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-2">
+                          <div class="w-10 h-10 rounded-xl bg-lime/10 border border-lime/20 flex items-center justify-center
+                                      group-hover:bg-lime/20 group-hover:border-lime/40 transition-all duration-300">
+                            <svg class="w-5 h-5 text-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                            </svg>
+                          </div>
+                          <!-- Subtle category color indicator -->
+                          {category.color && (
+                            <div class="w-2 h-2 rounded-full" style={`background: ${category.color};`}></div>
+                          )}
+                        </div>
+                        <h3 class="font-orbitron font-bold text-xl text-white group-hover:text-lime transition-colors duration-300">
+                          {category.name}
+                        </h3>
+                      </div>
+
+                      <!-- Arrow Icon -->
+                      <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-white/[0.03] flex items-center justify-center
+                                  group-hover:bg-lime/10 transition-all duration-300">
+                        <svg class="w-4 h-4 text-luminous-tertiary group-hover:text-lime group-hover:translate-x-0.5 transition-all duration-300"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </div>
+
+                    <!-- Description -->
+                    {category.description && (
+                      <p class="text-luminous-tertiary text-sm leading-relaxed mb-6 line-clamp-3">
+                        {category.description}
+                      </p>
+                    )}
+
+                    <!-- Footer -->
+                    <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                      <div class="flex items-center gap-2 text-sm">
+                        <svg class="w-4 h-4 text-lime/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                        </svg>
+                        <span class="text-luminous font-semibold">{postCount}</span>
+                        <span class="text-luminous-tertiary">{postCount === 1 ? 'Article' : 'Articles'}</span>
+                      </div>
+
+                      <span class="text-xs text-lime uppercase tracking-wider font-semibold
+                                   opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        Explore →
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+
+          <!-- Pagination -->
+          {pagination.pageCount > 1 && (
+            <div class="mt-16">
+              <nav aria-label="Categories pagination" class="flex justify-center">
+                <div class="inline-flex items-center gap-2 p-2 rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10">
+                  <!-- Previous Button -->
+                  {currentPage > 1 ? (
+                    <a
+                      href={`/blog/categories?sort=${sortOrder}&page=${currentPage - 1}`}
+                      class="flex items-center justify-center w-10 h-10 rounded-xl
+                             bg-white/[0.05] border border-white/10 text-lime
+                             hover:bg-lime/10 hover:border-lime/30 hover:shadow-[0_0_15px_rgba(136,255,102,0.2)]
+                             transition-all duration-200 cursor-pointer"
+                      aria-label="Previous page"
+                    >
+                      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </a>
+                  ) : (
+                    <button
+                      disabled
+                      class="flex items-center justify-center w-10 h-10 rounded-xl
+                             bg-white/[0.02] border border-white/5 text-luminous-tertiary/50 cursor-not-allowed"
+                      aria-label="Previous page (disabled)"
+                    >
+                      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                  )}
+
+                  <!-- Page Numbers -->
+                  <div class="flex items-center gap-1">
+                    {Array.from({ length: pagination.pageCount }, (_, i) => i + 1).map((pageNum) => (
+                      pageNum === currentPage ? (
+                        <span
+                          class="flex items-center justify-center min-w-[2.5rem] h-10 px-4 rounded-xl
+                                 bg-lime text-obsidian font-semibold font-orbitron
+                                 shadow-[0_0_20px_rgba(136,255,102,0.4)]"
+                          aria-current="page"
+                          aria-label={`Page ${pageNum} (current)`}
+                        >
+                          {pageNum}
+                        </span>
+                      ) : (
+                        <a
+                          href={`/blog/categories?sort=${sortOrder}&page=${pageNum}`}
+                          class="flex items-center justify-center min-w-[2.5rem] h-10 px-4 rounded-xl
+                                 bg-white/[0.05] border border-white/10 text-white font-orbitron
+                                 hover:bg-lime/10 hover:border-lime/30 hover:text-lime
+                                 hover:shadow-[0_0_15px_rgba(136,255,102,0.2)]
+                                 transition-all duration-200 cursor-pointer"
+                          aria-label={`Go to page ${pageNum}`}
+                        >
+                          {pageNum}
+                        </a>
+                      )
+                    ))}
+                  </div>
+
+                  <!-- Next Button -->
+                  {currentPage < pagination.pageCount ? (
+                    <a
+                      href={`/blog/categories?sort=${sortOrder}&page=${currentPage + 1}`}
+                      class="flex items-center justify-center w-10 h-10 rounded-xl
+                             bg-white/[0.05] border border-white/10 text-lime
+                             hover:bg-lime/10 hover:border-lime/30 hover:shadow-[0_0_15px_rgba(136,255,102,0.2)]
+                             transition-all duration-200 cursor-pointer"
+                      aria-label="Next page"
+                    >
+                      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  ) : (
+                    <button
+                      disabled
+                      class="flex items-center justify-center w-10 h-10 rounded-xl
+                             bg-white/[0.02] border border-white/5 text-luminous-tertiary/50 cursor-not-allowed"
+                      aria-label="Next page (disabled)"
+                    >
+                      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  )}
+                </div>
+              </nav>
+            </div>
+          )}
+        )}
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="relative py-20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="relative p-12 rounded-3xl bg-white/[0.03] backdrop-blur-2xl border border-white/10
+                    shadow-[0_0_30px_rgba(136,255,102,0.1)] overflow-hidden">
+          <!-- Background Glow -->
+          <div class="absolute -top-20 -right-20 w-40 h-40 bg-lime/20 rounded-full blur-[80px]"></div>
+          <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-amber/20 rounded-full blur-[80px]"></div>
+
+          <div class="relative z-10">
+            <h3 class="font-orbitron font-bold text-3xl md:text-4xl mb-4 uppercase">
+              Can't find what you're <span class="text-lime">looking for?</span>
+            </h3>
+            <p class="text-luminous-tertiary text-lg mb-8 max-w-2xl mx-auto">
+              Browse all articles or search for specific topics
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/blog"
+                 class="inline-block px-8 py-4 rounded-xl bg-lime text-obsidian font-semibold uppercase tracking-wide
+                        hover:bg-lime/90 transition-all duration-200
+                        shadow-[0_0_20px_rgba(136,255,102,0.4)] hover:shadow-[0_0_30px_rgba(136,255,102,0.6)]">
+                Browse All Articles
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      @font-face {
+        font-family: 'Exo 2';
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Orbitron';
+        font-display: swap;
+      }
+
+      .font-exo {
+        font-family: 'Exo 2', sans-serif;
+      }
+
+      .font-orbitron {
+        font-family: 'Orbitron', sans-serif;
+      }
+
+      /* Floating Animation */
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0px) translateX(0px);
+        }
+        25% {
+          transform: translateY(-20px) translateX(10px);
+        }
+        50% {
+          transform: translateY(-10px) translateX(-10px);
+        }
+        75% {
+          transform: translateY(-15px) translateX(5px);
+        }
+      }
+
+      .animate-float {
+        animation: float 8s ease-in-out infinite;
+      }
+
+      /* Fade In Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in {
+        animation: fadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        opacity: 0;
+      }
+
+      .animate-fade-in-down {
+        animation: fadeInDown 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        opacity: 0;
+      }
+
+      .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+
+    <script>
+      // Parallax effect for hero text
+      const parallaxElements = document.querySelectorAll<HTMLElement>('[data-parallax]');
+
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+
+        parallaxElements.forEach((el) => {
+          const speed = parseFloat(el.getAttribute('data-parallax') || '0.5');
+          const yPos = -(scrolled * speed);
+          el.style.transform = `translateY(${yPos}px)`;
+        });
+      });
+
+      // Stagger animation for category cards
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cards = entry.target.children;
+            Array.from(cards).forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('animate-fade-in-up');
+              }, index * 100);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      const staggerContainer = document.querySelector('[data-stagger-animation]');
+      if (staggerContainer) {
+        observer.observe(staggerContainer);
+      }
+
+      // Add animation class
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+      `;
+      document.head.appendChild(style);
+
+      // Scroll to sort section when sort or page changes
+      const urlParams = new URLSearchParams(window.location.search);
+      const hasSort = urlParams.has('sort');
+      const hasPage = urlParams.has('page');
+
+      if (hasSort || hasPage) {
+        // Wait for page to fully load
+        window.addEventListener('load', () => {
+          const sortSection = document.getElementById('categories-sort');
+          if (sortSection) {
+            setTimeout(() => {
+              sortSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }, 100);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

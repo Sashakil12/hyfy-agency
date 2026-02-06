@@ -229,23 +229,36 @@ const description = selectedCategory
 
             <!-- First 3 Categories -->
             {categories.slice(0, 3).map((category) => (
-              <a
-                href={`/blog?category=${category.slug}`}
+              <div
                 class:list={[
-                  "px-5 py-2.5 rounded-full text-sm font-semibold uppercase tracking-wider transition-all duration-300",
+                  "inline-flex items-center gap-2 pl-5 pr-3 py-2.5 rounded-full transition-all duration-300",
                   "border-2 backdrop-blur-xl",
                   categorySlug === category.slug
-                    ? `shadow-[0_0_20px_rgba(136,255,102,0.3)]`
-                    : "hover:scale-105"
+                    ? "bg-lime/20 border-lime text-lime shadow-[0_0_20px_rgba(136,255,102,0.3)]"
+                    : "bg-white/[0.03] border-white/20 text-white hover:border-lime/50 hover:text-lime hover:bg-lime/5 hover:scale-105"
                 ]}
-                style={
-                  categorySlug === category.slug
-                    ? `background: ${category.color || '#88FF66'}20; border-color: ${category.color || '#88FF66'}; color: ${category.color || '#88FF66'};`
-                    : `background: rgba(255,255,255,0.03); border-color: ${category.color || '#88FF66'}40; color: ${category.color || '#88FF66'}80;`
-                }
               >
-                {category.name}
-              </a>
+                <a
+                  href={`/blog?category=${category.slug}`}
+                  class="text-sm font-semibold uppercase tracking-wider"
+                >
+                  {category.name}
+                </a>
+                <!-- Open in new tab icon -->
+                <a
+                  href={`/blog/categories/${category.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center justify-center text-luminous-tertiary hover:text-lime
+                         transition-colors duration-200"
+                  aria-label={`Open ${category.name} in new tab`}
+                  title={`View all ${category.name} articles in new tab`}
+                >
+                  <svg class="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
             ))}
 
             <!-- More Categories Dropdown -->
@@ -279,22 +292,59 @@ const description = selectedCategory
                 >
                   <div class="py-2">
                     {categories.slice(3).map((category, index) => (
+                      <div class="flex items-center justify-between gap-3 px-5 py-3 hover:bg-white/[0.05] transition-all duration-200 group">
+                        <a
+                          href={`/blog?category=${category.slug}`}
+                          class="flex-1 text-sm font-semibold uppercase tracking-wider text-white
+                                 hover:text-lime transition-colors duration-200"
+                          role="menuitem"
+                        >
+                          {category.name}
+                          {categorySlug === category.slug && (
+                            <span class="ml-2 inline-block w-1.5 h-1.5 rounded-full bg-lime"></span>
+                          )}
+                        </a>
+                        <!-- Open in new tab icon -->
+                        <a
+                          href={`/blog/categories/${category.slug}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="flex items-center justify-center text-luminous-tertiary
+                                 opacity-0 group-hover:opacity-100
+                                 hover:text-lime transition-all duration-200"
+                          aria-label={`Open ${category.name} in new tab`}
+                          title={`View all ${category.name} articles in new tab`}
+                          onclick="event.stopPropagation()"
+                        >
+                          <svg class="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      </div>
+                    ))}
+
+                    <!-- Browse All Categories Link -->
+                    <div class="mt-2 pt-2 border-t border-white/10">
                       <a
-                        href={`/blog?category=${category.slug}`}
-                        class="block px-5 py-3 text-sm font-semibold uppercase tracking-wider
-                               transition-all duration-200
-                               hover:bg-white/[0.05]"
-                        style={`color: ${category.color || '#88FF66'}80;`}
+                        href="/blog/categories"
+                        class="flex items-center justify-between gap-3 px-5 py-3 hover:bg-lime/10 rounded-lg
+                               transition-all duration-200 group mx-2"
                         role="menuitem"
                       >
-                        <span class="hover:opacity-100 transition-opacity duration-200">
-                          {category.name}
-                        </span>
-                        {categorySlug === category.slug && (
-                          <span class="ml-2 inline-block w-2 h-2 rounded-full" style={`background: ${category.color || '#88FF66'};`}></span>
-                        )}
+                        <div class="flex items-center gap-2">
+                          <svg class="w-4 h-4 text-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                          </svg>
+                          <span class="text-sm font-semibold uppercase tracking-wider text-lime">
+                            Browse All Categories
+                          </span>
+                        </div>
+                        <svg class="w-4 h-4 text-lime group-hover:translate-x-1 transition-transform duration-200"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
                       </a>
-                    ))}
+                    </div>
                   </div>
                 </div>
               </div>
