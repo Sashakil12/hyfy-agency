@@ -86,6 +86,7 @@ export default function GlobalHeader({ currentPath = '' }: GlobalHeaderProps) {
                       ? 'text-[#88FF66] bg-white/5'
                       : 'text-[#828282] hover:text-white hover:bg-white/5'
                   }`}
+                  style={{ fontFamily: "'Orbitron', sans-serif" }}
                 >
                   {item.label}
                 </a>
@@ -106,6 +107,7 @@ export default function GlobalHeader({ currentPath = '' }: GlobalHeaderProps) {
                     ? 'text-[#88FF66] bg-white/5'
                     : 'text-[#828282] hover:text-white hover:bg-white/5'
                 }`}
+                style={{ fontFamily: "'Orbitron', sans-serif" }}
               >
                 Expertise
                 <ChevronDown
@@ -122,6 +124,7 @@ export default function GlobalHeader({ currentPath = '' }: GlobalHeaderProps) {
                     ? 'text-[#88FF66] bg-white/5'
                     : 'text-[#828282] hover:text-white hover:bg-white/5'
                 }`}
+                style={{ fontFamily: "'Orbitron', sans-serif" }}
               >
                 Blog
               </a>
@@ -186,6 +189,7 @@ export default function GlobalHeader({ currentPath = '' }: GlobalHeaderProps) {
                       ? 'text-[#88FF66] bg-white/5'
                       : 'text-[#828282] hover:text-white hover:bg-white/5'
                   }`}
+                  style={{ fontFamily: "'Orbitron', sans-serif" }}
                 >
                   {item.label}
                 </a>
@@ -198,6 +202,7 @@ export default function GlobalHeader({ currentPath = '' }: GlobalHeaderProps) {
                     ? 'text-[#88FF66] bg-white/5'
                     : 'text-[#828282] hover:text-white hover:bg-white/5'
                 }`}
+                style={{ fontFamily: "'Orbitron', sans-serif" }}
               >
                 Blog
               </a>
