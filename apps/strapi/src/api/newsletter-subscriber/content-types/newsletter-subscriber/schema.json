@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "newsletter_subscribers",
+  "info": {
+    "singularName": "newsletter-subscriber",
+    "pluralName": "newsletter-subscribers",
+    "displayName": "Newsletter Subscriber",
+    "description": "Email subscribers for the HyFy blog newsletter"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["subscribed", "unsubscribed"],
+      "default": "subscribed",
+      "required": true
+    },
+    "subscribedFrom": {
+      "type": "string",
+      "default": "blog"
+    },
+    "ipAddress": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

@@ -385,6 +385,165 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   }
 }
 
+export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
+  collectionName: 'authors'
+  info: {
+    description: 'Blog post authors'
+    displayName: 'Author'
+    pluralName: 'authors'
+    singularName: 'author'
+  }
+  options: {
+    draftAndPublish: false
+  }
+  attributes: {
+    avatar: Schema.Attribute.Media<'images'>
+    bio: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 500
+      }>
+    blog_posts: Schema.Attribute.Relation<'oneToMany', 'api::blog-post.blog-post'>
+    createdAt: Schema.Attribute.DateTime
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private
+    email: Schema.Attribute.Email
+    linkedin: Schema.Attribute.String
+    locale: Schema.Attribute.String & Schema.Attribute.Private
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::author.author'> &
+      Schema.Attribute.Private
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100
+      }>
+    publishedAt: Schema.Attribute.DateTime
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required
+    twitter: Schema.Attribute.String
+    updatedAt: Schema.Attribute.DateTime
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private
+    website: Schema.Attribute.String
+  }
+}
+
+export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
+  collectionName: 'blog_posts'
+  info: {
+    description: 'Blog posts for the Nexus-Glass blog'
+    displayName: 'Blog Post'
+    pluralName: 'blog-posts'
+    singularName: 'blog-post'
+  }
+  options: {
+    draftAndPublish: true
+  }
+  attributes: {
+    author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>
+    categories: Schema.Attribute.Relation<'manyToMany', 'api::category.category'>
+    content: Schema.Attribute.RichText & Schema.Attribute.Required
+    createdAt: Schema.Attribute.DateTime
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private
+    excerpt: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 300
+      }>
+    featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>
+    featuredImage: Schema.Attribute.Media<'images'>
+    locale: Schema.Attribute.String & Schema.Attribute.Private
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::blog-post.blog-post'> &
+      Schema.Attribute.Private
+    publishedAt: Schema.Attribute.DateTime
+    publishedDate: Schema.Attribute.DateTime & Schema.Attribute.Required
+    readingTime: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<5>
+    relatedPosts: Schema.Attribute.Relation<'oneToMany', 'api::blog-post.blog-post'>
+    seo: Schema.Attribute.Component<'shared.seo', false>
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required
+    tags: Schema.Attribute.JSON
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 200
+      }>
+    updatedAt: Schema.Attribute.DateTime
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private
+    videoUrl: Schema.Attribute.String
+  }
+}
+
+export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
+  collectionName: 'categories'
+  info: {
+    description: 'Blog post categories'
+    displayName: 'Category'
+    pluralName: 'categories'
+    singularName: 'category'
+  }
+  options: {
+    draftAndPublish: false
+  }
+  attributes: {
+    blog_posts: Schema.Attribute.Relation<'manyToMany', 'api::blog-post.blog-post'>
+    color: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#88FF66'>
+    createdAt: Schema.Attribute.DateTime
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private
+    description: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 200
+      }>
+    locale: Schema.Attribute.String & Schema.Attribute.Private
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::category.category'> &
+      Schema.Attribute.Private
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50
+      }>
+    publishedAt: Schema.Attribute.DateTime
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required
+    updatedAt: Schema.Attribute.DateTime
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private
+  }
+}
+
+export interface ApiNewsletterSubscriberNewsletterSubscriber extends Struct.CollectionTypeSchema {
+  collectionName: 'newsletter_subscribers'
+  info: {
+    description: 'Email subscribers for the HyFy blog newsletter'
+    displayName: 'Newsletter Subscriber'
+    pluralName: 'newsletter-subscribers'
+    singularName: 'newsletter-subscriber'
+  }
+  options: {
+    draftAndPublish: false
+  }
+  attributes: {
+    createdAt: Schema.Attribute.DateTime
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private
+    email: Schema.Attribute.Email & Schema.Attribute.Required & Schema.Attribute.Unique
+    ipAddress: Schema.Attribute.String
+    locale: Schema.Attribute.String & Schema.Attribute.Private
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::newsletter-subscriber.newsletter-subscriber'
+    > &
+      Schema.Attribute.Private
+    publishedAt: Schema.Attribute.DateTime
+    status: Schema.Attribute.Enumeration<['subscribed', 'unsubscribed']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'subscribed'>
+    subscribedFrom: Schema.Attribute.String & Schema.Attribute.DefaultTo<'blog'>
+    updatedAt: Schema.Attribute.DateTime
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private
+  }
+}
+
 export interface PluginContentReleasesRelease extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases'
   info: {
@@ -813,6 +972,10 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken
       'admin::transfer-token-permission': AdminTransferTokenPermission
       'admin::user': AdminUser
+      'api::author.author': ApiAuthorAuthor
+      'api::blog-post.blog-post': ApiBlogPostBlogPost
+      'api::category.category': ApiCategoryCategory
+      'api::newsletter-subscriber.newsletter-subscriber': ApiNewsletterSubscriberNewsletterSubscriber
       'plugin::content-releases.release': PluginContentReleasesRelease
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction
       'plugin::i18n.locale': PluginI18NLocale
