@@ -95,8 +95,8 @@ export function AboutCTASection() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 text-slate/70 text-sm">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <a href="mailto:hello@hyfy.agency" className="hover:text-lime transition-colors">
-                  hello@hyfy.agency
+                <a href="mailto:sales@hyfy.ltd" className="hover:text-lime transition-colors">
+                  sales@hyfy.ltd
                 </a>
               </div>
               <span className="hidden sm:block">•</span>

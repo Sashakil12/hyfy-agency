@@ -1,6 +1,6 @@
 'use client'
 import { motion, useInView } from 'framer-motion'
-import { Mail, Phone, MapPin, Calendar } from 'lucide-react'
+import { Mail, MapPin, Calendar } from 'lucide-react'
 import { useRef } from 'react'
 
 import { GlassCard } from '@/components/GlassCard'
@@ -9,20 +9,14 @@ const contactMethods = [
   {
     icon: Mail,
     title: 'Email Us',
-    value: 'hello@hyfy.agency',
-    link: 'mailto:hello@hyfy.agency',
+    value: 'sales@hyfy.ltd',
+    link: 'mailto:sales@hyfy.ltd',
   },
   {
     icon: Calendar,
     title: 'Book a Call',
     value: 'Schedule Free Strategy Session',
     link: '#',
-  },
-  {
-    icon: Phone,
-    title: 'Call Us',
-    value: '+1 (555) 123-4567',
-    link: 'tel:+15551234567',
   },
   {
     icon: MapPin,
@@ -60,7 +54,7 @@ export function ContactInfoSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {contactMethods.map((method, index) => (
             <GlassCard key={index} index={index} hover className="h-full">
               <motion.div

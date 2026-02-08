@@ -1,6 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
-import { Factory, ArrowRight, Calendar, Mail, Phone } from 'lucide-react'
+import { Factory, ArrowRight, Calendar, Mail } from 'lucide-react'
 
 import { GlowButton } from '@/components/GlowButton'
 
@@ -79,16 +79,7 @@ export function ErpCTASection() {
                 Schedule Demo
               </span>
             </GlowButton>
-            <motion.button
-              className="px-10 py-5 text-lg font-bold uppercase tracking-wider text-lime border border-lime/30 rounded-lg glass-panel-hover hover:bg-lime/10 transition-all duration-300 cursor-pointer"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span className="flex items-center gap-2 justify-center">
-                <Phone className="w-5 h-5" />
-                Call Us
-              </span>
-            </motion.button>
+
           </motion.div>
 
           <motion.div
@@ -100,11 +91,11 @@ export function ErpCTASection() {
           >
             <p className="text-slate/60 text-sm mb-4">Or reach out directly:</p>
             <a
-              href="mailto:hello@hyfy.agency"
+              href="mailto:sales@hyfy.ltd"
               className="inline-flex items-center gap-2 text-lime hover:text-lime/80 transition-colors"
             >
               <Mail className="w-4 h-4" />
-              <span className="font-body">hello@hyfy.agency</span>
+              <span className="font-body">sales@hyfy.ltd</span>
             </a>
           </motion.div>
 

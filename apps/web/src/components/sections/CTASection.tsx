@@ -158,8 +158,8 @@ export function CTASection() {
             >
               <Mail className="w-4 h-4" />
               <span>Prefer email?</span>
-              <a href="mailto:hello@hyfy.agency" className="text-lime hover:underline font-mono">
-                hello@hyfy.agency
+              <a href="mailto:sales@hyfy.ltd" className="text-lime hover:underline font-mono">
+                sales@hyfy.ltd
               </a>
             </motion.div>
           </div>
