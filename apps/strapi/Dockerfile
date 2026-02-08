@@ -40,8 +40,9 @@ COPY apps/strapi ./apps/strapi
 # Verify strapi directory
 RUN ls -la apps/strapi && echo "Strapi directory copied successfully"
 
-# Install dependencies using pnpm
-RUN pnpm install --frozen-lockfile || (echo "pnpm install failed, trying without frozen-lockfile" && pnpm install)
+# Install dependencies using pnpm - filter to only install for strapi workspace
+RUN pnpm install --frozen-lockfile --filter strapi... || \
+    (echo "Frozen lockfile failed, trying without" && pnpm install --filter strapi...)
 
 WORKDIR /app/apps/strapi
 

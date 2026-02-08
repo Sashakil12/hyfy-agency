@@ -40,16 +40,17 @@ COPY apps/strapi ./apps/strapi
 # Verify strapi directory
 RUN ls -la apps/strapi && echo "Strapi directory copied successfully"
 
-# Install ALL dependencies (including dev deps needed for build)
-RUN pnpm install --frozen-lockfile || (echo "Frozen lockfile failed, trying without" && pnpm install)
+# Install ALL dependencies for Strapi workspace (including dev deps needed for build)
+RUN pnpm install --frozen-lockfile --filter strapi... || \
+    (echo "Frozen lockfile failed, trying without" && pnpm install --filter strapi...)
 
 WORKDIR /app/apps/strapi
 
 # Build Strapi
 RUN pnpm build
 
-# Prune dev dependencies after build
-RUN pnpm prune --prod
+# Prune dev dependencies after build for strapi workspace only
+RUN pnpm --filter strapi prune --prod
 
 # Creating final production image
 FROM node:18-alpine
