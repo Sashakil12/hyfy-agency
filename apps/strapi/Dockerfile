@@ -6,8 +6,7 @@ RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev l
 # Enable and install pnpm
 RUN corepack enable && corepack prepare pnpm@8.15.0 --activate
 
-# Accept build arguments from Coolify
-ARG NODE_ENV=development
+# Accept build arguments from Coolify (but don't use NODE_ENV yet)
 ARG COOLIFY_URL
 ARG COOLIFY_FQDN
 ARG SERVICE_FQDN_HYFY_AGENCY_BACKEND
@@ -23,7 +22,8 @@ ARG DATABASE_USERNAME
 ARG JWT_SECRET
 ARG COOLIFY_BUILD_SECRETS_HASH
 
-ENV NODE_ENV=${NODE_ENV}
+# Force development mode for dependency installation
+ENV NODE_ENV=development
 
 WORKDIR /app
 
@@ -34,18 +34,25 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY packages ./packages
 COPY apps/strapi ./apps/strapi
 
-# Install all dependencies (simpler, more reliable)
-RUN pnpm install --frozen-lockfile
+# Install all dependencies with verbose output
+RUN echo "Installing dependencies with NODE_ENV=$NODE_ENV" && \
+    pnpm install --frozen-lockfile || \
+    (echo "Frozen lockfile failed, trying without --frozen-lockfile" && \
+     pnpm install)
 
 # Move to strapi directory
 WORKDIR /app/apps/strapi
+
+# Build Strapi (still in development mode)
+RUN pnpm build
+
+# Now accept runtime NODE_ENV
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
 
 # Set ownership
 RUN chown -R node:node /app
 USER node
 
-# Build Strapi
-RUN pnpm build
-
 EXPOSE 1337
-CMD ["pnpm", "develop"]
+CMD ["pnpm", "start"]
