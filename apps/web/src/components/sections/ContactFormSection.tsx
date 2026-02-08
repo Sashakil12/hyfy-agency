@@ -180,13 +180,15 @@ export function ContactFormSection() {
                           placeholder={field.placeholder}
                           required={field.required}
                           className={cn(
-                            'w-full pl-12 pr-4 py-4 rounded-lg bg-obsidian/80 border backdrop-blur-xl transition-all duration-300',
-                            'focus:outline-none focus:ring-2 focus:ring-lime/50 focus:ring-offset-2 focus:ring-offset-obsidian focus:border-lime',
-                            'placeholder:text-slate/40 text-white resize-none shadow-lg',
-                            ' autofill:bg-obsidian/80 autofill:text-white [&:-webkit-autofill]:bg-obsidian/80 [&:-webkit-autofill]:text-white',
+                            'w-full pl-12 pr-4 py-4 rounded-lg border transition-all duration-300 light-sweep',
+                            'bg-white/[0.03] backdrop-blur-glass-lg',
+                            'focus:outline-none focus:ring-2 focus:ring-lime/50 focus:ring-offset-2 focus:ring-offset-obsidian focus:border-lime focus:shadow-glow-lime',
+                            'placeholder:text-slate/40 text-white resize-none',
+                            'autofill:bg-white/[0.03] autofill:text-white [&:-webkit-autofill]:bg-white/[0.03] [&:-webkit-autofill]:text-white',
+                            'disabled:opacity-50 disabled:cursor-not-allowed',
                             hasError
-                              ? 'border-red-500/50 focus:ring-red-500/50 focus:border-red-500'
-                              : 'border-white/10 hover:border-lime/40 hover:bg-obsidian/90 hover:shadow-lime/10'
+                              ? 'border-red-500/50 bg-red-500/5 focus:ring-red-500/50 focus:border-red-500 focus:shadow-none'
+                              : 'border-white/10 hover:border-lime/30 hover:bg-white/[0.05]'
                           )}
                         />
                       ) : (
@@ -199,13 +201,15 @@ export function ContactFormSection() {
                           placeholder={field.placeholder}
                           required={field.required}
                           className={cn(
-                            'w-full pl-12 pr-4 py-4 rounded-lg bg-obsidian/80 border backdrop-blur-xl transition-all duration-300',
-                            'focus:outline-none focus:ring-2 focus:ring-lime/50 focus:ring-offset-2 focus:ring-offset-obsidian focus:border-lime',
-                            'placeholder:text-slate/40 text-white shadow-lg',
-                            ' autofill:bg-obsidian/80 autofill:text-white [&:-webkit-autofill]:bg-obsidian/80 [&:-webkit-autofill]:text-white',
+                            'w-full pl-12 pr-4 py-4 rounded-lg border transition-all duration-300 light-sweep',
+                            'bg-white/[0.03] backdrop-blur-glass-lg',
+                            'focus:outline-none focus:ring-2 focus:ring-lime/50 focus:ring-offset-2 focus:ring-offset-obsidian focus:border-lime focus:shadow-glow-lime',
+                            'placeholder:text-slate/40 text-white',
+                            'autofill:bg-white/[0.03] autofill:text-white [&:-webkit-autofill]:bg-white/[0.03] [&:-webkit-autofill]:text-white',
+                            'disabled:opacity-50 disabled:cursor-not-allowed',
                             hasError
-                              ? 'border-red-500/50 focus:ring-red-500/50 focus:border-red-500'
-                              : 'border-white/10 hover:border-lime/40 hover:bg-obsidian/90 hover:shadow-lime/10'
+                              ? 'border-red-500/50 bg-red-500/5 focus:ring-red-500/50 focus:border-red-500 focus:shadow-none'
+                              : 'border-white/10 hover:border-lime/30 hover:bg-white/[0.05]'
                           )}
                         />
                       )}
