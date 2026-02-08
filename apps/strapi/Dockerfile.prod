@@ -1,12 +1,12 @@
-# Creating multi-stage build for production
+# Build stage
 FROM node:18-alpine as build
 
-RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev > /dev/null 2>&1
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev
 
-# Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+# Enable and install pnpm
+RUN corepack enable && corepack prepare pnpm@8.15.0 --activate
 
-# Accept Coolify injected ARGs
+# Accept build arguments from Coolify
 ARG NODE_ENV=production
 ARG COOLIFY_URL
 ARG COOLIFY_FQDN
@@ -23,52 +23,43 @@ ARG DATABASE_USERNAME
 ARG JWT_SECRET
 ARG COOLIFY_BUILD_SECRETS_HASH
 
-ENV NODE_ENV=${NODE_ENV}
+ENV NODE_ENV=production
 
 WORKDIR /app
 
-# Copy monorepo configuration
+# Copy workspace files
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-
-# Verify files were copied
-RUN ls -la && echo "Root files copied successfully"
-
-# Copy workspace packages
 COPY packages ./packages
 COPY apps/strapi ./apps/strapi
 
-# Verify strapi directory
-RUN ls -la apps/strapi && echo "Strapi directory copied successfully"
-
-# Install ALL dependencies for Strapi workspace (including dev deps needed for build)
-RUN pnpm install --frozen-lockfile --filter strapi... || \
-    (echo "Frozen lockfile failed, trying without" && pnpm install --filter strapi...)
+# Install all dependencies for build
+RUN pnpm install --frozen-lockfile
 
 WORKDIR /app/apps/strapi
 
 # Build Strapi
 RUN pnpm build
 
-# Prune dev dependencies after build for strapi workspace only
-RUN pnpm --filter strapi prune --prod
-
-# Creating final production image
+# Production stage
 FROM node:18-alpine
 
-RUN apk add --no-cache vips-dev
+RUN apk add --no-cache vips-dev bash
 
-# Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+# Enable pnpm in production stage
+RUN corepack enable && corepack prepare pnpm@8.15.0 --activate
 
 ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
+ENV NODE_ENV=production
 
 WORKDIR /app
 
-# Copy node_modules and built app from build stage
+# Copy everything from build stage
 COPY --from=build /app ./
 
 WORKDIR /app/apps/strapi
+
+# Remove dev dependencies
+RUN pnpm install --prod --frozen-lockfile
 
 RUN chown -R node:node /app
 USER node

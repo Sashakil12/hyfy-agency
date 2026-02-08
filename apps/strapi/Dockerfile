@@ -1,12 +1,12 @@
 FROM node:18-alpine
 
-# Installing libvips-dev for sharp Compatibility
+# Install system dependencies for sharp and Strapi
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev
 
-# Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+# Enable and install pnpm
+RUN corepack enable && corepack prepare pnpm@8.15.0 --activate
 
-# Accept Coolify injected ARGs
+# Accept build arguments from Coolify
 ARG NODE_ENV=development
 ARG COOLIFY_URL
 ARG COOLIFY_FQDN
@@ -27,32 +27,24 @@ ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /app
 
-# Copy monorepo configuration
+# Copy workspace configuration
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-# Verify files exist
-RUN echo "=== Files in /app ===" && ls -la && \
-    echo "=== pnpm version ===" && pnpm --version && \
-    echo "=== Checking workspace config ===" && cat pnpm-workspace.yaml
-
-# Copy workspace packages (only what Strapi needs)
+# Copy all workspace packages
 COPY packages ./packages
 COPY apps/strapi ./apps/strapi
 
-# Verify directory structure
-RUN echo "=== Apps directory ===" && ls -la apps/ && \
-    echo "=== Strapi directory ===" && ls -la apps/strapi/ && \
-    echo "=== Packages directory ===" && ls -la packages/
+# Install all dependencies (simpler, more reliable)
+RUN pnpm install --frozen-lockfile
 
-# Install dependencies - show actual error if it fails
-RUN pnpm install --frozen-lockfile --filter strapi... 2>&1 || \
-    (echo "=== PNPM INSTALL FAILED - Full error above ===" && exit 1)
-
+# Move to strapi directory
 WORKDIR /app/apps/strapi
 
+# Set ownership
 RUN chown -R node:node /app
 USER node
 
+# Build Strapi
 RUN pnpm build
 
 EXPOSE 1337
