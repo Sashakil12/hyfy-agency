@@ -49,8 +49,18 @@ RUN echo "=== Workspace files ===" && \
 # Move to strapi directory
 WORKDIR /app/apps/strapi
 
+# Debug: Show we're in the right place
+RUN echo "=== Current directory ===" && \
+    pwd && \
+    echo "=== Files in current directory ===" && \
+    ls -la && \
+    echo "=== Package.json scripts ===" && \
+    cat package.json | grep -A 10 '"scripts"'
+
 # Build Strapi (still in development mode)
-RUN pnpm build
+RUN echo "=== Building Strapi ===" && \
+    pnpm build 2>&1 | tee /tmp/strapi-build.log || \
+    (echo "=== Build failed, showing log ===" && cat /tmp/strapi-build.log && exit 1)
 
 # Now accept runtime NODE_ENV
 ARG NODE_ENV=production
