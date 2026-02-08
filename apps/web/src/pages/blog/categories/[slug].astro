@@ -85,7 +85,7 @@ const description = `Explore our latest articles about ${category.name}. Expert 
   </head>
   <body class="bg-obsidian text-white font-exo overflow-x-hidden">
     <!-- Global Header -->
-    <GlobalHeader client:load currentPath={Astro.url.pathname} />
+    <GlobalHeader client:only="react" currentPath={Astro.url.pathname} />
 
     <!-- Animated Background Grid -->
     <div class="fixed inset-0 pointer-events-none opacity-20">
