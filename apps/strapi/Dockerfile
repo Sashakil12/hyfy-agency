@@ -30,19 +30,23 @@ WORKDIR /app
 # Copy monorepo configuration
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-# Verify files were copied (debugging)
-RUN ls -la && echo "Files in /app copied successfully"
+# Verify files exist
+RUN echo "=== Files in /app ===" && ls -la && \
+    echo "=== pnpm version ===" && pnpm --version && \
+    echo "=== Checking workspace config ===" && cat pnpm-workspace.yaml
 
 # Copy workspace packages (only what Strapi needs)
 COPY packages ./packages
 COPY apps/strapi ./apps/strapi
 
-# Verify strapi directory
-RUN ls -la apps/strapi && echo "Strapi directory copied successfully"
+# Verify directory structure
+RUN echo "=== Apps directory ===" && ls -la apps/ && \
+    echo "=== Strapi directory ===" && ls -la apps/strapi/ && \
+    echo "=== Packages directory ===" && ls -la packages/
 
-# Install dependencies using pnpm - filter to only install for strapi workspace
-RUN pnpm install --frozen-lockfile --filter strapi... || \
-    (echo "Frozen lockfile failed, trying without" && pnpm install --filter strapi...)
+# Install dependencies - show actual error if it fails
+RUN pnpm install --frozen-lockfile --filter strapi... 2>&1 || \
+    (echo "=== PNPM INSTALL FAILED - Full error above ===" && exit 1)
 
 WORKDIR /app/apps/strapi
 
