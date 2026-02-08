@@ -1,8 +1,9 @@
 'use client'
 import { motion } from 'framer-motion'
-import { ShoppingCart, ArrowRight, Calendar, Mail } from 'lucide-react'
+import { ShoppingCart, Calendar } from 'lucide-react'
 
 import { GlowButton } from '@/components/GlowButton'
+import { EmailCTA } from '@/components/EmailCTA'
 
 export function EcommerceCTASection() {
   return (
@@ -71,13 +72,14 @@ export function EcommerceCTASection() {
             transition={{ delay: 0.5 }}
           >
             <GlowButton
+              size="lg"
               variant="primary"
-              className="px-10 py-5 text-lg font-bold uppercase tracking-wider"
+              href="/contact"
+              icon={Calendar}
+              iconPosition="left"
+              className="uppercase tracking-wider"
             >
-              <span className="flex items-center gap-2 justify-center">
-                <Calendar className="w-5 h-5" />
-                Book Consultation
-              </span>
+              Schedule Consultation
             </GlowButton>
 
           </motion.div>
@@ -89,14 +91,7 @@ export function EcommerceCTASection() {
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
           >
-            <p className="text-slate/60 text-sm mb-4">Or reach out directly:</p>
-            <a
-              href="mailto:sales@hyfy.ltd"
-              className="inline-flex items-center gap-2 text-lime hover:text-lime/80 transition-colors"
-            >
-              <Mail className="w-4 h-4" />
-              <span className="font-body">sales@hyfy.ltd</span>
-            </a>
+            <EmailCTA />
           </motion.div>
 
           <motion.div

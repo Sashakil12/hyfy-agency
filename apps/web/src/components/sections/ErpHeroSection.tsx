@@ -71,24 +71,25 @@ export function ErpHeroSection() {
               transition={{ delay: 1 }}
             >
               <GlowButton
+                size="md"
                 variant="primary"
-                className="px-8 py-4 text-base font-bold uppercase tracking-wider"
+                href="/contact"
+                icon={Shield}
+                iconPosition="left"
+                className="uppercase tracking-wider"
               >
-                <span className="flex items-center gap-2">
-                  <Shield className="w-5 h-5" />
-                  Schedule Demo
-                </span>
+                Schedule Demo
               </GlowButton>
-              <motion.button
-                className="px-8 py-4 text-base font-bold uppercase tracking-wider text-lime border border-lime/30 rounded-lg glass-panel-hover hover:bg-lime/10 transition-all duration-300 cursor-pointer"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+              <GlowButton
+                size="md"
+                variant="ghost"
+                href="#case-studies"
+                icon={ArrowRight}
+                iconPosition="right"
+                className="uppercase tracking-wider"
               >
-                <span className="flex items-center gap-2">
-                  View Case Studies
-                  <ArrowRight className="w-5 h-5" />
-                </span>
-              </motion.button>
+                View Case Studies
+              </GlowButton>
             </motion.div>
 
             <motion.div

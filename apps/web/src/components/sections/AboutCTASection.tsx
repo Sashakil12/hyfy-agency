@@ -1,8 +1,9 @@
 'use client'
 import { motion } from 'framer-motion'
-import { Calendar, Mail, ArrowRight } from 'lucide-react'
+import { Calendar, ArrowRight } from 'lucide-react'
 
 import { GlowButton } from '@/components/GlowButton'
+import { EmailCTA } from '@/components/EmailCTA'
 
 export function AboutCTASection() {
   return (
@@ -67,38 +68,31 @@ export function AboutCTASection() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <div className="relative inline-block">
-                <motion.div
-                  className="absolute inset-0 rounded-lg bg-lime/20"
-                  animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <GlowButton variant="primary" className="px-12 py-7 text-xl relative z-10">
-                  <span className="flex items-center gap-3">
-                    <Calendar className="w-6 h-6" />
-                    Book Your Free Call
-                  </span>
-                </GlowButton>
-              </div>
-
-              <motion.a
+              <GlowButton
+                size="xl"
+                variant="primary"
                 href="/contact"
-                className="px-8 py-6 text-base font-bold uppercase tracking-wider text-lime border border-lime/30 rounded-lg glass-panel-hover hover:bg-lime/10 transition-all duration-300 inline-flex items-center gap-2 group"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                icon={Calendar}
+                iconPosition="left"
+                withPulse
               >
-                <span>Contact Us</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </motion.a>
+                Schedule Your Free Call
+              </GlowButton>
+
+              <GlowButton
+                size="lg"
+                variant="ghost"
+                href="/contact"
+                icon={ArrowRight}
+                iconPosition="right"
+                className="uppercase tracking-wider"
+              >
+                Contact Us
+              </GlowButton>
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 text-slate/70 text-sm">
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4" />
-                <a href="mailto:sales@hyfy.ltd" className="hover:text-lime transition-colors">
-                  sales@hyfy.ltd
-                </a>
-              </div>
+              <EmailCTA label="" />
               <span className="hidden sm:block">•</span>
               <span className="terminal-text">RESPONSE_TIME: &lt;48H</span>
             </div>

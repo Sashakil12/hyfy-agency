@@ -71,24 +71,25 @@ export function EcommerceHeroSection() {
               transition={{ delay: 1 }}
             >
               <GlowButton
+                size="md"
                 variant="primary"
-                className="px-8 py-4 text-base font-bold uppercase tracking-wider"
+                href="/contact"
+                icon={Sparkles}
+                iconPosition="left"
+                className="uppercase tracking-wider"
               >
-                <span className="flex items-center gap-2">
-                  <Sparkles className="w-5 h-5" />
-                  Start Your Store
-                </span>
+                Start Your Store
               </GlowButton>
-              <motion.button
-                className="px-8 py-4 text-base font-bold uppercase tracking-wider text-lime border border-lime/30 rounded-lg glass-panel-hover hover:bg-lime/10 transition-all duration-300 cursor-pointer"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+              <GlowButton
+                size="md"
+                variant="ghost"
+                href="#examples"
+                icon={ArrowRight}
+                iconPosition="right"
+                className="uppercase tracking-wider"
               >
-                <span className="flex items-center gap-2">
-                  View Examples
-                  <ArrowRight className="w-5 h-5" />
-                </span>
-              </motion.button>
+                View Examples
+              </GlowButton>
             </motion.div>
 
             <motion.div

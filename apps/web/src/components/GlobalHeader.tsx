@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef, Fragment } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import MegaMenu from './MegaMenu'
+import { GlowButton } from './GlowButton'
 
 interface GlobalHeaderProps {
   currentPath?: string
@@ -141,15 +142,9 @@ export default function GlobalHeader({ currentPath = '' }: GlobalHeaderProps) {
 
             {/* CTA Button */}
             <div className="hidden lg:block">
-              <a
-                href="/contact"
-                className="relative group cursor-pointer inline-flex items-center"
-              >
-                <div className="absolute inset-0 bg-[#88FF66] blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300" />
-                <div className="relative px-6 py-2.5 rounded-lg bg-[#88FF66] text-[#050505] font-semibold text-sm hover:bg-[#99FF77] transition-colors duration-200">
-                  Get Started
-                </div>
-              </a>
+              <GlowButton size="sm" variant="primary" href="/contact">
+                Get Started
+              </GlowButton>
             </div>
 
             {/* Mobile Menu Button */}
@@ -285,15 +280,9 @@ export default function GlobalHeader({ currentPath = '' }: GlobalHeaderProps) {
 
             {/* Mobile CTA */}
             <div className="mt-8">
-              <a
-                href="/contact"
-                className="relative group cursor-pointer inline-flex items-center w-full justify-center"
-              >
-                <div className="absolute inset-0 bg-[#88FF66] blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300" />
-                <div className="relative w-full px-6 py-3 rounded-lg bg-[#88FF66] text-[#050505] font-semibold text-base text-center hover:bg-[#99FF77] transition-colors duration-200">
-                  Get Started
-                </div>
-              </a>
+              <GlowButton size="sm" variant="primary" href="/contact" className="w-full justify-center">
+                Get Started
+              </GlowButton>
             </div>
           </div>
         </div>

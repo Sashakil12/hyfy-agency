@@ -91,32 +91,27 @@ export function HeroSection() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1.4 }}
         >
-          <div className="relative inline-block">
-            <motion.div
-              className="absolute inset-0 rounded-lg bg-lime/20"
-              animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <GlowButton
-              variant="primary"
-              className="px-10 py-6 text-lg font-bold uppercase tracking-wider relative z-10"
-            >
-              <span className="flex items-center gap-2">
-                <Rocket className="w-5 h-5" />
-                Start Your Project
-              </span>
-            </GlowButton>
-          </div>
-
-          <motion.a
-            href="#expertise"
-            className="px-8 py-4 text-base font-bold uppercase tracking-wider text-lime border border-lime/30 rounded-lg glass-panel-hover hover:bg-lime/10 transition-all duration-300 inline-flex items-center gap-2"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+          <GlowButton
+            size="lg"
+            variant="primary"
+            href="/contact"
+            icon={Rocket}
+            iconPosition="left"
+            className="uppercase tracking-wider"
           >
-            <span>See Our Work</span>
-            <ChevronDown className="w-5 h-5 rotate-[-90deg]" />
-          </motion.a>
+            Start Your Project
+          </GlowButton>
+
+          <GlowButton
+            size="md"
+            variant="ghost"
+            href="#expertise"
+            icon={ChevronDown}
+            iconPosition="right"
+            className="uppercase tracking-wider [&_svg]:rotate-[-90deg]"
+          >
+            See Our Work
+          </GlowButton>
         </motion.div>
 
         {/* Trust bar */}

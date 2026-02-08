@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { expertiseItems } from '../data/expertise'
 import { ArrowRight } from 'lucide-react'
+import { GlowButton } from './GlowButton'
 
 interface MegaMenuProps {
   isOpen: boolean
@@ -263,16 +264,9 @@ export default function MegaMenu({
                     Schedule a free consultation to discuss your project
                   </p>
                 </div>
-                <a
-                  href="/contact"
-                  className="relative group/cta cursor-pointer inline-flex items-center flex-shrink-0"
-                >
-                  <div className="absolute inset-0 bg-[#88FF66] blur-lg opacity-50 group-hover/cta:opacity-75 transition-opacity duration-300" />
-                  <div className="relative px-6 py-2.5 rounded-lg bg-[#88FF66] text-[#050505] font-semibold text-sm hover:bg-[#99FF77] transition-colors duration-200 flex items-center gap-2">
-                    Talk to an Expert
-                    <ArrowRight className="w-4 h-4" />
-                  </div>
-                </a>
+                <GlowButton size="sm" variant="primary" href="/contact" icon={ArrowRight} iconPosition="right">
+                  Talk to an Expert
+                </GlowButton>
               </div>
             </div>
           </div>

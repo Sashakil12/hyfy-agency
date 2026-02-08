@@ -1,9 +1,10 @@
 'use client'
 import { motion, useInView } from 'framer-motion'
-import { Mail, Rocket, Zap, Calendar, CheckCircle } from 'lucide-react'
+import { Zap, Calendar, CheckCircle } from 'lucide-react'
 import { useRef } from 'react'
 
 import { GlowButton } from '@/components/GlowButton'
+import { EmailCTA } from '@/components/EmailCTA'
 
 const trustSignals = [
   { label: 'Free 30-Minute Call', status: 'NO COMMITMENT' },
@@ -129,24 +130,16 @@ export function CTASection() {
               transition={{ delay: 0.6 }}
               className="pt-4 mb-8"
             >
-              <div className="relative inline-block">
-                <motion.div
-                  className="absolute inset-0 rounded-lg bg-lime/20"
-                  animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <motion.div
-                  className="absolute inset-0 rounded-lg border-2 border-lime/30"
-                  animate={{ scale: [1, 1.15, 1], opacity: [0.8, 0, 0.8] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-                />
-                <GlowButton variant="primary" className="px-12 py-7 text-xl relative z-10">
-                  <span className="flex items-center gap-3">
-                    <Calendar className="w-6 h-6" />
-                    Book Your Free Strategy Call
-                  </span>
-                </GlowButton>
-              </div>
+              <GlowButton
+                size="xl"
+                variant="primary"
+                href="/contact"
+                icon={Calendar}
+                iconPosition="left"
+                withPulse
+              >
+                Schedule Your Free Strategy Call
+              </GlowButton>
             </motion.div>
 
             {/* Secondary CTA */}
@@ -154,13 +147,9 @@ export function CTASection() {
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.8 }}
-              className="flex items-center justify-center gap-2 text-slate hover:text-lime transition-colors"
+              className="flex items-center justify-center"
             >
-              <Mail className="w-4 h-4" />
-              <span>Prefer email?</span>
-              <a href="mailto:sales@hyfy.ltd" className="text-lime hover:underline font-mono">
-                sales@hyfy.ltd
-              </a>
+              <EmailCTA label="Prefer email?" />
             </motion.div>
           </div>
 
