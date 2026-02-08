@@ -84,6 +84,9 @@ importers:
       '@types/react':
         specifier: ^18.2.48
         version: 18.3.27
+      '@types/react-datepicker':
+        specifier: ^7.0.0
+        version: 7.0.0(react-dom@18.3.1)(react@18.3.1)
       '@types/react-dom':
         specifier: ^18.2.18
         version: 18.3.7(@types/react@18.3.27)
@@ -111,6 +114,9 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.3.1
+      react-datepicker:
+        specifier: ^9.1.0
+        version: 9.1.0(react-dom@18.3.1)(react@18.3.1)
       react-dom:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
@@ -1732,10 +1738,23 @@ packages:
       '@floating-ui/utils': 0.2.10
     dev: false
 
+  /@floating-ui/core@1.7.4:
+    resolution: {integrity: sha512-C3HlIdsBxszvm5McXlB8PeOEWfBhcGBTZGkGlWc2U0KFY5IwG5OQEuQ8rq52DZmcHDlPLd+YFBK+cZcytwIFWg==}
+    dependencies:
+      '@floating-ui/utils': 0.2.10
+    dev: false
+
   /@floating-ui/dom@1.7.4:
     resolution: {integrity: sha512-OOchDgh4F2CchOX94cRVqhvy7b3AFb+/rQXyswmzmGakRfkMgoWVjfnLWkRirfLEfuD4ysVW16eXzwt3jHIzKA==}
     dependencies:
       '@floating-ui/core': 1.7.3
+      '@floating-ui/utils': 0.2.10
+    dev: false
+
+  /@floating-ui/dom@1.7.5:
+    resolution: {integrity: sha512-N0bD2kIPInNHUHehXhMke1rBGs1dwqvC9O9KYMyyjK7iXt7GAhnro7UlcuYcGdS/yYOlq0MAVgrow8IbWJwyqg==}
+    dependencies:
+      '@floating-ui/core': 1.7.4
       '@floating-ui/utils': 0.2.10
     dev: false
 
@@ -1748,6 +1767,30 @@ packages:
       '@floating-ui/dom': 1.7.4
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    dev: false
+
+  /@floating-ui/react-dom@2.1.7(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-0tLRojf/1Go2JgEVm+3Frg9A3IW8bJgKgdO0BN5RkF//ufuz2joZM63Npau2ff3J6lUVYgDSNzNkR+aH3IVfjg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@floating-ui/dom': 1.7.5
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    dev: false
+
+  /@floating-ui/react@0.27.17(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-LGVZKHwmWGg6MRHjLLgsfyaX2y2aCNgnD1zT/E6B+/h+vxg+nIJUqHPAlTzsHDyqdgEpJ1Np5kxWuFEErXzoGg==}
+    peerDependencies:
+      react: '>=17.0.0'
+      react-dom: '>=17.0.0'
+    dependencies:
+      '@floating-ui/react-dom': 2.1.7(react-dom@18.3.1)(react@18.3.1)
+      '@floating-ui/utils': 0.2.10
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      tabbable: 6.4.0
     dev: false
 
   /@floating-ui/utils@0.2.10:
@@ -5611,6 +5654,17 @@ packages:
     resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
     dev: false
 
+  /@types/react-datepicker@7.0.0(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-4tWwOUq589tozyQPBVEqGNng5DaZkomx5IVNuur868yYdgjH6RaL373/HKiVt1IDoNNXYiTGspm1F7kjrarM8Q==}
+    deprecated: This is a stub types definition. react-datepicker provides its own type definitions, so you do not need this installed.
+    dependencies:
+      react-datepicker: 9.1.0(react-dom@18.3.1)(react@18.3.1)
+    transitivePeerDependencies:
+      - date-fns-tz
+      - react
+      - react-dom
+    dev: false
+
   /@types/react-dom@18.3.7(@types/react@18.3.27):
     resolution: {integrity: sha512-MEe3UeoENYVFXzoXEWsvcpg6ZvlrFNlOQ7EOsvhI3CfAXwzPfO8Qwuxd40nepsYKqyyVQnTdEfv68q91yLcKrQ==}
     peerDependencies:
@@ -7893,6 +7947,10 @@ packages:
     engines: {node: '>=0.11'}
     dependencies:
       '@babel/runtime': 7.28.6
+    dev: false
+
+  /date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
     dev: false
 
   /debounce@1.2.1:
@@ -13529,6 +13587,23 @@ packages:
       strip-json-comments: 2.0.1
     dev: false
 
+  /react-datepicker@9.1.0(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-lOp+m5bc+ttgtB5MHEjwiVu4nlp4CvJLS/PG1OiOe5pmg9kV73pEqO8H0Geqvg2E8gjqTaL9eRhSe+ZpeKP3nA==}
+    peerDependencies:
+      date-fns-tz: ^3.0.0
+      react: ^16.9.0 || ^17 || ^18 || ^19 || ^19.0.0-rc
+      react-dom: ^16.9.0 || ^17 || ^18 || ^19 || ^19.0.0-rc
+    peerDependenciesMeta:
+      date-fns-tz:
+        optional: true
+    dependencies:
+      '@floating-ui/react': 0.27.17(react-dom@18.3.1)(react@18.3.1)
+      clsx: 2.1.1
+      date-fns: 4.1.0
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    dev: false
+
   /react-dnd-html5-backend@16.0.1:
     resolution: {integrity: sha512-Wu3dw5aDJmOGw8WjH1I1/yTH+vlXEL4vmjk5p+MHxP8HuHJS1lAGeIdG/hze1AvNeXWo/JgULV87LyQOr+r5jw==}
     dependencies:
@@ -15304,6 +15379,10 @@ packages:
 
   /symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
+
+  /tabbable@6.4.0:
+    resolution: {integrity: sha512-05PUHKSNE8ou2dwIxTngl4EzcnsCDZGJ/iCLtDflR/SHB/ny14rXc+qU5P4mG9JkusiV7EivzY9Mhm55AzAvCg==}
+    dev: false
 
   /tailwind-merge@3.4.0:
     resolution: {integrity: sha512-uSaO4gnW+b3Y2aWoWfFpX62vn2sR3skfhbjsEnaBI81WD1wBLlHZe5sWf0AqjksNdYTbGBEd0UasQMT3SNV15g==}

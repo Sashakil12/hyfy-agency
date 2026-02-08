@@ -512,6 +512,51 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   }
 }
 
+export interface ApiContactSubmissionContactSubmission extends Struct.CollectionTypeSchema {
+  collectionName: 'contact_submissions'
+  info: {
+    description: 'Contact form submissions with consultation scheduling'
+    displayName: 'Contact Submission'
+    pluralName: 'contact-submissions'
+    singularName: 'contact-submission'
+  }
+  options: {
+    comment: ''
+    draftAndPublish: false
+  }
+  attributes: {
+    createdAt: Schema.Attribute.DateTime
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private
+    email: Schema.Attribute.Email & Schema.Attribute.Required
+    locale: Schema.Attribute.String & Schema.Attribute.Private
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact-submission.contact-submission'
+    > &
+      Schema.Attribute.Private
+    message: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 20
+      }>
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 2
+      }>
+    preferredDate: Schema.Attribute.Date & Schema.Attribute.Required
+    preferredTime: Schema.Attribute.String & Schema.Attribute.Required
+    publishedAt: Schema.Attribute.DateTime
+    status: Schema.Attribute.Enumeration<
+      ['new', 'contacted', 'scheduled', 'completed', 'cancelled']
+    > &
+      Schema.Attribute.DefaultTo<'new'>
+    timezone: Schema.Attribute.String & Schema.Attribute.Required
+    updatedAt: Schema.Attribute.DateTime
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private
+  }
+}
+
 export interface ApiNewsletterSubscriberNewsletterSubscriber extends Struct.CollectionTypeSchema {
   collectionName: 'newsletter_subscribers'
   info: {
@@ -975,6 +1020,7 @@ declare module '@strapi/strapi' {
       'api::author.author': ApiAuthorAuthor
       'api::blog-post.blog-post': ApiBlogPostBlogPost
       'api::category.category': ApiCategoryCategory
+      'api::contact-submission.contact-submission': ApiContactSubmissionContactSubmission
       'api::newsletter-subscriber.newsletter-subscriber': ApiNewsletterSubscriberNewsletterSubscriber
       'plugin::content-releases.release': PluginContentReleasesRelease
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction

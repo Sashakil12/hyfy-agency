@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contact_submissions",
+  "info": {
+    "singularName": "contact-submission",
+    "pluralName": "contact-submissions",
+    "displayName": "Contact Submission",
+    "description": "Contact form submissions with consultation scheduling"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "minLength": 2
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "preferredDate": {
+      "type": "date",
+      "required": true
+    },
+    "preferredTime": {
+      "type": "string",
+      "required": true
+    },
+    "timezone": {
+      "type": "string",
+      "required": true
+    },
+    "message": {
+      "type": "text",
+      "required": true,
+      "minLength": 20
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["new", "contacted", "scheduled", "completed", "cancelled"],
+      "default": "new"
+    }
+  }
+}

@@ -1,10 +1,11 @@
 'use client'
 import { motion, useInView } from 'framer-motion'
-import { Mail, User, MessageSquare, CheckCircle, AlertCircle, Loader2, Send } from 'lucide-react'
+import { Mail, User, MessageSquare, CheckCircle, AlertCircle, Loader2, Send, Calendar, Clock } from 'lucide-react'
 import { useState, useRef, FormEvent } from 'react'
 
 import { GlassCard } from '@/components/GlassCard'
 import { GlowButton } from '@/components/GlowButton'
+import { DateTimePicker } from '@/components/DateTimePicker'
 import { cn } from '@/lib/utils'
 
 const formFields = [
@@ -25,6 +26,22 @@ const formFields = [
     required: true,
   },
   {
+    name: 'preferredDate',
+    label: 'Preferred Consultation Date',
+    type: 'date',
+    placeholder: '',
+    icon: Calendar,
+    required: true,
+  },
+  {
+    name: 'preferredTime',
+    label: 'Preferred Time',
+    type: 'time',
+    placeholder: '',
+    icon: Clock,
+    required: true,
+  },
+  {
     name: 'message',
     label: 'Tell Us About Your Project',
     type: 'textarea',
@@ -38,7 +55,7 @@ const formFields = [
 export function ContactFormSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [formData, setFormData] = useState({ name: '', email: '', preferredDate: '', preferredTime: '', message: '' })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
@@ -53,6 +70,16 @@ export function ContactFormSection() {
         if (!value.trim()) return 'Email is required'
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if (!emailRegex.test(value)) return 'Please enter a valid email'
+        return null
+      case 'preferredDate':
+        if (!value) return 'Please select a preferred date'
+        const selectedDate = new Date(value)
+        const today = new Date()
+        today.setHours(0, 0, 0, 0)
+        if (selectedDate < today) return 'Please select a future date'
+        return null
+      case 'preferredTime':
+        if (!value) return 'Please select a preferred time'
         return null
       case 'message':
         if (!value.trim()) return 'Message is required'
@@ -101,10 +128,35 @@ export function ContactFormSection() {
     setErrors({})
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      // Submit to Strapi
+      const strapiUrl = import.meta.env.PUBLIC_STRAPI_API_URL || 'http://localhost:1337'
+      const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+      
+      const response = await fetch(`${strapiUrl}/api/contact-submissions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            preferredDate: formData.preferredDate,
+            preferredTime: formData.preferredTime,
+            timezone: userTimezone,
+            message: formData.message,
+          },
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form')
+      }
+
       setSubmitStatus('success')
-      setFormData({ name: '', email: '', message: '' })
-    } catch {
+      setFormData({ name: '', email: '', preferredDate: '', preferredTime: '', message: '' })
+    } catch (error) {
+      console.error('Form submission error:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -167,10 +219,28 @@ export function ContactFormSection() {
                       {field.required && <span className="text-lime ml-1">*</span>}
                     </label>
                     <div className="relative">
-                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate/50 pointer-events-none">
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      {field.type === 'textarea' ? (
+                      {field.type === 'date' || field.type === 'time' ? (
+                        <DateTimePicker
+                          type={field.type}
+                          value={formData[field.name as keyof typeof formData]}
+                          onChange={(value) => {
+                            setFormData((prev) => ({ ...prev, [field.name]: value }))
+                            if (errors[field.name]) {
+                              const error = validateField(field.name, value)
+                              setErrors((prev) => ({ ...prev, [field.name]: error || '' }))
+                            }
+                          }}
+                          error={hasError}
+                          required={field.required}
+                          icon={field.icon}
+                          selectedDate={field.type === 'time' ? formData.preferredDate : undefined}
+                        />
+                      ) : (
+                        <>
+                          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate/50 pointer-events-none">
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          {field.type === 'textarea' ? (
                         <textarea
                           id={field.name}
                           name={field.name}
@@ -179,13 +249,15 @@ export function ContactFormSection() {
                           onChange={handleChange}
                           placeholder={field.placeholder}
                           required={field.required}
-                          className={cn(
-                            'w-full pl-12 pr-4 py-4 rounded-lg border transition-all duration-300 light-sweep',
+className={cn(
+                            'w-full pl-12 pr-4 py-4 rounded-lg border transition-all duration-300 light-sweep input-force-white',
                             'bg-white/[0.03] backdrop-blur-glass-lg',
                             'focus:outline-none focus:ring-2 focus:ring-lime/50 focus:ring-offset-2 focus:ring-offset-obsidian focus:border-lime focus:shadow-glow-lime',
                             'placeholder:text-slate/40 text-white resize-none',
-                            'autofill:bg-white/[0.03] autofill:text-white [&:-webkit-autofill]:bg-white/[0.03] [&:-webkit-autofill]:text-white',
                             'disabled:opacity-50 disabled:cursor-not-allowed',
+                            '[&:-webkit-autofill]:!bg-transparent [&:-webkit-autofill]:[-webkit-text-fill-color:white!important] [&:-webkit-autofill]:[box-shadow:0_0_0_1000px_rgba(136,255,102,0.08)_inset!important] [&:-webkit-autofill]:[transition:background-color_5000s_ease-in-out_0s] [&:-webkit-autofill]:backdrop-blur-glass-lg',
+                            '[&:-webkit-autofill:hover]:[-webkit-text-fill-color:white!important] [&:-webkit-autofill:hover]:[box-shadow:0_0_0_1000px_rgba(136,255,102,0.08)_inset!important]',
+                            '[&:-webkit-autofill:focus]:[-webkit-text-fill-color:white!important] [&:-webkit-autofill:focus]:[box-shadow:0_0_0_1000px_rgba(136,255,102,0.08)_inset!important]',
                             hasError
                               ? 'border-red-500/50 bg-red-500/5 focus:ring-red-500/50 focus:border-red-500 focus:shadow-none'
                               : 'border-white/10 hover:border-lime/30 hover:bg-white/[0.05]'
@@ -200,19 +272,23 @@ export function ContactFormSection() {
                           onChange={handleChange}
                           placeholder={field.placeholder}
                           required={field.required}
-                          className={cn(
-                            'w-full pl-12 pr-4 py-4 rounded-lg border transition-all duration-300 light-sweep',
+className={cn(
+                            'w-full pl-12 pr-4 py-4 rounded-lg border transition-all duration-300 light-sweep input-force-white',
                             'bg-white/[0.03] backdrop-blur-glass-lg',
                             'focus:outline-none focus:ring-2 focus:ring-lime/50 focus:ring-offset-2 focus:ring-offset-obsidian focus:border-lime focus:shadow-glow-lime',
-                            'placeholder:text-slate/40 text-white',
-                            'autofill:bg-white/[0.03] autofill:text-white [&:-webkit-autofill]:bg-white/[0.03] [&:-webkit-autofill]:text-white',
+                            'placeholder:text-slate/40',
                             'disabled:opacity-50 disabled:cursor-not-allowed',
+                            '[&:-webkit-autofill]:!bg-transparent [&:-webkit-autofill]:[-webkit-text-fill-color:white!important] [&:-webkit-autofill]:[box-shadow:0_0_0_1000px_rgba(136,255,102,0.08)_inset!important] [&:-webkit-autofill]:[transition:background-color_5000s_ease-in-out_0s] [&:-webkit-autofill]:backdrop-blur-glass-lg',
+                            '[&:-webkit-autofill:hover]:[-webkit-text-fill-color:white!important] [&:-webkit-autofill:hover]:[box-shadow:0_0_0_1000px_rgba(136,255,102,0.08)_inset!important]',
+                            '[&:-webkit-autofill:focus]:[-webkit-text-fill-color:white!important] [&:-webkit-autofill:focus]:[box-shadow:0_0_0_1000px_rgba(136,255,102,0.08)_inset!important]',
                             hasError
                               ? 'border-red-500/50 bg-red-500/5 focus:ring-red-500/50 focus:border-red-500 focus:shadow-none'
                               : 'border-white/10 hover:border-lime/30 hover:bg-white/[0.05]'
                           )}
                         />
                       )}
+                    </>
+                  )}
                     </div>
                     {hasError && (
                       <motion.p
