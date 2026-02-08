@@ -34,11 +34,17 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY packages ./packages
 COPY apps/strapi ./apps/strapi
 
-# Install all dependencies with verbose output
-RUN echo "Installing dependencies with NODE_ENV=$NODE_ENV" && \
-    pnpm install --frozen-lockfile || \
-    (echo "Frozen lockfile failed, trying without --frozen-lockfile" && \
-     pnpm install)
+# Debug: Show what files we have
+RUN echo "=== Workspace files ===" && \
+    ls -la && \
+    echo "=== Workspace config ===" && \
+    cat pnpm-workspace.yaml && \
+    echo "=== Node and pnpm versions ===" && \
+    node --version && \
+    pnpm --version && \
+    echo "=== Installing dependencies with NODE_ENV=$NODE_ENV ===" && \
+    pnpm install --no-frozen-lockfile 2>&1 | tee /tmp/pnpm-install.log || \
+    (echo "=== Install failed, showing last 50 lines ===" && tail -50 /tmp/pnpm-install.log && exit 1)
 
 # Move to strapi directory
 WORKDIR /app/apps/strapi
