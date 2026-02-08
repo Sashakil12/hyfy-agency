@@ -83,12 +83,12 @@ export function EcommerceHeroSection() {
               <GlowButton
                 size="md"
                 variant="ghost"
-                href="#examples"
+                href="#features"
                 icon={ArrowRight}
                 iconPosition="right"
                 className="uppercase tracking-wider"
               >
-                View Examples
+                Explore Features
               </GlowButton>
             </motion.div>
 

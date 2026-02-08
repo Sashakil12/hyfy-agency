@@ -97,6 +97,7 @@ export function HeroSection() {
             href="/contact"
             icon={Rocket}
             iconPosition="left"
+            withPulse
             className="uppercase tracking-wider"
           >
             Start Your Project

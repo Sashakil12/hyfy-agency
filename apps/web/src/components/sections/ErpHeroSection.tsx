@@ -83,12 +83,12 @@ export function ErpHeroSection() {
               <GlowButton
                 size="md"
                 variant="ghost"
-                href="#case-studies"
+                href="#features"
                 icon={ArrowRight}
                 iconPosition="right"
                 className="uppercase tracking-wider"
               >
-                View Case Studies
+                Explore Features
               </GlowButton>
             </motion.div>
 

@@ -78,17 +78,17 @@ export function AiNativeHeroSection() {
                 iconPosition="left"
                 className="uppercase tracking-wider"
               >
-                See Our AI Work
+                Schedule Consultation
               </GlowButton>
               <GlowButton
                 size="md"
                 variant="ghost"
-                href="/contact"
+                href="#features"
                 icon={ArrowRight}
                 iconPosition="right"
                 className="uppercase tracking-wider"
               >
-                Schedule Consultation
+                Explore Features
               </GlowButton>
             </motion.div>
 

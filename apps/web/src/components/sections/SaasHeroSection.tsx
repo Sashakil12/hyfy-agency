@@ -83,12 +83,12 @@ export function SaasHeroSection() {
               <GlowButton
                 size="md"
                 variant="ghost"
-                href="#roadmap"
+                href="#features"
                 icon={ArrowRight}
                 iconPosition="right"
                 className="uppercase tracking-wider"
               >
-                View Roadmap
+                Explore Features
               </GlowButton>
             </motion.div>
 

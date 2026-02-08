@@ -83,12 +83,12 @@ export function CmsPrototypesHeroSection() {
               <GlowButton
                 size="md"
                 variant="ghost"
-                href="#cms-stack"
+                href="#features"
                 icon={ArrowRight}
                 iconPosition="right"
                 className="uppercase tracking-wider"
               >
-                See CMS Stack
+                Explore Features
               </GlowButton>
             </motion.div>
 

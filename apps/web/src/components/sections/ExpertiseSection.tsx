@@ -66,6 +66,7 @@ export function ExpertiseSection() {
 
   return (
     <section
+      id="expertise"
       ref={ref}
       className="relative min-h-screen py-16 md:py-24 lg:py-32 px-4 overflow-hidden"
       style={{

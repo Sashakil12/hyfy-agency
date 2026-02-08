@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { LayoutGrid, Zap, Code2, Layers, Lock, Globe, ArrowRight, CheckCircle2 } from 'lucide-react'
 
 import { GlassCard } from '@/components/GlassCard'
+import { GlowButton } from '@/components/GlowButton'
 
 const features = [
   {
@@ -51,7 +52,7 @@ const features = [
 
 export function CmsPrototypesFeaturesSection() {
   return (
-    <section className="relative py-32 px-4 bg-obsidian overflow-hidden">
+    <section id="features" className="relative py-32 px-4 bg-obsidian overflow-hidden">
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(136,255,102,0.1)_50%,transparent_75%,transparent_100%)] bg-[length:40px_40px]" />
       </div>
@@ -144,14 +145,16 @@ export function CmsPrototypesFeaturesSection() {
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
         >
-          <motion.button
-            className="inline-flex items-center gap-3 px-8 py-4 text-base font-bold uppercase tracking-wider text-lime border border-lime/30 rounded-lg glass-panel hover:bg-lime/10 transition-all duration-300 cursor-pointer"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+          <GlowButton
+            size="md"
+            variant="ghost"
+            href="/contact"
+            icon={ArrowRight}
+            iconPosition="right"
+            className="uppercase tracking-wider"
           >
-            <span>Explore CMS Architecture</span>
-            <ArrowRight className="w-5 h-5" />
-          </motion.button>
+            Let's Discuss Your MVP
+          </GlowButton>
         </motion.div>
       </div>
     </section>

@@ -83,12 +83,12 @@ export function N8nHeroSection() {
               <GlowButton
                 size="md"
                 variant="ghost"
-                href="#work"
+                href="#features"
                 icon={ArrowRight}
                 iconPosition="right"
                 className="uppercase tracking-wider"
               >
-                See Our Work
+                Explore Features
               </GlowButton>
             </motion.div>
 
