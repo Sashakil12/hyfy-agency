@@ -100,7 +100,13 @@ export default function MegaMenu({
           />
 
           {/* Content */}
-          <div className="relative p-8">
+          <div
+            className="relative p-8 max-h-[80vh] overflow-y-auto custom-scrollbar"
+            style={{
+              scrollbarWidth: 'thin',
+              scrollbarColor: 'rgba(136, 255, 102, 0.5) rgba(255, 255, 255, 0.05)',
+            }}
+          >
             {/* Header */}
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-2">

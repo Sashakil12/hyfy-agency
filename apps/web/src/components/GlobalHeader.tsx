@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, Fragment } from 'react'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import MegaMenu from './MegaMenu'
 
@@ -75,6 +75,15 @@ export default function GlobalHeader({ currentPath = '' }: GlobalHeaderProps) {
       >
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
+            {/* Logo / Brand */}
+            <a
+              href="/"
+              className="text-[#88FF66] font-bold text-xl transition-colors duration-200 hover:text-[#99FF77]"
+              style={{ fontFamily: "'Orbitron', sans-serif" }}
+            >
+              HyFy
+            </a>
+
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-1">
               {navItems.map((item) => (
@@ -145,7 +154,10 @@ export default function GlobalHeader({ currentPath = '' }: GlobalHeaderProps) {
 
             {/* Mobile Menu Button */}
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={(e) => {
+                e.stopPropagation()
+                setIsMobileMenuOpen(!isMobileMenuOpen)
+              }}
               className="lg:hidden mobile-menu-button p-2 rounded-lg text-[#828282] hover:text-white hover:bg-white/5 transition-colors duration-200 cursor-pointer"
               aria-label="Toggle mobile menu"
             >
@@ -170,7 +182,7 @@ export default function GlobalHeader({ currentPath = '' }: GlobalHeaderProps) {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-40 mobile-menu">
+        <div className="lg:hidden fixed inset-0 z-[60] mobile-menu">
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-[#050505]/95 backdrop-blur-xl"
@@ -178,7 +190,25 @@ export default function GlobalHeader({ currentPath = '' }: GlobalHeaderProps) {
           />
 
           {/* Menu Content */}
-          <div className="relative h-full flex flex-col pt-24 px-6">
+          <div
+            className="relative h-full flex flex-col pt-24 px-6 overflow-y-auto custom-scrollbar"
+            style={{
+              scrollbarWidth: 'thin',
+              scrollbarColor: 'rgba(136, 255, 102, 0.5) rgba(255, 255, 255, 0.05)',
+            }}
+          >
+            {/* Close Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                setIsMobileMenuOpen(false)
+              }}
+              className="absolute top-6 right-6 p-2 rounded-lg text-[#828282] hover:text-white hover:bg-white/5 transition-colors duration-200 cursor-pointer"
+              aria-label="Close menu"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
             <div className="space-y-2">
               {navItems.map((item) => (
                 <a
