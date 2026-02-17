@@ -1,12 +1,13 @@
-import path from 'path'
+'use strict'
 
-export default ({ env }) => {
+const path = require('path')
+
+module.exports = ({ env }) => {
   const client = env('DATABASE_CLIENT', 'sqlite')
 
   const connections = {
     sqlite: {
       connection: {
-        // Store database in project root's .tmp folder, not in dist
         filename: path.join(__dirname, '../..', env('DATABASE_FILENAME', '.tmp/data.db')),
       },
       useNullAsDefault: true,

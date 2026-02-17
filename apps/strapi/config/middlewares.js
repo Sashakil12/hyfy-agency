@@ -1,4 +1,6 @@
-export default [
+'use strict'
+
+module.exports = [
   'strapi::logger',
   'strapi::errors',
   'strapi::security',
@@ -9,4 +11,4 @@ export default [
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
-];
+]

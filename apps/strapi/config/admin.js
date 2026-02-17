@@ -1,4 +1,6 @@
-export default ({ env }) => ({
+'use strict'
+
+module.exports = ({ env }) => ({
   auth: {
     secret: env('ADMIN_JWT_SECRET'),
   },
@@ -17,4 +19,4 @@ export default ({ env }) => ({
     nps: env.bool('FLAG_NPS', true),
     promoteEE: env.bool('FLAG_PROMOTE_EE', true),
   },
-});
+})
