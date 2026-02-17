@@ -561,7 +561,7 @@ const description = selectedCategory
 
     <script>
       // Parallax effect for hero text
-      const parallaxElements = document.querySelectorAll('[data-parallax]');
+      const parallaxElements = document.querySelectorAll<HTMLElement>('[data-parallax]');
 
       window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
@@ -614,9 +614,9 @@ const description = selectedCategory
       document.head.appendChild(style);
 
       // Newsletter subscription
-      const newsletterForm = document.getElementById('newsletter-form');
-      const emailInput = document.getElementById('newsletter-email');
-      const submitButton = document.getElementById('newsletter-submit');
+      const newsletterForm = document.getElementById('newsletter-form') as HTMLFormElement | null;
+      const emailInput = document.getElementById('newsletter-email') as HTMLInputElement | null;
+      const submitButton = document.getElementById('newsletter-submit') as HTMLButtonElement | null;
       const submitText = document.getElementById('submit-text');
       const submitLoading = document.getElementById('submit-loading');
       const messageDiv = document.getElementById('newsletter-message');
@@ -624,6 +624,8 @@ const description = selectedCategory
 
       newsletterForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        if (!emailInput || !submitButton || !submitText || !submitLoading || !messageDiv || !messageText) return;
 
         const email = emailInput.value.trim();
         if (!email) return;
