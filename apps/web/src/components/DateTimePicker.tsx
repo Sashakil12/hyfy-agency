@@ -15,7 +15,15 @@ interface DateTimePickerProps {
   selectedDate?: string // For time picker to check booked slots
 }
 
-export function DateTimePicker({ type, value, onChange, error, required, icon: Icon, selectedDate }: DateTimePickerProps) {
+export function DateTimePicker({
+  type,
+  value,
+  onChange,
+  error,
+  required,
+  icon: Icon,
+  selectedDate,
+}: DateTimePickerProps) {
   const DisplayIcon = Icon || (type === 'date' ? Calendar : Clock)
   const [bookedSlots, setBookedSlots] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(false)
@@ -87,7 +95,7 @@ export function DateTimePicker({ type, value, onChange, error, required, icon: I
         </div>
         <DatePicker
           selected={selectedDate}
-          onChange={(date) => {
+          onChange={(date: Date | null) => {
             if (date) {
               const formattedDate = date.toISOString().split('T')[0]
               onChange(formattedDate)
@@ -124,14 +132,16 @@ export function DateTimePicker({ type, value, onChange, error, required, icon: I
 
   // Time picker with react-datepicker
   const availableTimes = getAvailableTimes()
-  
+
   // Convert time string to Date object for DatePicker
-  const selectedTime = value ? (() => {
-    const [hours, minutes] = value.split(':').map(Number)
-    const date = new Date()
-    date.setHours(hours, minutes, 0, 0)
-    return date
-  })() : null
+  const selectedTime = value
+    ? (() => {
+        const [hours, minutes] = value.split(':').map(Number)
+        const date = new Date()
+        date.setHours(hours, minutes, 0, 0)
+        return date
+      })()
+    : null
 
   return (
     <div className="relative" ref={inputRef}>
@@ -140,7 +150,7 @@ export function DateTimePicker({ type, value, onChange, error, required, icon: I
       </div>
       <DatePicker
         selected={selectedTime}
-        onChange={(time) => {
+        onChange={(time: Date | null) => {
           if (time) {
             const hours = time.getHours().toString().padStart(2, '0')
             const minutes = time.getMinutes().toString().padStart(2, '0')
