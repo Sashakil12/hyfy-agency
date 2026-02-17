@@ -52,7 +52,7 @@ const formFields = [
   },
 ]
 
-export function ContactFormSection() {
+export function ContactFormSection({ strapiUrl = 'http://localhost:1337' }: { strapiUrl?: string }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
   const [formData, setFormData] = useState({ name: '', email: '', preferredDate: '', preferredTime: '', message: '' })
@@ -129,7 +129,7 @@ export function ContactFormSection() {
 
     try {
       // Submit to Strapi
-      const strapiUrl = import.meta.env.PUBLIC_STRAPI_API_URL || 'http://localhost:1337'
+      // strapiUrl is passed as a prop from the Astro page (server-side)
       const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
       
       const response = await fetch(`${strapiUrl}/api/contact-submissions`, {
@@ -234,6 +234,7 @@ export function ContactFormSection() {
                           required={field.required}
                           icon={field.icon}
                           selectedDate={field.type === 'time' ? formData.preferredDate : undefined}
+                          strapiUrl={strapiUrl}
                         />
                       ) : (
                         <>
