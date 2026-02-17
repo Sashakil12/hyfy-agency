@@ -1,4 +1,5 @@
-const STRAPI_API_URL = import.meta.env.STRAPI_URL || 'http://localhost:1337'
+const STRAPI_API_URL =
+  import.meta.env.STRAPI_API_URL || import.meta.env.STRAPI_URL || 'http://localhost:1337'
 const STRAPI_API_TOKEN = import.meta.env.STRAPI_API_TOKEN
 
 interface StrapiImage {

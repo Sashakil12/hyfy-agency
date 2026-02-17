@@ -8,6 +8,7 @@ import GlobalHeader from '../../components/GlobalHeader';
 
 export const prerender = false; // Enable SSR for this page
 
+const strapiApiUrl = import.meta.env.STRAPI_API_URL || 'http://localhost:1337';
 const currentPage = Number(Astro.url.searchParams.get('page') || 1);
 const categorySlug = Astro.url.searchParams.get('category') || undefined;
 const pageSize = 9;
@@ -559,7 +560,7 @@ const description = selectedCategory
       }
     </style>
 
-    <script>
+    <script define:vars={{ strapiApiUrl }}>
       // Parallax effect for hero text
       const parallaxElements = document.querySelectorAll<HTMLElement>('[data-parallax]');
 
@@ -635,8 +636,7 @@ const description = selectedCategory
         messageDiv.classList.add('hidden');
 
         try {
-          const strapiUrl = import.meta.env.STRAPI_API_URL || 'http://localhost:1337';
-          const response = await fetch(`${strapiUrl}/api/newsletter-subscribe`, {
+          const response = await fetch(`${strapiApiUrl}/api/newsletter-subscribe`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
