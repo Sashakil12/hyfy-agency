@@ -1,6 +1,8 @@
-import { useEffect, useRef } from 'react'
-import { expertiseItems } from '../data/expertise'
 import { ArrowRight } from 'lucide-react'
+import { useEffect, useRef } from 'react'
+
+import { expertiseItems } from '../data/expertise'
+
 import { GlowButton } from './GlowButton'
 
 interface MegaMenuProps {

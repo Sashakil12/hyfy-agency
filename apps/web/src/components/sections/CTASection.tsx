@@ -3,8 +3,8 @@ import { motion, useInView } from 'framer-motion'
 import { Zap, Calendar, CheckCircle } from 'lucide-react'
 import { useRef } from 'react'
 
-import { GlowButton } from '@/components/GlowButton'
 import { EmailCTA } from '@/components/EmailCTA'
+import { GlowButton } from '@/components/GlowButton'
 
 const trustSignals = [
   { label: 'Free 30-Minute Call', status: 'NO COMMITMENT' },

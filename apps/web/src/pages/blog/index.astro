@@ -635,7 +635,7 @@ const description = selectedCategory
         messageDiv.classList.add('hidden');
 
         try {
-          const strapiUrl = import.meta.env.STRAPI_URL || 'http://localhost:1337';
+          const strapiUrl = import.meta.env.STRAPI_API_URL || 'http://localhost:1337';
           const response = await fetch(`${strapiUrl}/api/newsletter-subscribe`, {
             method: 'POST',
             headers: {

@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
 import { Menu, X, ChevronDown } from 'lucide-react'
-import MegaMenu from './MegaMenu'
+import { useState, useEffect, useRef } from 'react'
+
 import { GlowButton } from './GlowButton'
+import MegaMenu from './MegaMenu'
 
 interface GlobalHeaderProps {
   currentPath?: string

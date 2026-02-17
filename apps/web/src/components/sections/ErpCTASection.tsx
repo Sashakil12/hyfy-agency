@@ -2,8 +2,8 @@
 import { motion } from 'framer-motion'
 import { Factory, Calendar } from 'lucide-react'
 
-import { GlowButton } from '@/components/GlowButton'
 import { EmailCTA } from '@/components/EmailCTA'
+import { GlowButton } from '@/components/GlowButton'
 
 export function ErpCTASection() {
   return (
