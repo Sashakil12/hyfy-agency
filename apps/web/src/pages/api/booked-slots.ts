@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro'
 import { getBookedSlots } from '@/lib/strapi'
 
+export const prerender = false
+
 export const GET: APIRoute = async ({ url }) => {
   try {
     const date = url.searchParams.get('date')

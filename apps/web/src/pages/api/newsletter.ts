@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro'
 import { subscribeNewsletter } from '@/lib/strapi'
 
+export const prerender = false
+
 export const POST: APIRoute = async ({ request }) => {
   try {
     const { email } = await request.json()
