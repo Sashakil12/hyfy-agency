@@ -11,7 +11,6 @@ module.exports = {
       path: '/contact-submissions/booked-slots',
       handler: 'contact-submission.getBookedSlots',
       config: {
-        auth: false,
         policies: [],
         middlewares: [],
       },

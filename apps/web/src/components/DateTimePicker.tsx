@@ -14,7 +14,6 @@ interface DateTimePickerProps {
   required?: boolean
   icon?: React.ComponentType<{ className?: string }>
   selectedDate?: string // For time picker to check booked slots
-  strapiUrl?: string
 }
 
 export function DateTimePicker({
@@ -25,7 +24,6 @@ export function DateTimePicker({
   required,
   icon: Icon,
   selectedDate,
-  strapiUrl = 'http://localhost:1337',
 }: DateTimePickerProps) {
   const DisplayIcon = Icon || (type === 'date' ? Calendar : Clock)
   const [bookedSlots, setBookedSlots] = useState<string[]>([])
@@ -56,7 +54,7 @@ export function DateTimePicker({
   const fetchBookedSlots = async (date: string) => {
     setIsLoading(true)
     try {
-      const response = await fetch(`${strapiUrl}/api/contact-submissions/booked-slots?date=${date}`)
+      const response = await fetch(`/api/booked-slots?date=${date}`)
       if (response.ok) {
         const data = await response.json()
         // Convert booked slots to user's timezone

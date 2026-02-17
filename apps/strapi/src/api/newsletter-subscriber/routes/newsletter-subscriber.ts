@@ -5,7 +5,6 @@ export default {
       path: '/newsletter-subscribe',
       handler: 'newsletter-subscriber.subscribe',
       config: {
-        auth: false,
         policies: [],
         middlewares: [],
       },

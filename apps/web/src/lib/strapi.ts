@@ -83,17 +83,14 @@ export interface BlogPostResponse {
   data: BlogPost
 }
 
+const strapiHeaders: HeadersInit = {
+  'Content-Type': 'application/json',
+  ...(STRAPI_API_TOKEN ? { Authorization: `Bearer ${STRAPI_API_TOKEN}` } : {}),
+}
+
 async function fetchStrapi<T>(endpoint: string): Promise<T> {
-  const headers: HeadersInit = {
-    'Content-Type': 'application/json',
-  }
-
-  if (STRAPI_API_TOKEN) {
-    headers['Authorization'] = `Bearer ${STRAPI_API_TOKEN}`
-  }
-
   const response = await fetch(`${STRAPI_API_URL}/api${endpoint}`, {
-    headers,
+    headers: strapiHeaders,
   })
 
   if (!response.ok) {
@@ -101,6 +98,17 @@ async function fetchStrapi<T>(endpoint: string): Promise<T> {
   }
 
   return response.json()
+}
+
+async function postStrapi(endpoint: string, body: unknown): Promise<{ data: unknown; status: number }> {
+  const response = await fetch(`${STRAPI_API_URL}/api${endpoint}`, {
+    method: 'POST',
+    headers: strapiHeaders,
+    body: JSON.stringify(body),
+  })
+
+  const data = await response.json()
+  return { data, status: response.status }
 }
 
 export async function getBlogPosts(
@@ -170,6 +178,18 @@ export function formatDate(dateString: string): string {
     month: 'long',
     day: 'numeric',
   })
+}
+
+export async function submitContactForm(body: unknown) {
+  return postStrapi('/contact-submissions', body)
+}
+
+export async function subscribeNewsletter(email: string) {
+  return postStrapi('/newsletter-subscribe', { email })
+}
+
+export async function getBookedSlots(date: string): Promise<{ bookedSlots: { time: string; timezone: string }[] }> {
+  return fetchStrapi(`/contact-submissions/booked-slots?date=${date}`)
 }
 
 export async function parseMarkdown(markdown: string): Promise<string> {
