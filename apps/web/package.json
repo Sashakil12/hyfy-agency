@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
+    "start": "node dist/server/entry.mjs",
     "preview": "astro preview",
     "type-check": "astro check",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --no-error-on-unmatched-pattern",
