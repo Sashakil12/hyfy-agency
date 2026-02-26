@@ -5,6 +5,7 @@ import { getBlogPosts, getCategories } from '../../lib/strapi';
 import BlogCard from '../../components/blog/BlogCard.astro';
 import Pagination from '../../components/blog/Pagination.astro';
 import GlobalHeader from '../../components/GlobalHeader';
+import { Footer } from '../../components/Footer';
 
 export const prerender = false; // Enable SSR for this page
 
@@ -726,5 +727,6 @@ const description = selectedCategory
         });
       }
     </script>
+    <Footer client:load />
   </body>
 </html>

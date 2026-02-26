@@ -2,6 +2,7 @@
 import '../../styles/global.css';
 import { getBlogPost, getBlogPosts, getImageUrl, formatDate, parseMarkdown } from '../../lib/strapi';
 import GlobalHeader from '../../components/GlobalHeader';
+import { Footer } from '../../components/Footer';
 
 // Enable SSG for individual blog posts
 export async function getStaticPaths() {
@@ -637,5 +638,6 @@ const modifiedISO = new Date(post.updatedAt).toISOString();
         });
       });
     </script>
+    <Footer client:load />
   </body>
 </html>

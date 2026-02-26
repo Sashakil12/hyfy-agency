@@ -5,6 +5,7 @@ import { getBlogPosts, getCategories } from '../../../lib/strapi';
 import BlogCard from '../../../components/blog/BlogCard.astro';
 import Pagination from '../../../components/blog/Pagination.astro';
 import GlobalHeader from '../../../components/GlobalHeader';
+import { Footer } from '../../../components/Footer';
 
 export const prerender = false; // Enable SSR for dynamic pagination
 
@@ -390,5 +391,6 @@ const description = `Explore our latest articles about ${category.name}. Expert 
       `;
       document.head.appendChild(style);
     </script>
+    <Footer client:load />
   </body>
 </html>

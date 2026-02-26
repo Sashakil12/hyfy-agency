@@ -4,6 +4,7 @@ import type { Category } from '../../../lib/strapi';
 import { getCategories, getBlogPosts } from '../../../lib/strapi';
 import Pagination from '../../../components/blog/Pagination.astro';
 import GlobalHeader from '../../../components/GlobalHeader';
+import { Footer } from '../../../components/Footer';
 
 export const prerender = false; // Enable SSR for dynamic categories
 
@@ -631,5 +632,6 @@ const description = 'Explore all blog categories and find articles on topics tha
         });
       }
     </script>
+    <Footer client:load />
   </body>
 </html>
