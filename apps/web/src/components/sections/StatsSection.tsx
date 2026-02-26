@@ -5,7 +5,7 @@ import { useRef } from 'react'
 import { StatCounter } from '@/components/StatCounter'
 
 const stats = [
-  { value: 50, label: 'Projects Shipped', suffix: '+', color: 'lime' },
+  { value: 9, label: 'Projects Shipped', suffix: '', color: 'lime' },
   { value: 65, label: 'Faster to MVP', suffix: '%', color: 'lime' },
   { value: 100, label: 'Client Retention', suffix: '%', color: 'lime' },
   { value: 6, label: 'Weeks Average Delivery', suffix: '', color: 'lime' },

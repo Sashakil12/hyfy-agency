@@ -99,7 +99,7 @@ export function N8nHeroSection() {
               transition={{ delay: 1.2 }}
             >
               {[
-                { value: '50+', label: 'Projects Delivered' },
+                { value: '150+', label: 'Projects Delivered' },
                 { value: '400+', label: 'Integrations Built' },
                 { value: '100%', label: 'Client Satisfaction' },
               ].map((stat, i) => (

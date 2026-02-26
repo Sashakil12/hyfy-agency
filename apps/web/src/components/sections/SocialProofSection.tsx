@@ -14,11 +14,11 @@ const stats = [
     color: 'from-lime to-cyan-400',
   },
   {
-    value: 50,
-    suffix: '+',
+    value: 9,
+    suffix: '',
     label: 'Projects Shipped',
     icon: Award,
-    color: 'from-amber-400 to-lime',
+    color: 'from-lime to-lime',
   },
   {
     value: 100,
@@ -100,7 +100,7 @@ export function SocialProofSection() {
               transition={{ duration: 0.6, delay: index * 0.15 }}
               className="relative group"
             >
-              <div className="glass-panel p-8 rounded-lg border border-lime/30 relative overflow-hidden">
+              <div className="glass-panel p-5 sm:p-6 md:p-8 rounded-lg border border-lime/30 relative overflow-hidden">
                 <div className="absolute inset-0 noise opacity-30" />
 
                 <motion.div
@@ -125,7 +125,7 @@ export function SocialProofSection() {
 
                   <div className="mb-3">
                     <div
-                      className={`text-6xl font-bold font-mono bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}
+                      className={`text-4xl sm:text-5xl md:text-6xl font-bold font-mono bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}
                     >
                       <StatCounter end={stat.value} duration={2} suffix={stat.suffix} />
                     </div>
@@ -155,36 +155,36 @@ export function SocialProofSection() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="lg:row-span-2"
           >
-            <div className="glass-panel p-8 rounded-lg border border-white/10 hover:border-lime/30 transition-colors h-full flex flex-col relative overflow-hidden group">
+            <div className="glass-panel p-5 sm:p-6 md:p-8 rounded-lg border border-white/10 hover:border-lime/30 transition-colors h-full flex flex-col relative overflow-hidden group">
               <div className="absolute inset-0 noise opacity-20" />
 
               <div className="relative z-10 flex flex-col h-full">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel border border-lime/30 w-fit mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel border border-lime/30 w-fit mb-4 md:mb-6">
                   <div className="w-2 h-2 rounded-full bg-lime animate-pulse" />
                   <span className="terminal-text text-lime text-xs uppercase tracking-wider">
                     {featuredCase.type}
                   </span>
                 </div>
 
-                <div className="mb-8">
+                <div className="mb-6 md:mb-8">
                   <div className="terminal-text text-slate/60 text-xs uppercase tracking-wider mb-3">
                     Timeline Comparison
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="glass-panel px-4 py-3 rounded border border-slate/30">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+                    <div className="glass-panel px-3 sm:px-4 py-2.5 sm:py-3 rounded border border-slate/30 w-full sm:w-auto">
                       <div className="terminal-text text-slate/70 text-xs mb-1">Other Agencies</div>
-                      <div className="text-xl font-mono text-slate line-through">
+                      <div className="text-lg sm:text-xl font-mono text-slate line-through">
                         {featuredCase.before}
                       </div>
                     </div>
 
                     <motion.div
-                      className="flex-shrink-0"
+                      className="flex-shrink-0 self-center rotate-90 sm:rotate-0"
                       animate={{ x: [0, 5, 0] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
                     >
                       <svg
-                        className="w-8 h-8 text-lime"
+                        className="w-6 h-6 sm:w-8 sm:h-8 text-lime"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -198,16 +198,16 @@ export function SocialProofSection() {
                       </svg>
                     </motion.div>
 
-                    <div className="glass-panel px-4 py-3 rounded border border-lime/50 bg-lime/5">
+                    <div className="glass-panel px-3 sm:px-4 py-2.5 sm:py-3 rounded border border-lime/50 bg-lime/5 w-full sm:w-auto">
                       <div className="terminal-text text-lime text-xs mb-1">Hyfy Delivered</div>
-                      <div className="text-2xl font-mono font-bold text-lime">
+                      <div className="text-xl sm:text-2xl font-mono font-bold text-lime">
                         {featuredCase.after}
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <blockquote className="text-lg text-slate mb-6 flex-grow relative">
+                <blockquote className="text-base sm:text-lg text-slate mb-6 flex-grow relative">
                   <div className="absolute -left-2 top-0 text-4xl text-lime/20 font-serif">
                     &ldquo;
                   </div>
@@ -217,8 +217,8 @@ export function SocialProofSection() {
                   </div>
                 </blockquote>
 
-                <div className="flex items-center gap-2 text-lime mb-4">
-                  <CheckCircle className="w-5 h-5" />
+                <div className="flex items-start sm:items-center gap-2 text-lime mb-4">
+                  <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0" />
                   <span className="text-sm font-medium">{featuredCase.result}</span>
                 </div>
 
@@ -238,7 +238,7 @@ export function SocialProofSection() {
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.7 + index * 0.15 }}
             >
-              <div className="glass-panel p-6 rounded-lg border border-white/10 hover:border-lime/30 transition-colors h-full relative overflow-hidden group">
+              <div className="glass-panel p-5 sm:p-6 rounded-lg border border-white/10 hover:border-lime/30 transition-colors h-full relative overflow-hidden group">
                 <motion.div
                   className="absolute inset-0 h-px bg-gradient-to-r from-transparent via-lime/30 to-transparent"
                   animate={{ y: ['0%', '100%'] }}

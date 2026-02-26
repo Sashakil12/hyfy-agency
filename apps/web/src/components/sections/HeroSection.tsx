@@ -80,7 +80,7 @@ export function HeroSection() {
             to AI-native apps—we ship working products, not endless prototypes.
           </p>
           <p className="text-slate/70 text-sm md:text-base terminal-text uppercase tracking-[0.2em]">
-            {'>'} Trusted by 50+ companies to turn ideas into revenue
+            {'>'} Trusted by companies to turn ideas into revenue
           </p>
         </motion.div>
 
@@ -122,7 +122,7 @@ export function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.8 }}
         >
-          <span>50+ PROJECTS SHIPPED</span>
+          <span>9 PROJECTS SHIPPED</span>
           <span>•</span>
           <span>100% CLIENT RETENTION</span>
           <span>•</span>

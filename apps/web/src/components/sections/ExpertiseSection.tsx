@@ -155,7 +155,7 @@ export function ExpertiseSection() {
         </motion.div>
 
         {/* 3D Carousel */}
-        <div className="relative h-[550px] md:h-[600px] flex items-center justify-center">
+        <div className="relative h-[520px] sm:h-[550px] md:h-[600px] flex items-center justify-center px-12 md:px-0">
           <div
             className="relative w-full h-full flex items-center justify-center"
             onTouchStart={handleTouchStart}
@@ -193,14 +193,15 @@ export function ExpertiseSection() {
                     }}
                     style={{ zIndex, transformStyle: 'preserve-3d' }}
                   >
-                    <div className="relative w-[85vw] md:w-[700px] lg:w-[800px]">
+                    <div className="relative w-[80vw] sm:w-[85vw] md:w-[700px] lg:w-[800px]">
                       <div
                         className={cn(
-                          'relative h-[400px] md:h-[500px] p-6 md:p-8 rounded-xl overflow-hidden cursor-pointer group backdrop-blur-xl',
+                          'relative p-5 sm:p-6 md:p-8 rounded-xl overflow-hidden cursor-pointer group backdrop-blur-xl',
                           'border transition-all duration-500',
                           isActive
                             ? 'border-lime/40 shadow-[0_0_60px_rgba(136,255,102,0.15)] bg-gradient-to-br from-white/[0.08] to-white/[0.02]'
-                            : 'border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent hover:border-lime/20'
+                            : 'border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent hover:border-lime/20',
+                          isActive ? 'min-h-[420px] sm:min-h-[440px] md:min-h-[480px]' : 'h-[300px] sm:h-[320px] md:h-[380px]'
                         )}
                       >
                         {/* Animated gradient border glow */}
@@ -212,12 +213,12 @@ export function ExpertiseSection() {
 
                         {/* Content */}
                         <div className="relative z-10 flex flex-col h-full">
-                          <div className="mb-6 relative inline-block w-fit">
+                          <div className="mb-4 md:mb-6 relative inline-block w-fit">
                             <motion.div
-                              className="w-20 h-20 rounded-xl bg-gradient-to-br from-lime/20 to-lime/5 border border-lime/30 flex items-center justify-center relative overflow-hidden backdrop-blur-sm"
+                              className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-lime/20 to-lime/5 border border-lime/30 flex items-center justify-center relative overflow-hidden backdrop-blur-sm"
                               whileHover={{ scale: 1.05 }}
                             >
-                              <item.icon className="w-10 h-10 text-lime relative z-10" />
+                              <item.icon className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-lime relative z-10" />
                               <div className="absolute inset-0 bg-gradient-to-br from-lime/10 to-transparent" />
                             </motion.div>
 
@@ -234,18 +235,18 @@ export function ExpertiseSection() {
                             />
                           </div>
 
-                          <h3 className="text-3xl md:text-4xl font-display font-bold uppercase tracking-wide mb-4">
+                          <h3 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold uppercase tracking-wide mb-3 md:mb-4">
                             {item.shortTitle}
                           </h3>
 
-                          <p className="text-slate text-base md:text-lg mb-6">{item.description}</p>
+                          <p className="text-slate text-sm sm:text-base md:text-lg mb-4 md:mb-6">{item.description}</p>
 
                           {isActive && (
                             <motion.div
                               initial={{ opacity: 0, y: 10 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ delay: 0.3 }}
-                              className="space-y-3 mb-auto"
+                              className="space-y-2 sm:space-y-3 mb-auto"
                             >
                               {item.details.map((detail, i) => (
                                 <motion.div
@@ -256,7 +257,7 @@ export function ExpertiseSection() {
                                   className="flex items-start gap-3"
                                 >
                                   <div className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-lime shadow-[0_0_8px_rgba(136,255,102,0.8)]" />
-                                  <span className="text-slate/90 text-sm leading-relaxed">
+                                  <span className="text-slate/90 text-xs sm:text-sm leading-relaxed">
                                     {detail}
                                   </span>
                                 </motion.div>
@@ -284,7 +285,7 @@ export function ExpertiseSection() {
                                             ? '/saas'
                                             : `/services/${item.id}`
                               }
-                              className="inline-flex items-center gap-2 text-lime hover:text-lime/80 transition-colors group mt-6 terminal-text uppercase tracking-wider text-sm"
+                              className="inline-flex items-center gap-2 text-lime hover:text-lime/80 transition-colors group mt-4 md:mt-6 terminal-text uppercase tracking-wider text-xs sm:text-sm py-2"
                             >
                               <span>Explore Service</span>
                               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -303,10 +304,10 @@ export function ExpertiseSection() {
             </AnimatePresence>
           </div>
 
-          {/* Navigation Arrows */}
+          {/* Navigation Arrows - hidden on mobile, swipe works there */}
           <motion.button
             onClick={() => navigate('prev')}
-            className="absolute left-4 z-20 p-4 glass-panel border border-lime/30 hover:border-lime/60 hover:shadow-[0_0_20px_rgba(136,255,102,0.3)] transition-all rounded-xl group"
+            className="hidden md:flex absolute left-4 z-20 p-4 glass-panel border border-lime/30 hover:border-lime/60 hover:shadow-[0_0_20px_rgba(136,255,102,0.3)] transition-all rounded-xl group"
             aria-label="Previous"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -316,7 +317,7 @@ export function ExpertiseSection() {
 
           <motion.button
             onClick={() => navigate('next')}
-            className="absolute right-4 z-20 p-4 glass-panel border border-lime/30 hover:border-lime/60 hover:shadow-[0_0_20px_rgba(136,255,102,0.3)] transition-all rounded-xl group"
+            className="hidden md:flex absolute right-4 z-20 p-4 glass-panel border border-lime/30 hover:border-lime/60 hover:shadow-[0_0_20px_rgba(136,255,102,0.3)] transition-all rounded-xl group"
             aria-label="Next"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

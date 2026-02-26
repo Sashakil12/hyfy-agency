@@ -251,7 +251,7 @@ export function JourneySection() {
                   <div className="terminal-text text-slate/60 text-xs uppercase tracking-wider mb-1">
                     Projects Delivered
                   </div>
-                  <div className="text-4xl font-bold text-white font-mono">50+</div>
+                  <div className="text-4xl font-bold text-white font-mono">9</div>
                   <div className="text-slate/70 text-sm mt-1">And counting</div>
                 </div>
               </div>
