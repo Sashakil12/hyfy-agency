@@ -1,6 +1,6 @@
 'use client'
 import { motion, useInView } from 'framer-motion'
-import { Zap, Calendar, CheckCircle } from 'lucide-react'
+import { Zap, Calendar, CheckCircle, Clock, ShieldCheck } from 'lucide-react'
 import { useRef } from 'react'
 
 import { EmailCTA } from '@/components/EmailCTA'
@@ -178,18 +178,26 @@ export function CTASection() {
             ))}
           </motion.div>
 
-          {/* Final trust bar */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ delay: 1.3 }}
-            className="flex flex-wrap justify-center items-center gap-4 pt-8 text-xs terminal-text text-slate/60"
+            className="flex flex-wrap justify-center items-center gap-6 pt-8 text-xs terminal-text text-slate/60"
           >
-            <span>⚡ 48-HOUR RESPONSE</span>
-            <span>•</span>
-            <span>🔒 NO-SPAM GUARANTEE</span>
-            <span>•</span>
-            <span>💯 FREE CONSULTATION</span>
+            <div className="flex items-center gap-1.5">
+              <Clock className="w-3 h-3 text-lime/70" />
+              <span>48-HOUR RESPONSE</span>
+            </div>
+            <span className="opacity-30">•</span>
+            <div className="flex items-center gap-1.5">
+              <ShieldCheck className="w-3 h-3 text-lime/70" />
+              <span>NO-SPAM GUARANTEE</span>
+            </div>
+            <span className="opacity-30">•</span>
+            <div className="flex items-center gap-1.5">
+              <CheckCircle className="w-3 h-3 text-lime/70" />
+              <span>FREE CONSULTATION</span>
+            </div>
           </motion.div>
         </motion.div>
       </div>
