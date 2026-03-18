@@ -4,10 +4,15 @@ import '../styles/global.css'
 interface Props {
   title: string
   description?: string
+  image?: string
   showNav?: boolean
+  canonicalUrl?: string
 }
 
-const { title, description, showNav = true } = Astro.props
+const { title, description, image, showNav = true, canonicalUrl } = Astro.props
+const siteUrl = 'https://dev.hyfy.ltd'
+const ogImage = image || '/og-default.png'
+const canonical = canonicalUrl || Astro.url.href
 ---
 
 <!doctype html>
@@ -18,7 +23,42 @@ const { title, description, showNav = true } = Astro.props
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description || "Hyfy Agency - Digital Transformation Experts"} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Hyfy Agency" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description || "Hyfy Agency - Digital Transformation Experts"} />
+    <meta name="twitter:image" content={ogImage} />
+
     <title>{title}</title>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Hyfy Agency",
+      "url": "https://dev.hyfy.ltd",
+      "logo": "https://dev.hyfy.ltd/logo.png",
+      "description": "Full-stack development agency with AI-assisted workflows. Build custom ERPs, AI-native apps, SaaS products, and e-commerce platforms 65% faster to MVP.",
+      "sameAs": [
+        "https://twitter.com/hyfyagency",
+        "https://linkedin.com/company/hyfyagency"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "url": "https://dev.hyfy.ltd/contact"
+      }
+    })} />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2KXV67YC53"></script>
