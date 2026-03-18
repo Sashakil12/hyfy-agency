@@ -1,13 +1,13 @@
 ---
-import GlobalHeader from '../components/GlobalHeader'
+import '../styles/global.css'
 
 interface Props {
   title: string
   description?: string
+  showNav?: boolean
 }
 
-const { title, description } = Astro.props
-const currentPath = Astro.url.pathname
+const { title, description, showNav = true } = Astro.props
 ---
 
 <!doctype html>
@@ -20,21 +20,31 @@ const currentPath = Astro.url.pathname
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2KXV67YC53"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-2KXV67YC53');
+    </script>
+
     <!-- Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body class="bg-[#050505] text-white min-h-screen">
-    <GlobalHeader client:load currentPath={currentPath} />
+    <slot name="header" />
 
     <!-- Content with padding for fixed header -->
-    <main class="pt-20">
+    <main class={showNav ? "pt-20" : ""}>
       <slot />
     </main>
 
@@ -45,6 +55,14 @@ const currentPath = Astro.url.pathname
 
       h1, h2, h3, h4, h5, h6 {
         font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+
+      .font-orbitron {
+        font-family: 'Orbitron', sans-serif;
+      }
+
+      .font-rajdhani {
+        font-family: 'Rajdhani', sans-serif;
       }
     </style>
   </body>

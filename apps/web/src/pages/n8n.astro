@@ -1,63 +1,19 @@
 ---
-import '../styles/global.css'
+import GlobalLayout from '../layouts/GlobalLayout.astro'
+import GlobalHeader from '../components/GlobalHeader'
 import { N8nHeroSection } from '@/components/sections/N8nHeroSection'
 import { N8nFeaturesSection } from '@/components/sections/N8nFeaturesSection'
 import { N8nCTASection } from '@/components/sections/N8nCTASection'
 import { Footer } from '@/components/Footer'
-import GlobalHeader from '../components/GlobalHeader'
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="generator" content={Astro.generator} />
-
-		{/* Primary Meta Tags */}
-		<title>n8n Services | Hyfy Agency - Custom Workflow Automation</title>
-		<meta name="title" content="n8n Services | Hyfy Agency - Custom Workflow Automation" />
-		<meta name="description" content="Expert n8n services: custom workflow development, setup, training, and custom node development. We build automations that save you time." />
-		<meta name="keywords" content="n8n services, n8n development, workflow automation, n8n consulting, n8n training, custom n8n nodes, business process automation" />
-		<meta name="author" content="Hyfy Agency" />
-		<meta name="robots" content="index, follow" />
-		<meta name="language" content="English" />
-
-		{/* Open Graph / Facebook */}
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://hyfy.agency/n8n" />
-		<meta property="og:title" content="n8n Services | Hyfy Agency - Custom Workflow Automation" />
-		<meta property="og:description" content="Expert n8n services: custom workflow development, setup, training, and custom node development. We build automations that save you time." />
-		<meta property="og:image" content="https://hyfy.agency/og-image.jpg" />
-		<meta property="og:image:width" content="1200" />
-		<meta property="og:image:height" content="630" />
-		<meta property="og:site_name" content="Hyfy Agency" />
-		<meta property="og:locale" content="en_US" />
-
-		{/* Twitter */}
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:url" content="https://hyfy.agency/n8n" />
-		<meta name="twitter:title" content="n8n Services | Hyfy Agency - Custom Workflow Automation" />
-		<meta name="twitter:description" content="Expert n8n services: custom workflow development, setup, training, and custom node development. We build automations that save you time." />
-		<meta name="twitter:image" content="https://hyfy.agency/og-image.jpg" />
-
-		{/* Additional Meta Tags */}
-		<meta name="theme-color" content="#050505" />
-		<meta name="msapplication-TileColor" content="#050505" />
-		<link rel="canonical" href="https://hyfy.agency/n8n" />
-
-		{/* Futuristic Fonts - Orbitron + Rajdhani */}
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-	</head>
-	<body>
-		<GlobalHeader client:load currentPath="/n8n" />
-		<div class="pt-20">
-			<N8nHeroSection client:load />
-			<N8nFeaturesSection client:load />
-			<N8nCTASection client:load />
-			<Footer client:load />
-		</div>
-	</body>
-</html>
+<GlobalLayout 
+	title="n8n Services | Hyfy Agency - Custom Workflow Automation"
+	description="Expert n8n services: custom workflow development, setup, training, and custom node development. We build automations that save you time."
+>
+	<GlobalHeader client:load slot="header" currentPath="/n8n" />
+	<N8nHeroSection client:load />
+	<N8nFeaturesSection client:load />
+	<N8nCTASection client:load />
+	<Footer client:load />
+</GlobalLayout>

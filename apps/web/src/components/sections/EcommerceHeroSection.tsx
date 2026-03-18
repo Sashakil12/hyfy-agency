@@ -142,7 +142,7 @@ export function EcommerceHeroSection() {
                     <div className="relative h-40 overflow-hidden bg-white/5">
                       <img
                         src="/product-photo-612x612.jpg"
-                        alt="Premium Headphones"
+                        alt="Organic Toner Product"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/20 to-transparent" />
@@ -153,32 +153,31 @@ export function EcommerceHeroSection() {
                       <div className="flex items-start justify-between">
                         <div>
                           <h3 className="text-sm font-display font-bold text-white uppercase tracking-wide">
-                            Premium Headphones
+                            Organic Toner
                           </h3>
-                          <p className="text-xs text-slate/70 mt-1">Studio Quality Sound</p>
+                          <p className="text-xs text-slate/70 mt-1">Natural Skin Care</p>
                         </div>
-                        <div className="text-lg font-display font-bold text-lime">$299</div>
+                        <div className="text-lg font-display font-bold text-lime">$45</div>
                       </div>
 
-                      {/* Color Options */}
+                      {/* Size Selection */}
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-slate/60 uppercase tracking-wider">Colors:</span>
+                        <span className="text-xs text-slate/60 uppercase tracking-wider">Size:</span>
                         <div className="flex gap-2">
-                          <motion.div
-                            className="w-6 h-6 rounded-full bg-white/10 border border-lime/40 cursor-pointer"
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                          />
-                          <motion.div
-                            className="w-6 h-6 rounded-full bg-lime/20 border border-white/10 cursor-pointer"
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                          />
-                          <motion.div
-                            className="w-6 h-6 rounded-full bg-amber/20 border border-white/10 cursor-pointer"
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                          />
+                          {['4oz', '8oz', '16oz'].map((size, idx) => (
+                            <motion.div
+                              key={size}
+                              className={`px-2 py-1 rounded border text-[10px] font-bold uppercase tracking-tighter cursor-pointer transition-colors ${
+                                idx === 1 
+                                  ? 'border-lime/60 bg-lime/10 text-lime' 
+                                  : 'border-white/10 bg-white/5 text-slate/60 hover:border-white/20'
+                              }`}
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              {size}
+                            </motion.div>
+                          ))}
                         </div>
                       </div>
                     </div>
