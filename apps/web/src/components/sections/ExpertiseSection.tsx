@@ -167,7 +167,7 @@ export function ExpertiseSection() {
               {getVisibleCards().map(({ item, offset, index }) => {
                 const isActive = offset === 0
                 const scale = isActive ? 1 : offset === -1 || offset === 1 ? 0.85 : 0.7
-                const opacity = isActive ? 1 : Math.abs(offset) === 1 ? 0.6 : 0.3
+                const opacity = isActive ? 1 : Math.abs(offset) === 1 ? 0.25 : 0.1
                 const zIndex = 10 - Math.abs(offset)
                 const xOffset = isMobile ? offset * 95 : offset * 380
                 const rotateY = offset * 15
@@ -184,7 +184,7 @@ export function ExpertiseSection() {
                       rotateY,
                       filter: isActive
                         ? 'blur(0px) brightness(1)'
-                        : `blur(${Math.abs(offset) * 2}px) brightness(0.7)`,
+                        : `blur(${Math.abs(offset) * 6}px) brightness(0.5)`,
                     }}
                     exit={{ opacity: 0, scale: 0.8 }}
                     transition={{
