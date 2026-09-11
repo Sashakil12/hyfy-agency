@@ -4,8 +4,30 @@ import GlobalHeader from '../components/GlobalHeader'
 import { EcommerceHeroSection } from '@/components/sections/EcommerceHeroSection'
 import { EcommerceFeaturesSection } from '@/components/sections/EcommerceFeaturesSection'
 import { EcommerceStackSection } from '@/components/sections/EcommerceStackSection'
+import { CaseStudySection } from '@/components/sections/CaseStudySection'
 import { EcommerceCTASection } from '@/components/sections/EcommerceCTASection'
 import { Footer } from '@/components/Footer'
+
+const ecommerceStudies = [
+	{
+		title: 'HyFy',
+		subtitle: 'Cross-Border Shopping — Quote to Doorstep',
+		description: 'Paste a link from a US, UK or EU store and see the landed cost in taka before you commit. The real product is a pricing engine: nine cost components per line item, each traceable to an admin-editable rate table. Freight is not quoted upfront — it is invoiced after the parcel is weighed at the US warehouse.',
+		stack: ['Express 5', 'Prisma 5', 'PostgreSQL', 'Next.js 10', 'Redis'],
+		results: [
+			'82 routes across 11 routers, 85 controllers, 13 Prisma models',
+			'15 order states from pending_payment to delivered',
+			'Written end-to-end by one developer (110/116 server, 219/219 client commits)',
+		],
+		images: [
+			{ src: '/portfolio/hyfy/01-landing-hero.png', alt: 'Landing page with quote box' },
+			{ src: '/portfolio/hyfy/02-landed-cost-breakdown.png', alt: 'Full landed cost breakdown per item' },
+			{ src: '/portfolio/hyfy/03-seller-offers.png', alt: 'Every seller offer with shipping options' },
+			{ src: '/portfolio/hyfy/04-admin-order-pipeline.png', alt: 'Admin order pipeline with 15 states' },
+		],
+		tags: ['Cross-Border', 'Pricing Engine', 'API'],
+	},
+]
 ---
 
 <GlobalLayout 
@@ -16,6 +38,14 @@ import { Footer } from '@/components/Footer'
 	<EcommerceHeroSection client:load />
 	<EcommerceFeaturesSection client:load />
 	<EcommerceStackSection client:load />
+	<CaseStudySection
+		client:load
+		label="Case_Study // ECOMMERCE_IN_PRODUCTION"
+		heading="Storefronts"
+		headingAccent="That Convert"
+		description="Production e-commerce platforms — cross-border pricing engines, landed-cost calculators, and multi-seller aggregation."
+		studies={ecommerceStudies}
+	/>
 	<EcommerceCTASection client:load />
 	<Footer client:load />
 </GlobalLayout>

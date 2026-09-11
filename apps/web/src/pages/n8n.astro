@@ -3,8 +3,44 @@ import GlobalLayout from '../layouts/GlobalLayout.astro'
 import GlobalHeader from '../components/GlobalHeader'
 import { N8nHeroSection } from '@/components/sections/N8nHeroSection'
 import { N8nFeaturesSection } from '@/components/sections/N8nFeaturesSection'
+import { CaseStudySection } from '@/components/sections/CaseStudySection'
 import { N8nCTASection } from '@/components/sections/N8nCTASection'
 import { Footer } from '@/components/Footer'
+
+const n8nStudies = [
+	{
+		title: 'Multi-Agent AI Assistant',
+		subtitle: 'Telegram Router + Google Specialist Agents',
+		description: 'A multi-tenant AI assistant on Telegram where a router agent interprets each request and delegates to the specialist that owns it — email, calendar, contacts, research. The real fix was making multi-tenancy real: each user\'s OAuth token is resolved and refreshed at runtime, so actions are auditable and correctly attributed.',
+		stack: ['n8n', 'Telegram Bot API', 'Google APIs', 'Pinecone'],
+		results: [
+			'27 workflows: 6 agents, 9 API helpers, 6 OAuth/onboarding flows',
+			'Per-user OAuth token resolution — not a shared account',
+			'Production integration, used daily over Telegram',
+		],
+		images: [
+			{ src: '/portfolio/ai-assistant/01-n8n-agent-canvas.png', alt: 'n8n agent canvas with router and sub-agents' },
+		],
+		tags: ['Multi-Agent', 'OAuth', 'RAG'],
+	},
+	{
+		title: 'Marketplace Scraper',
+		subtitle: '5,000+ Pages Every 6 Hours on BullMQ + Redis',
+		description: 'A lead-generation engine where each page is an independent job in a BullMQ queue. Failed pages retry individually; dead-lettered pages are inspectable; a run that dies halfway does not lose or duplicate what it already collected. Fault tolerance is the architecture, not a feature.',
+		stack: ['Node.js', 'BullMQ', 'Redis', 'MongoDB', 'Puppeteer'],
+		results: [
+			'5,000+ pages processed every 6 hours',
+			'30+ billable hours per seat per week recovered for a 5-person team',
+			'Per-page granularity — not per-run',
+		],
+		images: [
+			{ src: '/portfolio/scraper/01-us-coverage-map.png', alt: 'US coverage map with search origins' },
+			{ src: '/portfolio/scraper/05-architecture.png', alt: 'Full pipeline architecture' },
+			{ src: '/portfolio/scraper/02-api-surface.png', alt: 'API surface — 32 operations' },
+		],
+		tags: ['BullMQ', 'Scraping', 'Fault-Tolerant'],
+	},
+]
 ---
 
 <GlobalLayout 
@@ -14,6 +50,14 @@ import { Footer } from '@/components/Footer'
 	<GlobalHeader client:load slot="header" currentPath="/n8n" />
 	<N8nHeroSection client:load />
 	<N8nFeaturesSection client:load />
+	<CaseStudySection
+		client:load
+		label="Case_Study // AUTOMATION_IN_PRODUCTION"
+		heading="Workflows"
+		headingAccent="That Run Daily"
+		description="Production automation — multi-agent AI assistants and fault-tolerant scraping engines running on n8n, BullMQ, and Redis."
+		studies={n8nStudies}
+	/>
 	<N8nCTASection client:load />
 	<Footer client:load />
 </GlobalLayout>

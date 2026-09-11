@@ -4,8 +4,66 @@ import GlobalHeader from '../components/GlobalHeader'
 import { ErpHeroSection } from '@/components/sections/ErpHeroSection'
 import { ErpFeaturesSection } from '@/components/sections/ErpFeaturesSection'
 import { ErpIndustriesSection } from '@/components/sections/ErpIndustriesSection'
+import { CaseStudySection } from '@/components/sections/CaseStudySection'
 import { ErpCTASection } from '@/components/sections/ErpCTASection'
 import { Footer } from '@/components/Footer'
+
+const erpStudies = [
+	{
+		title: 'Kisti Bondhu',
+		subtitle: 'Multi-Outlet Installment-Credit ERP — 400 Users, 50 Stores',
+		description: 'An Electron desktop ERP running the installment-credit trade for electronics dealerships. Each sale carries a guarantor, a verified NID, and a serial-tracked unit. The P&L shows booked profit beside a bad-debt worst case — the distinction that matters when extending credit across 50 outlets.',
+		stack: ['React 19', 'Electron 43', 'Apollo GraphQL', 'MongoDB', 'Express 5'],
+		results: [
+			'400 B2B users across 50 outlets in production',
+			'Full CASL permission matrix with implied read resolution',
+			'1,059 commits, 1,230 source files, 104 documentation pages',
+		],
+		images: [
+			{ src: '/portfolio/kisti-bondhu/01-business-overview.png', alt: 'Lifetime P&L with bad-debt sensitivity' },
+			{ src: '/portfolio/kisti-bondhu/04-create-invoice.png', alt: 'Installment invoice with guarantor and serial tracking' },
+			{ src: '/portfolio/kisti-bondhu/02-outlet-switcher.png', alt: 'Multi-outlet switcher across 5 real outlets' },
+			{ src: '/portfolio/kisti-bondhu/06-add-customer.png', alt: 'Customer KYC wizard with NID verification' },
+		],
+		tags: ['Electron', 'Multi-Outlet', 'GraphQL'],
+	},
+	{
+		title: 'Murgi ERP',
+		subtitle: 'Poultry Trading ERP — Wholesale Chicken Business',
+		description: 'An ERP built for a local wholesale chicken trading business — used by people who have spent zero years in school. The interface was designed for extreme ease of adoption: large touch targets, Bengali-first UI, and workflows that match how the business actually operates. Inventory tracking, sales, purchasing, and accounts in one system.',
+		stack: ['Node.js', 'MongoDB', 'Express', 'Electron'],
+		results: [
+			'Adopted by non-technical workers with zero formal education',
+			'Full ERP: inventory, sales, purchasing, accounts',
+			'Bengali-first interface with intuitive workflows',
+		],
+		images: [
+			{ src: '/portfolio/murgi-erp/Screenshot from 2026-08-21 22-49-48.png', alt: 'Murgi ERP dashboard' },
+			{ src: '/portfolio/murgi-erp/Screenshot from 2026-08-21 22-51-04.png', alt: 'Sales module' },
+			{ src: '/portfolio/murgi-erp/Screenshot from 2026-08-21 22-51-27.png', alt: 'Inventory management' },
+			{ src: '/portfolio/murgi-erp/Screenshot from 2026-08-21 22-52-01.png', alt: 'Purchasing module' },
+		],
+		tags: ['Electron', 'Bengali-First', 'Wholesale'],
+	},
+	{
+		title: 'POS 26',
+		subtitle: 'Multi-Tenant POS SaaS — Go + Next.js',
+		description: 'A multi-tenant point-of-sale SaaS rebuilt from PHP to Go. ~185,000 lines across ~60 domain packages — inventory, sales, purchasing, payroll, payments, warranty, couriers — on PostgreSQL with Casbin RBAC, holding sub-100ms responses. Fixed three live data-integrity defects the previous system shipped as "complete."',
+		stack: ['Go', 'Next.js 16', 'PostgreSQL 15', 'React Native', 'Turborepo'],
+		results: [
+			'81 database tables, every business table tenant-scoped',
+			'56 tests green, driven end-to-end over HTTP',
+			'Mobile POS client with thermal printer support (TSPL/ESC-POS/ZPL)',
+		],
+		images: [
+			{ src: '/portfolio/pos26/01-dashboard-multistore.png', alt: 'Multi-store dashboard — visual proof of multi-tenancy' },
+			{ src: '/portfolio/pos26/02-pos-terminal.png', alt: 'POS terminal with barcode scanning' },
+			{ src: '/portfolio/pos26/04-vat-reporting.png', alt: 'VAT reporting' },
+			{ src: '/portfolio/pos26/05-customer-analytics.png', alt: 'Customer analytics' },
+		],
+		tags: ['Go', 'Multi-Tenant', 'POS'],
+	},
+]
 ---
 
 <GlobalLayout 
@@ -16,6 +74,14 @@ import { Footer } from '@/components/Footer'
 	<ErpHeroSection client:load />
 	<ErpFeaturesSection client:load />
 	<ErpIndustriesSection client:load />
+	<CaseStudySection
+		client:load
+		label="Case_Study // ERP_IN_PRODUCTION"
+		heading="Systems Running"
+		headingAccent="Real Businesses"
+		description="Production ERPs serving thousands of users — from installment-credit dealerships to multi-tenant POS platforms."
+		studies={erpStudies}
+	/>
 	<ErpCTASection client:load />
 	<Footer client:load />
 </GlobalLayout>
