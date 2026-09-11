@@ -55,11 +55,11 @@ const useCases = [
   },
   {
     icon: CheckCircle2,
-    title: 'Authorization Bug Fix — Open Source',
+    title: 'AI Content Pipeline — Facebook Auto-Poster',
     description:
-      'Found a bug in casbin-drizzle-adapter that deleted every policy rule sharing a subject. Fixed upstream with a 29-test regression suite. Published as v1.2.0 on npm.',
-    outcome: '19 tests failed → 29 passed',
-    features: ['Root cause analysis', 'Regression test suite', 'Merged & published upstream'],
+      'Runs unattended every morning: pulls fresh content from Payload CMS, has Claude write a storytelling Bengali caption, generates matching AI media, and publishes to a Facebook Page — image or video, decided per run.',
+    outcome: 'Fully autonomous daily pipeline',
+    features: ['Claude caption generation', 'AI image + video media', 'Custom n8n Higgsfield node'],
   },
 ]
 
