@@ -7,48 +7,48 @@ import { StatCounter } from '@/components/StatCounter'
 
 const stats = [
   {
-    value: 65,
+    value: 75,
     suffix: '%',
-    label: 'Faster Delivery',
-    icon: Clock,
+    label: 'Workload Reduced',
+    icon: TrendingUp,
     color: 'from-lime to-cyan-400',
   },
   {
-    value: 9,
-    suffix: '',
-    label: 'Projects Shipped',
-    icon: Award,
+    value: 400,
+    suffix: '+',
+    label: 'Users in Production',
+    icon: Users,
     color: 'from-lime to-lime',
   },
   {
-    value: 100,
-    suffix: '%',
-    label: 'Client Retention',
-    icon: Users,
+    value: 30,
+    suffix: 'h',
+    label: 'Saved Per Week Per Seat',
+    icon: Clock,
     color: 'from-lime to-emerald-400',
   },
 ]
 
 const featuredCase = {
-  type: 'AI-Native SaaS Platform',
-  before: '8 months quoted',
-  after: '10 weeks delivered',
+  type: 'Multi-Tenant POS SaaS',
+  before: 'PHP codebase — transfers moved no stock, reports drifted',
+  after: 'Go + Next.js, sub-100ms, mobile POS, in production',
   quote:
-    'We interviewed 5 agencies. Hyfy was the only one confident enough to commit to a 10-week timeline—and they actually delivered. Our product is live and generating revenue.',
-  client: 'SaaS Founder, TechStartup Inc.',
-  result: 'Live in production, first paying customers within 2 weeks',
+    'The old system shipped as "complete" but silently destroyed inventory on transfers, deducted stock on draft sales, and computed profit against the wrong price. The rebuild fixed all three, added a mobile POS client, and serves multiple merchants from one codebase.',
+  client: 'POS 26 — Serving Real Merchants',
+  result: 'Multi-store, multi-warehouse operations with concurrent transactions',
 }
 
 const miniCases = [
   {
-    type: 'Manufacturing ERP',
-    title: 'Industrial Co.',
-    result: '70% reduction in training time',
+    type: 'Installment-Credit ERP',
+    title: 'Kisti Bondhu — 50 Stores, 400 Users',
+    result: 'Adopted by staff with zero formal education — now managing credit risk across 50 outlets',
   },
   {
-    type: 'E-commerce Platform',
-    title: 'D2C Brand',
-    result: 'Launched in 6 weeks, $50K first month',
+    type: 'AI Automation',
+    title: 'Flyer Parser — Gemini-Powered',
+    result: '~75% manual workload cut for a 10,000+ MAU retail app',
   },
 ]
 
@@ -282,7 +282,7 @@ export function SocialProofSection() {
             Trusted by ambitious teams across industries
           </p>
           <div className="flex flex-wrap justify-center gap-8 opacity-40">
-            {['Manufacturing', 'SaaS', 'E-commerce', 'Logistics', 'Healthcare'].map((industry) => (
+            {['Retail & POS', 'Fintech', 'E-Commerce', 'AI Automation', 'Subscription Commerce'].map((industry) => (
               <span key={industry} className="text-slate text-sm">
                 {industry}
               </span>

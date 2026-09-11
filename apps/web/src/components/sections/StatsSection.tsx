@@ -5,10 +5,10 @@ import { useRef } from 'react'
 import { StatCounter } from '@/components/StatCounter'
 
 const stats = [
-  { value: 9, label: 'Projects Shipped', suffix: '', color: 'lime' },
-  { value: 65, label: 'Faster to MVP', suffix: '%', color: 'lime' },
-  { value: 100, label: 'Client Retention', suffix: '%', color: 'lime' },
-  { value: 6, label: 'Weeks Average Delivery', suffix: '', color: 'lime' },
+  { value: 400, label: 'Users in Production', suffix: '+', color: 'lime' },
+  { value: 75, label: 'Workload Reduced', suffix: '%', color: 'lime' },
+  { value: 30, label: 'Hours Saved Per Week Per Seat', suffix: 'h+', color: 'lime' },
+  { value: 185, label: 'K Lines of Production Code', suffix: 'K+', color: 'lime' },
 ]
 
 export function StatsSection() {
