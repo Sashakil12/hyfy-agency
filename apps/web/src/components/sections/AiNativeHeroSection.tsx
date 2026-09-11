@@ -61,7 +61,7 @@ export function AiNativeHeroSection() {
               transition={{ delay: 0.8 }}
             >
               Don't just add AI to your app. Build AI into the core. We create intelligent
-              applications 65% faster using our AI-assisted workflows.
+              applications that cut workloads by 75% and serve 10,000+ users.
             </motion.p>
 
             <motion.div
@@ -99,9 +99,9 @@ export function AiNativeHeroSection() {
               transition={{ delay: 1.2 }}
             >
               {[
-                { value: '65%', label: 'Faster to MVP' },
-                { value: '50+', label: 'AI Models Deployed' },
-                { value: '24/7', label: 'AI Uptime' },
+                { value: '75%', label: 'Workload Cut' },
+                { value: '27', label: 'Agent Workflows' },
+                { value: '10K+', label: 'MAU Served' },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
                   <div className="text-2xl md:text-3xl font-display font-bold text-lime">

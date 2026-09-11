@@ -14,52 +14,52 @@ import { GlassCard } from '@/components/GlassCard'
 
 const useCases = [
   {
-    icon: BarChart3,
-    title: 'AI-Powered Analytics Dashboard',
+    icon: FileText,
+    title: 'AI Flyer Parser — Retail Automation',
     description:
-      'Real-time business intelligence with natural language queries. Ask questions, get insights instantly.',
-    outcome: '80% faster reporting',
-    features: ['Natural language queries', 'Real-time predictions', 'Auto-generated insights'],
+      'Thousands of promotional flyer pages turned into structured product data using Gemini. Two AI passes per item: parse the flyer, then score the match against the catalogue.',
+    outcome: '~75% workload reduced',
+    features: ['Gemini Pro parsing', 'Auto-approval rules', 'Discount resolution from free text'],
   },
   {
     icon: MessageSquare,
-    title: 'Customer Support AI Agent',
+    title: 'Multi-Agent AI Assistant — Telegram',
     description:
-      '24/7 intelligent support that learns from your docs. Reduce response time and improve satisfaction.',
-    outcome: '60% ticket reduction',
-    features: ['Multi-channel support', 'Knowledge base trained', 'Human handoff'],
+      'A router agent interprets each request and delegates to the specialist that owns it — email, calendar, contacts, research — each with its own prompt, tools, and Pinecone knowledge base.',
+    outcome: '27 workflows, 6 agents',
+    features: ['Per-user OAuth resolution', 'Specialist delegation', 'Pinecone RAG'],
   },
   {
-    icon: FileText,
-    title: 'Document Intelligence Platform',
+    icon: BarChart3,
+    title: 'Marketplace Scraper — Lead Generation',
     description:
-      'Extract insights from contracts, reports, and forms. Automate document processing with AI.',
-    outcome: '90% processing accuracy',
-    features: ['OCR extraction', 'Semantic search', 'Workflow automation'],
+      'BullMQ + Redis engine processing 5,000+ pages every six hours. Per-page retries and dead-lettering — a run that dies halfway does not lose or duplicate what it already collected.',
+    outcome: '30h/week saved per seat',
+    features: ['Per-page fault tolerance', 'Source isolation', 'Fuzzy deduplication'],
   },
   {
     icon: Users,
-    title: 'HR & Talent Intelligence',
+    title: 'Customer KYB — Saudi Fintech',
     description:
-      'Screen candidates, match skills, and predict fit. AI-powered recruiting for faster hiring.',
-    outcome: '50% time-to-hire reduction',
-    features: ['Resume parsing', 'Skill matching', 'Interview assistance'],
+      'Company onboarding hits five external systems (commercial registry, national identity, documents, admin review, payment). Each integration behind a mock flag for testability.',
+    outcome: '8 provider integrations',
+    features: ['Wathq + Yakeen verification', 'Mock flags for testing', 'Two-factor admin auth'],
   },
   {
     icon: ShoppingCart,
-    title: 'E-Commerce AI Assistant',
+    title: 'Cross-Border Pricing Engine',
     description:
-      'Personalized recommendations, search optimization, and inventory prediction. Increase conversions.',
-    outcome: '35% conversion lift',
-    features: ['Product recommendations', 'Smart search', 'Demand forecasting'],
+      'Paste a foreign product URL, see the landed cost in local currency. Nine cost components per line item, each traceable to an admin-editable rate table.',
+    outcome: '9 cost components per item',
+    features: ['Per-store exchange rates', 'Seller offer aggregation', 'Transparent freight'],
   },
   {
     icon: CheckCircle2,
-    title: 'Compliance & Risk AI',
+    title: 'Authorization Bug Fix — Open Source',
     description:
-      'Automate compliance checks, detect anomalies, and assess risk. Stay ahead of regulations.',
-    outcome: '99% detection rate',
-    features: ['Anomaly detection', 'Compliance monitoring', 'Risk scoring'],
+      'Found a bug in casbin-drizzle-adapter that deleted every policy rule sharing a subject. Fixed upstream with a 29-test regression suite. Published as v1.2.0 on npm.',
+    outcome: '19 tests failed → 29 passed',
+    features: ['Root cause analysis', 'Regression test suite', 'Merged & published upstream'],
   },
 ]
 

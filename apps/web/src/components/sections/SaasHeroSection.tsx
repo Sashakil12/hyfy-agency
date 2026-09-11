@@ -99,9 +99,9 @@ export function SaasHeroSection() {
               transition={{ delay: 1.2 }}
             >
               {[
-                { value: '65%', label: 'Faster Launch' },
-                { value: '10+', label: 'SaaS Products' },
-                { value: '99.9%', label: 'Uptime SLA' },
+                { value: '50+', label: 'Outlets Served' },
+                { value: 'Sub-100ms', label: 'API Response' },
+                { value: '4', label: 'Apps, 1 Codebase' },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
                   <div className="text-2xl md:text-3xl font-display font-bold text-lime">
@@ -144,8 +144,8 @@ export function SaasHeroSection() {
                       </span>
                       <Zap className="w-4 h-4 text-lime" />
                     </div>
-                    <div className="text-3xl font-display font-bold text-white mb-1">247</div>
-                    <div className="text-xs text-lime">+12 this week</div>
+                    <div className="text-3xl font-display font-bold text-white mb-1">50+</div>
+                    <div className="text-xs text-lime">outlets in production</div>
                   </div>
 
                   <motion.div
@@ -155,11 +155,11 @@ export function SaasHeroSection() {
                     transition={{ delay: 1.4 }}
                   >
                     <div className="terminal-text text-xs text-lime uppercase tracking-wider mb-2">
-                      MRR_Growth
+                      API_Response
                     </div>
                     <div className="flex items-end gap-2 mb-2">
-                      <span className="text-2xl font-display font-bold text-white">$48.2k</span>
-                      <span className="text-lime text-sm mb-1">+23%</span>
+                      <span className="text-2xl font-display font-bold text-white">Sub-100ms</span>
+                      <span className="text-lime text-sm mb-1">API</span>
                     </div>
                     <div className="flex gap-1 h-8 items-end">
                       {[40, 55, 45, 70, 60, 80, 75, 90].map((h, i) => (

@@ -99,9 +99,9 @@ export function N8nHeroSection() {
               transition={{ delay: 1.2 }}
             >
               {[
-                { value: '150+', label: 'Projects Delivered' },
-                { value: '400+', label: 'Integrations Built' },
-                { value: '100%', label: 'Client Satisfaction' },
+                { value: '27', label: 'Workflows in Production' },
+                { value: '5K+', label: 'Pages / 6 Hours' },
+                { value: '30h', label: 'Saved / Week / Seat' },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
                   <div className="text-2xl md:text-3xl font-display font-bold text-lime">

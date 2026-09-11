@@ -99,8 +99,8 @@ export function ErpHeroSection() {
               transition={{ delay: 1.2 }}
             >
               {[
-                { value: '90%', label: 'User Adoption' },
-                { value: '50%', label: 'Time Saved' },
+                { value: '50', label: 'Stores in Production' },
+                { value: '400+', label: 'Users Served' },
                 { value: '24/7', label: 'Mobile Access' },
               ].map((stat, i) => (
                 <div key={i} className="text-center">

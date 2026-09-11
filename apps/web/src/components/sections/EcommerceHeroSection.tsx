@@ -99,9 +99,9 @@ export function EcommerceHeroSection() {
               transition={{ delay: 1.2 }}
             >
               {[
-                { value: '3x', label: 'Faster Load Times' },
-                { value: '40%', label: 'Higher Conversion' },
-                { value: '99.9%', label: 'Uptime' },
+                { value: '15', label: 'Order States' },
+                { value: '82', label: 'API Routes' },
+                { value: '9', label: 'Cost Components' },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
                   <div className="text-2xl md:text-3xl font-display font-bold text-lime">
