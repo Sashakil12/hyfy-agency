@@ -62,7 +62,7 @@ function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
       >
         {/* Image Gallery */}
         <div
-          className="relative h-64 sm:h-80 lg:h-auto lg:min-h-[400px] lg:max-h-[500px] bg-obsidian/80"
+          className="relative h-64 sm:h-80 lg:h-full lg:min-h-[400px] lg:max-h-[500px] bg-obsidian/80 flex items-center justify-center"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
