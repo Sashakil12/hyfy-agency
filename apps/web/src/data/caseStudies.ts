@@ -54,12 +54,12 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'pos26',
     title: 'POS 26',
-    subtitle: 'Multi-Tenant POS SaaS — Go + Next.js',
-    description: 'Most POS systems are built for one store. This one was built for a thousand — each one with its own domain, its own data, its own storefront. The previous system was PHP, leaking data between tenants, and shipping bugs as features. We rewrote it in Go: ~185,000 lines across ~60 domain packages, every business table tenant-scoped at the database level. The API holds sub-100ms responses under load because inventory, sales, and orders all sync in real time across four apps — admin, storefront, mobile, and the API — in one Turborepo monorepo. Cloudflare for SaaS handles wildcard custom domains so each merchant gets SSL terminated at the edge automatically. The mobile POS client prints to Bluetooth and network thermal printers. This is not a prototype — it is in production, serving real merchants, making real money.',
+    subtitle: 'Multi-Tenant POS SaaS — Go + Next.js + React Native',
+    description: 'Most POS systems are built for one store. This one was built for a thousand — each one with its own domain, its own data, its own storefront. The previous system was PHP, leaking data between tenants, and shipping bugs as features. We rewrote it in Go: ~185,000 lines across ~60 domain packages, every business table tenant-scoped at the database level. The API holds sub-100ms responses under load because inventory, sales, and orders all sync in real time across four apps — admin, storefront, mobile, and the API — in one Turborepo monorepo. Cloudflare for SaaS handles wildcard custom domains so each merchant gets SSL terminated at the edge automatically. The mobile POS client is a published Android app on the Google Play Store — it prints to Bluetooth and network thermal printers (TSPL/ESC-POS/ZPL), works offline, and syncs when connectivity returns. This is not a prototype — it is in production, serving real merchants, making real money.',
     stack: ['Go', 'Next.js 16', 'PostgreSQL 15', 'React Native', 'Turborepo', 'Coolify'],
     results: [
+      'Published Android app on Google Play Store — real merchants, real transactions',
       '81 database tables — every single one tenant-scoped, zero data leakage',
-      'Sub-100ms API responses in production under real merchant load',
       'Mobile POS with thermal printer support — Bluetooth, network, TSPL/ESC-POS/ZPL',
     ],
     images: [
@@ -67,7 +67,7 @@ export const caseStudies: CaseStudy[] = [
       { src: '/portfolio/pos26-real/pos_final.png', alt: 'Mobile POS client' },
       { src: '/portfolio/pos26-real/customer_analytics.png', alt: 'Customer analytics' },
     ],
-    tags: ['Multi-Tenant', 'Go', 'POS'],
+    tags: ['Play Store', 'Multi-Tenant', 'Go', 'POS'],
   },
   {
     slug: 'kisti-bondhu',
@@ -201,7 +201,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'pos26-storefront',
     title: 'POS 26 Storefront',
     subtitle: 'Block-Based Page Builder + Public Shop',
-    description: 'Every merchant wants their own storefront — but nobody wants to hire a developer every time they change a banner. We built a drag-and-drop block editor with 15+ block types: hero banners, product grids, featured collections, testimonials, CTAs. Merchants design their shop visually, publish pages with versioning and rollback, and the storefront renders them as static pages served through host-to-store domain resolution. The entire catalog is read through a public API that resolves the store from the request hostname — so each merchant\'s custom domain just works. Add a full SEO pipeline: title/description templates, JSON-LD, sitemaps — and you have a storefront that ranks, converts, and scales without a developer touching it. This is not Squarespace — it is a custom-built storefront engine that lives inside a multi-tenant POS platform.',
+    description: 'Every merchant wants their own storefront — but nobody wants to hire a developer every time they change a banner. We built a drag-and-drop block editor with 15+ block types: hero banners, product grids, featured collections, testimonials, CTAs. Merchants design their shop visually, publish pages with versioning and rollback, and the storefront renders them as static pages served through host-to-store domain resolution. The entire catalog is read through a public API that resolves the store from the request hostname — so each merchant\'s custom domain just works. Add a full SEO pipeline: title/description templates, JSON-LD, sitemaps — and you have a storefront that ranks, converts, and scales without a developer touching it. Part of the POS 26 platform alongside a published Android POS app on the Play Store. This is not Squarespace — it is a custom-built storefront engine that lives inside a multi-tenant POS platform.',
     stack: ['Next.js 16', 'Tailwind CSS v4', 'Go API', 'PostgreSQL'],
     results: [
       '15+ block types — merchants build pages visually without code',
@@ -212,7 +212,7 @@ export const caseStudies: CaseStudy[] = [
     images: [
       { src: '/portfolio/pos26-real/online_store.png', alt: 'Online store' },
     ],
-    tags: ['Headless CMS', 'Page Builder', 'Storefront'],
+    tags: ['Play Store', 'Headless CMS', 'Page Builder'],
   },
 ]
 
