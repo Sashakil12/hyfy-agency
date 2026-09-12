@@ -7,44 +7,11 @@ import { SaasArchitectureSection } from '@/components/sections/SaasArchitectureS
 import { CaseStudySection } from '@/components/sections/CaseStudySection'
 import { SaasCTASection } from '@/components/sections/SaasCTASection'
 import { Footer } from '@/components/Footer'
+import { caseStudies } from '@/data/caseStudies'
 
-const saasStudies = [
-	{
-		title: 'POS 26',
-		subtitle: 'Multi-Tenant POS SaaS — In Production',
-		description: 'A multi-tenant point-of-sale SaaS for the Bangladesh market. The Go API serves ~185,000 lines across ~60 domain packages with sub-100ms responses. Turborepo monorepo with four apps — admin, storefront, mobile, and the API — sharing one codebase. Cloudflare for SaaS handles wildcard custom domains — each merchant gets their own domain resolved to the right store at the edge, with SSL terminated automatically.',
-		stack: ['Go', 'Next.js 16', 'PostgreSQL 15', 'React Native', 'Turborepo', 'Coolify'],
-		results: [
-			'81 database tables, every business table tenant-scoped',
-			'Sub-100ms API response times in production',
-			'Mobile POS client with Bluetooth/network thermal printer support',
-		],
-		images: [
-			{ src: '/portfolio/pos26-real/dashboard.png', alt: 'Multi-store dashboard' },
-			{ src: '/portfolio/pos26-real/pos_final.png', alt: 'Mobile POS client' },
-			{ src: '/portfolio/pos26-real/customer_analytics.png', alt: 'Customer analytics' },
-		],
-		tags: ['Multi-Tenant', 'Go', 'POS'],
-	},
-	{
-		title: 'Inflow',
-		subtitle: 'Corporate Card Issuing & Spend Control API',
-		description: 'Saudi B2B fintech: companies onboard by commercial-registry lookup, get verified, subscribe to a plan, and issue virtual cards to employees with per-card limits and approval rules. 138 API endpoints on Prisma and Postgres, with eight external provider integrations each behind a mock flag for testability.',
-		stack: ['Express 4', 'Prisma 5', 'PostgreSQL', 'BullMQ', 'Redis', 'Socket.io'],
-		results: [
-			'138 documented API endpoints across 17 tag groups',
-			'8 external providers (Wathq, Yakeen, PayTabs, HyperPay, Lean Tech, ANB, Unifonic, ZATCA)',
-			'Two-factor admin auth, company-scoped owner sign-in',
-		],
-		images: [
-			{ src: '/portfolio/inflow/01-web-spend-dashboard.png', alt: 'Owner spend dashboard' },
-			{ src: '/portfolio/inflow/03-admin-cr-verification.png', alt: 'KYB — commercial registry verification' },
-			{ src: '/portfolio/inflow/04-web-card-controls.png', alt: 'Virtual card spend controls' },
-			{ src: '/portfolio/inflow/05-api-swagger.png', alt: 'API surface — 138 endpoints' },
-		],
-		tags: ['Fintech', 'KYB', 'API'],
-	},
-]
+const saasStudies = caseStudies.filter((s) =>
+	['pos26', 'inflow'].includes(s.slug)
+)
 ---
 
 <GlobalLayout 

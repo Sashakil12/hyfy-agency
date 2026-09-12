@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export interface CaseStudy {
+  slug?: string
   title: string
   subtitle: string
   description: string
@@ -28,7 +29,7 @@ function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
-  return (
+  const cardContent = (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
@@ -41,7 +42,8 @@ function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
           'rounded-xl overflow-hidden border border-white/10 hover:border-lime/30 transition-all duration-500',
           'bg-gradient-to-br from-white/[0.04] to-white/[0.01]',
           'hover:shadow-[0_0_50px_rgba(136,255,102,0.08)]',
-          'grid lg:grid-cols-2'
+          'grid lg:grid-cols-2',
+          study.slug && 'cursor-pointer'
         )}
       >
         {/* Image Gallery */}
@@ -144,6 +146,16 @@ function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
       </div>
     </motion.div>
   )
+
+  if (study.slug) {
+    return (
+      <a href={`/case-studies/${study.slug}`} className="block no-underline">
+        {cardContent}
+      </a>
+    )
+  }
+
+  return cardContent
 }
 
 export function CaseStudySection({ label, heading, headingAccent, description, studies }: CaseStudySectionProps) {

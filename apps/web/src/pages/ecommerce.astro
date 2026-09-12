@@ -7,44 +7,11 @@ import { EcommerceStackSection } from '@/components/sections/EcommerceStackSecti
 import { CaseStudySection } from '@/components/sections/CaseStudySection'
 import { EcommerceCTASection } from '@/components/sections/EcommerceCTASection'
 import { Footer } from '@/components/Footer'
+import { caseStudies } from '@/data/caseStudies'
 
-const ecommerceStudies = [
-	{
-		title: 'HyFy',
-		subtitle: 'Cross-Border Shopping — Quote to Doorstep',
-		description: 'Paste a link from a US, UK or EU store and see the landed cost in taka before you commit. The real product is a pricing engine: nine cost components per line item, each traceable to an admin-editable rate table. Freight is not quoted upfront — it is invoiced after the parcel is weighed at the US warehouse.',
-		stack: ['Express 5', 'Prisma 5', 'PostgreSQL', 'Next.js 10', 'Redis'],
-		results: [
-			'9 cost components per line item, each traceable to an admin-editable rate table',
-			'Freight invoiced post-weigh at US warehouse — no upfront guessing',
-			'15 order states from quote request to doorstep delivery',
-		],
-		images: [
-			{ src: '/portfolio/hyfy/01-landing-hero.png', alt: 'Landing page with quote box' },
-			{ src: '/portfolio/hyfy/02-landed-cost-breakdown.png', alt: 'Full landed cost breakdown per item' },
-			{ src: '/portfolio/hyfy/03-seller-offers.png', alt: 'Every seller offer with shipping options' },
-			{ src: '/portfolio/hyfy/04-admin-order-pipeline.png', alt: 'Admin order pipeline with 15 states' },
-		],
-		tags: ['Cross-Border', 'Pricing Engine', 'API'],
-	},
-	{
-		title: 'POS 26',
-		subtitle: 'Multi-Tenant E-Commerce + Integrated POS + Mobile',
-		description: 'A multi-tenant e-commerce platform where each merchant gets their own storefront with a drag-and-drop page builder, custom domain via Cloudflare for SaaS, and SSL terminated at the edge. The storefront, the POS terminal, and a React Native mobile client all run on one Go API — inventory, sales, and orders stay in sync across every channel. Cloudflare for SaaS handles wildcard custom domains so each merchant resolves to the right store automatically.',
-		stack: ['Go', 'Next.js 16', 'React Native', 'PostgreSQL 15', 'Cloudflare for SaaS', 'Turborepo'],
-		results: [
-			'Multi-tenant storefront with block-based page builder and 15+ block types',
-			'Cloudflare for SaaS — wildcard custom domains with automatic SSL per merchant',
-			'Mobile POS client with Bluetooth/network thermal printer support (TSPL/ESC-POS/ZPL)',
-		],
-		images: [
-			{ src: '/portfolio/pos26-real/dashboard.png', alt: 'Multi-store dashboard' },
-			{ src: '/portfolio/pos26-real/pos_final.png', alt: 'React Native mobile POS' },
-			{ src: '/portfolio/pos26-real/pos.png', alt: 'POS terminal' },
-		],
-		tags: ['Multi-Tenant', 'Cloudflare for SaaS', 'Mobile POS'],
-	},
-]
+const ecommerceStudies = caseStudies.filter((s) =>
+	['hyfy', 'pos26'].includes(s.slug)
+)
 ---
 
 <GlobalLayout 

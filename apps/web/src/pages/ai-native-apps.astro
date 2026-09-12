@@ -7,42 +7,11 @@ import { AiNativeUseCasesSection } from '@/components/sections/AiNativeUseCasesS
 import { CaseStudySection } from '@/components/sections/CaseStudySection'
 import { AiNativeCTASection } from '@/components/sections/AiNativeCTASection'
 import { Footer } from '@/components/Footer'
+import { caseStudies } from '@/data/caseStudies'
 
-const aiStudies = [
-	{
-		title: 'AI Flyer Parser',
-		subtitle: 'Retail Flyers → Structured Product Data (Gemini)',
-		description: 'Thousands of promotional flyer pages turned into structured product records using Gemini. Two AI passes per item: one to parse the flyer, one to score the match against the existing catalogue. Discounts arrive as free text ("30% OFF", "2 for 1"), so a dedicated AI call resolves the final price — not a regex.',
-		stack: ['Next.js 14', 'TypeScript', 'Gemini Pro', 'Firebase', 'Inngest'],
-		results: [
-			'~75% reduction in manual data entry workload',
-			'>95% accuracy on product name extraction',
-			'Works across languages and layouts without templating',
-		],
-		images: [
-			{ src: '/portfolio/flyer-parser/01-source-flyer-input.jpg', alt: 'Source flyer input' },
-			{ src: '/portfolio/flyer-parser/02-dashboard-home.png', alt: 'Dashboard with processing stats' },
-			{ src: '/portfolio/flyer-parser/03-flyer-queue.png', alt: 'Processing queue' },
-			{ src: '/portfolio/flyer-parser/04-parsed-items.png', alt: 'Parsed items with auto-approval' },
-		],
-		tags: ['Gemini', 'Automation', 'Retail'],
-	},
-	{
-		title: 'Multi-Agent AI Assistant',
-		subtitle: 'n8n Router + Google Specialist Agents on Telegram',
-		description: 'A multi-tenant AI assistant used over Telegram. A router agent interprets each request and delegates to the specialist that owns it — email, calendar, contacts, research — each with its own prompt and tools, plus a Pinecone knowledge base. Each user acts through their own OAuth credentials, not a shared account.',
-		stack: ['n8n', 'Telegram Bot API', 'Google APIs', 'Pinecone'],
-		results: [
-			'27 workflows: 6 agents, 9 API helpers, 6 OAuth/onboarding flows',
-			'Multi-tenant — per-user OAuth token resolution at runtime',
-			'Production Telegram integration, used daily',
-		],
-		images: [
-			{ src: '/portfolio/ai-assistant/01-n8n-agent-canvas.png', alt: 'n8n agent canvas with router and sub-agents' },
-		],
-		tags: ['AI Agents', 'n8n', 'Multi-Tenant'],
-	},
-]
+const aiStudies = caseStudies.filter((s) =>
+	['ai-flyer-parser', 'multi-agent-ai-assistant'].includes(s.slug)
+)
 ---
 
 <GlobalLayout 

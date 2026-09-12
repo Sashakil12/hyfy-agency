@@ -1,0 +1,135 @@
+---
+import GlobalLayout from '../../layouts/GlobalLayout.astro'
+import GlobalHeader from '../../components/GlobalHeader'
+import { Footer } from '../../components/Footer'
+import { caseStudies, getCaseStudyBySlug } from '../../data/caseStudies'
+import { motion } from 'framer-motion'
+import { ArrowLeft, ExternalLink } from 'lucide-react'
+
+export async function getStaticPaths() {
+  return caseStudies.map((study) => ({
+    params: { slug: study.slug },
+    props: { study },
+  }))
+}
+
+const { study } = Astro.props
+---
+
+<GlobalLayout
+  title={`${study.title} | Hyfy Agency Case Study`}
+  description={study.description}
+>
+  <GlobalHeader client:load slot="header" currentPath="/case-studies" />
+
+  <main class="min-h-screen pt-24 pb-16 px-4" style={{
+    background: 'radial-gradient(ellipse at 50% 0%, rgba(136, 255, 102, 0.05) 0%, transparent 50%), #050505'
+  }}>
+    <div class="max-w-5xl mx-auto">
+      {/* Back link */}
+      <motion.a
+        client:load
+        href="javascript:history.back()"
+        className="inline-flex items-center gap-2 text-slate hover:text-lime transition-colors mb-8 terminal-text text-sm uppercase tracking-wider"
+        initial={{ opacity: 0, x: -10 }}
+        animate={{ opacity: 1, x: 0 }}
+      >
+        <ArrowLeft className="w-4 h-4" />
+        Back
+      </motion.a>
+
+      {/* Header */}
+      <motion.div
+        client:load
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="mb-12"
+      >
+        {study.tags && (
+          <div class="flex flex-wrap gap-2 mb-4">
+            {study.tags.map((tag) => (
+              <span class="px-3 py-1 text-xs terminal-text uppercase tracking-wider text-lime bg-lime/10 border border-lime/20 rounded">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold uppercase tracking-tight text-white mb-3">
+          {study.title}
+        </h1>
+        <p class="text-lime/70 terminal-text text-sm uppercase tracking-wider">
+          {study.subtitle}
+        </p>
+      </motion.div>
+
+      {/* Image gallery */}
+      <motion.div
+        client:load
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="mb-12"
+      >
+        <div class="grid gap-4">
+          {study.images.map((image, i) => (
+            <div class="rounded-xl overflow-hidden border border-white/10 bg-obsidian/80">
+              <img
+                src={image.src}
+                alt={image.alt}
+                class="w-full h-auto object-contain"
+                loading={i === 0 ? 'eager' : 'lazy'}
+              />
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Content */}
+      <motion.div
+        client:load
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="grid lg:grid-cols-3 gap-8"
+      >
+        {/* Main description */}
+        <div class="lg:col-span-2 space-y-6">
+          <p class="text-slate text-lg leading-relaxed">
+            {study.description}
+          </p>
+
+          <div class="space-y-3">
+            <h2 class="text-xl font-display font-bold uppercase tracking-wide text-white">
+              Key Results
+            </h2>
+            {study.results.map((result) => (
+              <div class="flex items-start gap-3">
+                <div class="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-lime shadow-[0_0_8px_rgba(136,255,102,0.8)]" />
+                <span class="text-slate/80">{result}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Tech stack sidebar */}
+        <div class="space-y-4">
+          <div class="p-6 rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01]">
+            <h3 class="text-sm terminal-text text-lime/70 uppercase tracking-wider mb-4">
+              Tech Stack
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {study.stack.map((tech) => (
+                <span class="px-3 py-1.5 text-sm terminal-text text-slate/80 bg-white/5 border border-white/10 rounded">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  </main>
+
+  <Footer />
+</GlobalLayout>

@@ -7,42 +7,11 @@ import { CmsPrototypesStackSection } from '@/components/sections/CmsPrototypesSt
 import { CaseStudySection } from '@/components/sections/CaseStudySection'
 import { CmsPrototypesCTASection } from '@/components/sections/CmsPrototypesCTASection'
 import { Footer } from '@/components/Footer'
+import { caseStudies } from '@/data/caseStudies'
 
-const cmsStudies = [
-	{
-		title: 'Murgi.net',
-		subtitle: 'Payload CMS E-Commerce — Poultry Trading Platform',
-		description: 'A full e-commerce storefront built on Payload CMS — product catalog, cart, checkout, and order management with a headless CMS powering the content layer. Reverse-engineered payment gateway integration for Bangladeshi payment processors, with the admin panel handling product management, inventory, and order fulfillment.',
-		stack: ['Payload CMS', 'Next.js', 'MongoDB', 'Node.js'],
-		results: [
-			'Headless CMS with custom admin panel for product/order management',
-			'Reverse-engineered Bangladeshi payment gateway integration',
-			'Full e-commerce flow: catalog → cart → checkout → fulfillment',
-		],
-		images: [
-			{ src: '/portfolio/murgi-net/ScreenShot Tool -20260821224127.png', alt: 'Murgi.net storefront' },
-			{ src: '/portfolio/murgi-net/ScreenShot Tool -20260821224203.png', alt: 'Product catalog' },
-			{ src: '/portfolio/murgi-net/ScreenShot Tool -20260821224239.png', alt: 'Admin panel' },
-		],
-		tags: ['Payload CMS', 'E-Commerce', 'Headless'],
-	},
-	{
-		title: 'POS 26 Storefront',
-		subtitle: 'Block-Based Page Builder + Public Shop',
-		description: 'A headless storefront built on the POS 26 platform — merchants design their shop with a drag-and-drop block editor (hero banners, product grids, featured collections, testimonials, CTAs), publish pages with versioning and rollback, and the storefront renders them as static pages served through host-to-store domain resolution. The entire catalog is read through a public API that resolves the store from the request hostname.',
-		stack: ['Next.js 16', 'Tailwind CSS v4', 'Go API', 'PostgreSQL'],
-		results: [
-			'Block registry with 15+ block types',
-			'Page versioning with publish/rollback',
-			'Host-to-store domain resolution for custom domains',
-			'Full SEO pipeline: title/description templates, JSON-LD, sitemaps',
-		],
-		images: [
-			{ src: '/portfolio/pos26-real/online_store.png', alt: 'Online store' },
-		],
-		tags: ['Headless CMS', 'Page Builder', 'Storefront'],
-	},
-]
+const cmsStudies = caseStudies.filter((s) =>
+	['murgi-net', 'pos26-storefront'].includes(s.slug)
+)
 ---
 
 <GlobalLayout 
