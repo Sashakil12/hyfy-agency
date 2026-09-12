@@ -11,6 +11,26 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: 'pintpass',
+    title: 'PintPass',
+    subtitle: 'Brewery Discovery & Drinks Pass Platform',
+    description: 'A marketplace connecting craft beer lovers with local breweries through digital drink passes. Users buy passes, redeem them at participating breweries, and leave reviews. Breweries claim their listing, manage their offers, and see who is scanning in real time. The backend is a full Express + MongoDB API with Stripe for payments, Firebase for auth, Socket.io for live scan events, and SendGrid for transactional email. Gift cards, gift shop items, a CMS for brewery pages, and an admin dashboard that runs the whole platform. The challenge was building a two-sided marketplace where supply (breweries) and demand (drinkers) both need to see value on day one — so the onboarding flows, the claim process, and the redemption experience were all designed to feel instant, not "coming soon."',
+    stack: ['Express', 'MongoDB', 'Stripe', 'Firebase', 'Socket.io', 'SendGrid'],
+    results: [
+      'Two-sided marketplace — breweries and drinkers both onboarded and transacting',
+      'Stripe-powered pass purchases, gift cards, and gift shop checkout',
+      'Real-time scan events via Socket.io — breweries see redemptions live',
+    ],
+    images: [
+      { src: '/portfolio/pintpass/01-pass-slot-counter.png', alt: 'Pass slot counter' },
+      { src: '/portfolio/pintpass/02-pass-products.png', alt: 'Pass products' },
+      { src: '/portfolio/pintpass/03-brewery-scanned-users.png', alt: 'Brewery scanned users' },
+      { src: '/portfolio/pintpass/04-api-swagger.png', alt: 'API documentation' },
+      { src: '/portfolio/pintpass/05-api-endpoints.png', alt: 'API endpoints' },
+    ],
+    tags: ['Marketplace', 'Stripe', 'Real-Time'],
+  },
+  {
     slug: 'dwish',
     title: 'Dwish',
     subtitle: 'Bulk SMS Sender — Published Android App',
