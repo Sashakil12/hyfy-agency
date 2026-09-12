@@ -11,6 +11,28 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: 'dwish',
+    title: 'Dwish',
+    subtitle: 'Bulk SMS Sender — Published Android App',
+    description: 'Sending 500 personalized SMS messages by hand takes a full day. Dwish cuts it to a single tap. Import contacts from a spreadsheet or the device address book, write a template with merge fields — {name}, {due}, {anything from your file} — and hand the list to a background worker that sends, retries, and reports on every message through the phone\'s own SIM. The queue lives in SQLite, so a campaign survives the app being swiped away, the device rebooting, or losing signal entirely. Failed messages retry with exponential backoff; permanent failures carry the real telephony error code. Dual-SIM support, E.164 normalization, configurable throttle to stay under carrier limits, and a pre-flight review that shows every rejected number before anything is queued. Published on the Google Play Store. Built with Expo SDK 57, React Native, and a native Kotlin send engine — because the JavaScript bridge cannot talk to SmsManager.',
+    stack: ['React Native', 'Expo SDK 57', 'Kotlin', 'SQLite', 'TypeScript'],
+    results: [
+      'Published on Google Play Store — real users, real campaigns',
+      'Queue survives app kill, backgrounding, and device reboot — zero messages lost',
+      'Per-message retry with exponential backoff (30s → 15m) — carrier-grade reliability',
+    ],
+    images: [
+      { src: '/portfolio/dwish/01-cover-feature-graphic.png', alt: 'Dwish feature graphic' },
+      { src: '/portfolio/dwish/02-merged-message-preview.png', alt: 'Merged message preview' },
+      { src: '/portfolio/dwish/03-recipients-import.png', alt: 'Recipients import' },
+      { src: '/portfolio/dwish/04-campaign-history.png', alt: 'Campaign history' },
+      { src: '/portfolio/dwish/05-templates.png', alt: 'Message templates' },
+      { src: '/portfolio/dwish/06-sending-engine-settings.png', alt: 'Sending engine settings' },
+      { src: '/portfolio/dwish/07-threaded-inbox.png', alt: 'Threaded inbox' },
+    ],
+    tags: ['Play Store', 'React Native', 'SMS'],
+  },
+  {
     slug: 'hyfy',
     title: 'HyFy',
     subtitle: 'Cross-Border Shopping — Quote to Doorstep',

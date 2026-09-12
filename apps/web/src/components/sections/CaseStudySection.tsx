@@ -1,6 +1,6 @@
 'use client'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -26,8 +26,22 @@ interface CaseStudySectionProps {
 
 function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
   const [activeImage, setActiveImage] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
   const ref = useRef(null)
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
+
+  useEffect(() => {
+    if (study.images.length <= 1 || isPaused) return
+
+    intervalRef.current = setInterval(() => {
+      setActiveImage((i) => (i + 1) % study.images.length)
+    }, 4000)
+
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
+  }, [study.images.length, isPaused])
 
   const cardContent = (
     <motion.div
@@ -47,7 +61,11 @@ function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
         )}
       >
         {/* Image Gallery */}
-        <div className="relative h-64 sm:h-80 lg:h-auto lg:min-h-[400px] lg:max-h-[500px] bg-obsidian/80">
+        <div
+          className="relative h-64 sm:h-80 lg:h-auto lg:min-h-[400px] lg:max-h-[500px] bg-obsidian/80"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           <AnimatePresence mode="wait">
             <motion.img
               key={activeImage}
@@ -70,7 +88,10 @@ function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
                 {study.images.map((_, i) => (
                   <button
                     key={i}
-                    onClick={() => setActiveImage(i)}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setActiveImage(i)
+                    }}
                     className={cn(
                       'h-1.5 rounded-full transition-all',
                       i === activeImage
@@ -81,13 +102,19 @@ function StudyCard({ study, index }: { study: CaseStudy; index: number }) {
                 ))}
               </div>
               <button
-                onClick={() => setActiveImage((i) => (i === 0 ? study.images.length - 1 : i - 1))}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setActiveImage((i) => (i === 0 ? study.images.length - 1 : i - 1))
+                }}
                 className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 bg-obsidian/60 backdrop-blur-sm border border-white/10 hover:border-lime/30 rounded-lg opacity-0 group-hover:opacity-100 transition-all"
               >
                 <ChevronLeft className="w-4 h-4 text-lime" />
               </button>
               <button
-                onClick={() => setActiveImage((i) => (i + 1) % study.images.length)}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setActiveImage((i) => (i + 1) % study.images.length)
+                }}
                 className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-obsidian/60 backdrop-blur-sm border border-white/10 hover:border-lime/30 rounded-lg opacity-0 group-hover:opacity-100 transition-all"
               >
                 <ChevronRight className="w-4 h-4 text-lime" />
