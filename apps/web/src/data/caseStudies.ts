@@ -11,6 +11,25 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: 'murgi-bazar',
+    title: 'Murgi Bazar',
+    subtitle: 'Live-Poultry Marketplace — Web + Android, Verified Listings',
+    description: 'Buying live birds in Bangladesh usually means phone tag and trusting a stranger\'s photo. Murgi Bazar (bazar.murgi.net) fixes the trust problem: before a listing goes live, staff phone the seller and a field officer visits the farm and files a report with bird count, sample weight, health and photos. Buyers browse by category and location in Bengali or English, then call the farmer directly — no commission, no payments through the platform. The backend is a Go API in four domain-driven layers, with an architecture test that fails the build if a layer imports the wrong way. Its OpenAPI spec generates the TypeScript client and Zod schemas, so the Next.js web app and the Expo Android app enforce exactly the rules the server does. Sellers sign in with an SMS code; new listings push to buyers through FCM topics. Photos are screened on the device by an ONNX model, and a self-hosted Gemma 3 4B service reviews listing wording. One Turborepo monorepo spans Go, TypeScript and Python, deployed on Coolify behind a Cloudflare Tunnel.',
+    stack: ['Go', 'Next.js 16', 'Expo', 'PostgreSQL', 'Turborepo', 'Python'],
+    results: [
+      'Two-step verification before go-live — seller phone check, then a field-officer farm visit',
+      'One contract end to end — Go types → OpenAPI → TypeScript client + Zod, so web and mobile validate exactly like the API',
+      'On-device photo check and self-hosted AI wording review keep listings clean without a per-call AI bill',
+    ],
+    images: [
+      { src: '/portfolio/murgi-bazar/01-home.png', alt: 'Murgi Bazar home page' },
+      { src: '/portfolio/murgi-bazar/02-listings.png', alt: 'Live listings with category and location filters' },
+      { src: '/portfolio/murgi-bazar/03-listing-detail.png', alt: 'Listing detail with birds, weight, age and seller call' },
+      { src: '/portfolio/murgi-bazar/04-mobile.png', alt: 'Mobile layout' },
+    ],
+    tags: ['Marketplace', 'Go', 'Bilingual'],
+  },
+  {
     slug: 'dwish',
     title: 'Dwish',
     subtitle: 'Bulk SMS Sender — Published Android App',
